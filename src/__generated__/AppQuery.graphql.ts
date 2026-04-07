@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6e24ff8b42418aa1e2a2ed08af23d229>>
+ * @generated SignedSource<<dac92c4c6811b11b01fc94c8b4f79600>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,10 @@
 import { ConcreteRequest } from 'relay-runtime';
 export type AppQuery$variables = Record<PropertyKey, never>;
 export type AppQuery$data = {
-  readonly testField: string;
+  readonly currentUser: {
+    readonly id: string;
+    readonly name: string;
+  } | null | undefined;
 };
 export type AppQuery = {
   response: AppQuery$data;
@@ -23,8 +26,26 @@ var v0 = [
   {
     "alias": null,
     "args": null,
-    "kind": "ScalarField",
-    "name": "testField",
+    "concreteType": "User",
+    "kind": "LinkedField",
+    "name": "currentUser",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "name",
+        "storageKey": null
+      }
+    ],
     "storageKey": null
   }
 ];
@@ -46,16 +67,16 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "5fe1d75b98d0480c8bb60c4c41a46cc2",
+    "cacheID": "8b604c312e6cb58eac9a6cac8287607d",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  testField\n}\n"
+    "text": "query AppQuery {\n  currentUser {\n    id\n    name\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6d561fac115c50c83fe451f14f3183f4";
+(node as any).hash = "69d06c6272e86b2e02311a75011af2c8";
 
 export default node;
