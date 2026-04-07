@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<488bdc318f1db58a0e4e7e81c7760fd8>>
+ * @generated SignedSource<<f78851fb2f95330aa3309071cf75a354>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,20 +14,21 @@ export type SignInInput = {
   email: string;
   password: string;
 };
-export type AppMutation$variables = {
+export type signInFormMutation$variables = {
   input: SignInInput;
 };
-export type AppMutation$data = {
+export type signInFormMutation$data = {
   readonly signIn: {
-    readonly user: {
+    readonly currentUser: {
       readonly id: string;
       readonly name: string;
     } | null | undefined;
+    readonly errors: ReadonlyArray<string>;
   } | null | undefined;
 };
-export type AppMutation = {
-  response: AppMutation$data;
-  variables: AppMutation$variables;
+export type signInFormMutation = {
+  response: signInFormMutation$data;
+  variables: signInFormMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -58,7 +59,7 @@ v1 = [
         "args": null,
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "user",
+        "name": "currentUser",
         "plural": false,
         "selections": [
           {
@@ -77,6 +78,13 @@ v1 = [
           }
         ],
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "errors",
+        "storageKey": null
       }
     ],
     "storageKey": null
@@ -87,7 +95,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "AppMutation",
+    "name": "signInFormMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -96,20 +104,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "AppMutation",
+    "name": "signInFormMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "3c84f27bfe1607636ceb539f92cfb46c",
+    "cacheID": "68e7035bb42e36287464cfeabffcef4b",
     "id": null,
     "metadata": {},
-    "name": "AppMutation",
+    "name": "signInFormMutation",
     "operationKind": "mutation",
-    "text": "mutation AppMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    user {\n      id\n      name\n    }\n  }\n}\n"
+    "text": "mutation signInFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    currentUser {\n      id\n      name\n    }\n    errors\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b2d3973dddcb02a834839ed0ce58d634";
+(node as any).hash = "a80e55432311a6d091c83d9b8e7e601c";
 
 export default node;
