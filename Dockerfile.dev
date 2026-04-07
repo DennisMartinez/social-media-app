@@ -42,8 +42,8 @@ RUN yarn install
 # Copy app files
 COPY . .
 
-RUN chmod +x ./entrypoint
-ENTRYPOINT ["./entrypoint"]
+RUN chmod +x ./docker-dev-entrypoint
+ENTRYPOINT ["./docker-dev-entrypoint"]
 
 # Expose Vite dev server
 EXPOSE 5173
