@@ -1,0 +1,21 @@
+"""
+Requires that exactly one field must be supplied and that field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type Mutation {
+  """An example field added by the generator"""
+  testField: String!
+}
+
+type Query {
+  """An example field added by the generator"""
+  testField: String!
+}
+
