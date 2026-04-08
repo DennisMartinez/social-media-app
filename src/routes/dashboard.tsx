@@ -1,6 +1,7 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Feed } from '../components/feed'
+import { WhoToFollow } from '../components/follows/who-to-follow'
 import { Navigation } from '../components/navigation'
 import { type dashboardQuery } from './__generated__/dashboardQuery.graphql'
 
@@ -8,10 +9,7 @@ const DashboardQuery = graphql`
   query dashboardQuery {
     ...navigationQuery
     ...feedFragment
-    currentUser {
-      id
-      name
-    }
+    ...whoToFollowFragment
   }
 `
 
@@ -26,7 +24,9 @@ export function Component() {
       <main className="w-6/12">
         <Feed query={data} />
       </main>
-      <div className="w-3/12">Who to follow</div>
+      <div className="w-3/12">
+        <WhoToFollow query={data} />
+      </div>
     </div>
   )
 }

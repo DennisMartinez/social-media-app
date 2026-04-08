@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<49589e47e25e4c20b3bec9244d9f807b>>
+ * @generated SignedSource<<c831d2c0db7004004d0546302e38b956>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,11 +12,7 @@ import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type dashboardQuery$variables = Record<PropertyKey, never>;
 export type dashboardQuery$data = {
-  readonly currentUser: {
-    readonly id: string;
-    readonly name: string;
-  };
-  readonly " $fragmentSpreads": FragmentRefs<"feedFragment" | "navigationQuery">;
+  readonly " $fragmentSpreads": FragmentRefs<"feedFragment" | "navigationQuery" | "whoToFollowFragment">;
 };
 export type dashboardQuery = {
   response: dashboardQuery$data;
@@ -63,17 +59,9 @@ return {
         "name": "feedFragment"
       },
       {
-        "alias": null,
         "args": null,
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "currentUser",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/)
-        ],
-        "storageKey": null
+        "kind": "FragmentSpread",
+        "name": "whoToFollowFragment"
       }
     ],
     "type": "Query",
@@ -193,20 +181,62 @@ return {
           }
         ],
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "UserConnection",
+        "kind": "LinkedField",
+        "name": "usersToFollow",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "UserEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "User",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  (v1/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "isFollowing",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "38c61b87dbbc98f8a4e9e9caecc7992b",
+    "cacheID": "bcc1cb8209416502d6f1893caf030a2e",
     "id": null,
     "metadata": {},
     "name": "dashboardQuery",
     "operationKind": "query",
-    "text": "query dashboardQuery {\n  ...navigationQuery\n  ...feedFragment\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n}\n\nfragment feedFragment on Query {\n  currentUser {\n    ...postListFragment\n    ...newPostFormFragment\n    id\n  }\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment newPostFormFragment on User {\n  id\n}\n\nfragment postListFragment on User {\n  posts(first: 10) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  ...newPostFormFragment\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  ...destroyPostFragment\n}\n"
+    "text": "query dashboardQuery {\n  ...navigationQuery\n  ...feedFragment\n  ...whoToFollowFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n}\n\nfragment feedFragment on Query {\n  currentUser {\n    ...postListFragment\n    ...newPostFormFragment\n    id\n  }\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment newPostFormFragment on User {\n  id\n}\n\nfragment postListFragment on User {\n  posts(first: 10) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  ...newPostFormFragment\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  ...destroyPostFragment\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment whoToFollowFragment on Query {\n  usersToFollow {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "0c4489e2c2842a506e2e50348329dd31";
+(node as any).hash = "acd070e9f34d7a95f56c28d1311056c1";
 
 export default node;
