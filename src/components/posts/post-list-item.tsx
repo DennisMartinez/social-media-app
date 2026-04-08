@@ -2,12 +2,17 @@ import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type postListItemFragment$key } from './__generated__/postListItemFragment.graphql'
 import { DestroyFeedItem } from './destroy-post'
+import { LikePost } from './like-post'
+import { UnlikePost } from './unlike-post'
 
 const PostListItemFragment = graphql`
   fragment postListItemFragment on Post {
     id
     content
     createdAt
+    isLikedByCurrentUser
+    ...likePostFragment
+    ...unlikePostFragment
     ...destroyPostFragment
   }
 `
@@ -25,6 +30,12 @@ export function PostListItem({ post }: PostListItemProps) {
         <p>{data.content}</p>
         <small>Created at: {data.createdAt}</small>
       </div>
+      {data.isLikedByCurrentUser ? (
+        <UnlikePost post={data} />
+      ) : (
+        <LikePost post={data} />
+      )}
+
       <DestroyFeedItem post={data} />
     </li>
   )

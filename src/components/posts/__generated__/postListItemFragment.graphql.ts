@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<41d3dc22c516f029fe997c07cf2b15ab>>
+ * @generated SignedSource<<2027343c922e4b58950ab249a815b702>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,8 @@ export type postListItemFragment$data = {
   readonly content: string;
   readonly createdAt: any;
   readonly id: string;
-  readonly " $fragmentSpreads": FragmentRefs<"destroyPostFragment">;
+  readonly isLikedByCurrentUser: boolean;
+  readonly " $fragmentSpreads": FragmentRefs<"destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
   readonly " $fragmentType": "postListItemFragment";
 };
 export type postListItemFragment$key = {
@@ -50,6 +51,23 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "isLikedByCurrentUser",
+      "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "likePostFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "unlikePostFragment"
+    },
+    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "destroyPostFragment"
@@ -59,6 +77,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "69c847637b4e16d266e51fc875182181";
+(node as any).hash = "566177a1a0c20c3916af60f7755e3179";
 
 export default node;
