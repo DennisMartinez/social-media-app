@@ -1,6 +1,6 @@
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import type { signOutButtonMutation } from './__generated__/signOutButtonMutation.graphql'
+import { type signOutButtonMutation } from './__generated__/signOutButtonMutation.graphql'
 
 const SignOutButtonMutation = graphql`
   mutation signOutButtonMutation($input: SignOutInput!) {

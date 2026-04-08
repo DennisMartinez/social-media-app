@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dd8152a265ae4429de1a24ef25a0e169>>
+ * @generated SignedSource<<7f4bf31eea2c544795990cdedb975ccf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,23 +10,22 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type navigationQuery$data = {
+export type feedFragment$data = {
   readonly currentUser: {
-    readonly id: string;
-    readonly name: string;
+    readonly " $fragmentSpreads": FragmentRefs<"newPostFormFragment" | "postListFragment">;
   };
-  readonly " $fragmentType": "navigationQuery";
+  readonly " $fragmentType": "feedFragment";
 };
-export type navigationQuery$key = {
-  readonly " $data"?: navigationQuery$data;
-  readonly " $fragmentSpreads": FragmentRefs<"navigationQuery">;
+export type feedFragment$key = {
+  readonly " $data"?: feedFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"feedFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "navigationQuery",
+  "name": "feedFragment",
   "selections": [
     {
       "alias": null,
@@ -37,18 +36,14 @@ const node: ReaderFragment = {
       "plural": false,
       "selections": [
         {
-          "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "postListFragment"
         },
         {
-          "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "newPostFormFragment"
         }
       ],
       "storageKey": null
@@ -58,6 +53,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "221d6d4d4f0cb63e9ee577021cb09e93";
+(node as any).hash = "32e81975db524b5f9061fcbdcf361ee8";
 
 export default node;

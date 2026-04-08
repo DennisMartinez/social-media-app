@@ -1,9 +1,9 @@
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import { useFragment } from 'react-relay'
 import { NavLink } from 'react-router'
 import { graphql } from 'relay-runtime'
 import { cn } from '../utils'
-import type { navigationQuery$key } from './__generated__/navigationQuery.graphql'
+import { type navigationQuery$key } from './__generated__/navigationQuery.graphql'
 import { SignOutButton } from './sign-out-button'
 
 const NavigationQuery = graphql`
