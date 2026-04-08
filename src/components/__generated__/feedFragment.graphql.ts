@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d33d0c050d9cd2d2d89c59bb2788c3f2>>
+ * @generated SignedSource<<cf62669703599a899b075e107fecd0ff>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type feedFragment$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"feedListFragment" | "newPostFormFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"createPostFormFragment" | "feedListFragment">;
   readonly " $fragmentType": "feedFragment";
 };
 export type feedFragment$key = {
@@ -33,13 +33,13 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "newPostFormFragment"
+      "name": "createPostFormFragment"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "62159a1ca0fcb424828813867e5237e2";
+(node as any).hash = "9853a2937fb68dfeda3b0873e7da2ef9";
 
 export default node;

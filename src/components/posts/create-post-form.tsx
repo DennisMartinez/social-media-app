@@ -1,19 +1,22 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, useWatch } from 'react-hook-form'
-import { useFragment, useMutation } from 'react-relay'
+import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
-import { type newPostFormFragment$key } from './__generated__/newPostFormFragment.graphql'
-import { type newPostFormMutation } from './__generated__/newPostFormMutation.graphql'
+import type { createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
+import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
-const NewPostFormFragment = graphql`
-  fragment newPostFormFragment on User {
+const CreatePostFormFragment = graphql`
+  fragment createPostFormFragment on User {
     id
   }
 `
 
-const NewPostFormMutation = graphql`
-  mutation newPostFormMutation($connections: [ID!]!, $input: CreatePostInput!) {
+const CreatePostFormMutation = graphql`
+  mutation createPostFormMutation(
+    $connections: [ID!]!
+    $input: CreatePostInput!
+  ) {
     createPost(input: $input) {
       postEdge @prependEdge(connections: $connections) {
         node {
@@ -26,22 +29,22 @@ const NewPostFormMutation = graphql`
   }
 `
 
-const schema = yup
-  .object({
-    content: yup.string().required().max(500)
-  })
-  .required()
+const schema = yup.object({
+  content: yup.string().required().max(500)
+})
 
 const MAX_LIMIT = 500
 
-interface NewPostFormProps {
-  user: newPostFormFragment$key
+interface CreatePostFormProps {
+  user: createPostFormFragment$key
 }
 
-export function NewPostForm({ user }: NewPostFormProps) {
-  const data = useFragment(NewPostFormFragment, user)
-  const [createPost, isCreatingPost] =
-    useMutation<newPostFormMutation>(NewPostFormMutation)
+export function CreatePostForm({ user }: CreatePostFormProps) {
+  const data = useFragment(CreatePostFormFragment, user)
+  const env = useRelayEnvironment()
+  const [createPost, isCreatingPost] = useMutation<createPostFormMutation>(
+    CreatePostFormMutation
+  )
   const { register, handleSubmit, control, reset, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -53,15 +56,14 @@ export function NewPostForm({ user }: NewPostFormProps) {
   return (
     <form
       onSubmit={handleSubmit((formData) => {
-        const connectionId = ConnectionHandler.getConnectionID(
-          data.id,
-          'User_posts'
-        )
+        const connections = ['User_posts', 'User_feed']
+          .map((key) => ConnectionHandler.getConnectionID(data.id, key))
+          .filter((id) => env.getStore().getSource().get(id))
 
         reset()
         createPost({
           variables: {
-            connections: [connectionId],
+            connections,
             input: formData
           },
           optimisticResponse: {

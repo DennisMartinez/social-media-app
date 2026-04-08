@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<392cacfa15ab5f8461fd4748a332d141>>
+ * @generated SignedSource<<085993969f62952ebe8d55479b9c06ae>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,11 +13,11 @@ export type CreatePostInput = {
   clientMutationId?: string | null | undefined;
   content: string;
 };
-export type newPostFormMutation$variables = {
+export type createPostFormMutation$variables = {
   connections: ReadonlyArray<string>;
   input: CreatePostInput;
 };
-export type newPostFormMutation$data = {
+export type createPostFormMutation$data = {
   readonly createPost: {
     readonly postEdge: {
       readonly node: {
@@ -28,9 +28,9 @@ export type newPostFormMutation$data = {
     } | null | undefined;
   } | null | undefined;
 };
-export type newPostFormMutation = {
-  response: newPostFormMutation$data;
-  variables: newPostFormMutation$variables;
+export type createPostFormMutation = {
+  response: createPostFormMutation$data;
+  variables: createPostFormMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -101,7 +101,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "newPostFormMutation",
+    "name": "createPostFormMutation",
     "selections": [
       {
         "alias": null,
@@ -123,7 +123,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "newPostFormMutation",
+    "name": "createPostFormMutation",
     "selections": [
       {
         "alias": null,
@@ -156,16 +156,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ccd586ac890979f677e777f78025b32a",
+    "cacheID": "85554ec2c1f526e0a1cef25b6efd8005",
     "id": null,
     "metadata": {},
-    "name": "newPostFormMutation",
+    "name": "createPostFormMutation",
     "operationKind": "mutation",
-    "text": "mutation newPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        id\n        content\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        id\n        content\n        createdAt\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "83115896f52eed692467c3ed530a48eb";
+(node as any).hash = "83950a23ca0d2a81a6ac41f9351fdd30";
 
 export default node;

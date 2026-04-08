@@ -6,12 +6,10 @@ import { graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { type signInFormMutation } from './__generated__/signInFormMutation.graphql'
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().required()
-  })
-  .required()
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required()
+})
 
 const SignInFormMutation = graphql`
   mutation signInFormMutation($input: SignInInput!) {

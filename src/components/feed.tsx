@@ -1,13 +1,13 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type feedFragment$key } from './__generated__/feedFragment.graphql'
+import { CreatePostForm } from './posts/create-post-form'
 import { FeedList } from './posts/feed-list'
-import { NewPostForm } from './posts/new-post-form'
 
 const FeedFragment = graphql`
   fragment feedFragment on User {
     ...feedListFragment
-    ...newPostFormFragment
+    ...createPostFormFragment
   }
 `
 
@@ -20,7 +20,7 @@ export function Feed({ user }: FeedProps) {
 
   return (
     <div className="grid w-full gap-4">
-      <NewPostForm user={data} />
+      <CreatePostForm user={data} />
       <FeedList user={data} />
     </div>
   )

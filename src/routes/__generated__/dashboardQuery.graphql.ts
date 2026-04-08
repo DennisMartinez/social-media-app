@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dae19a094b130e191620df6faff0a9ac>>
+ * @generated SignedSource<<975a55b5e6e99f591a4de2d60918fb9d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -248,12 +248,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bb8c493555d46fa9c2ffd70fbf8df3be",
+    "cacheID": "da91aedbac0ee4e48a5a43fa8bac2bea",
     "id": null,
     "metadata": {},
     "name": "dashboardQuery",
     "operationKind": "query",
-    "text": "query dashboardQuery {\n  currentUser {\n    ...feedFragment\n    ...recommendedFollowsFragment\n    id\n  }\n  ...navigationQuery\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedFragment on User {\n  ...feedListFragment\n  ...newPostFormFragment\n}\n\nfragment feedListFragment on User {\n  feed(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment newPostFormFragment on User {\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  ...destroyPostFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n"
+    "text": "query dashboardQuery {\n  currentUser {\n    ...feedFragment\n    ...recommendedFollowsFragment\n    id\n  }\n  ...navigationQuery\n}\n\nfragment createPostFormFragment on User {\n  id\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedFragment on User {\n  ...feedListFragment\n  ...createPostFormFragment\n}\n\nfragment feedListFragment on User {\n  feed(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  ...destroyPostFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n"
   }
 };
 })();
