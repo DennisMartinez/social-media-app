@@ -1,12 +1,16 @@
-import { useFragment } from 'react-relay'
+import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type feedListFragment$key } from './__generated__/feedListFragment.graphql'
 import { PostListItem } from './post-list-item'
 
 const FeedListFragment = graphql`
   fragment feedListFragment on User
-  @argumentDefinitions(first: { type: "Int", defaultValue: 5 }) {
-    feed(first: $first) @connection(key: "User_feed") {
+  @refetchable(queryName: "feedListPaginationQuery")
+  @argumentDefinitions(
+    cursor: { type: "String" }
+    first: { type: "Int", defaultValue: 5 }
+  ) {
+    feed(after: $cursor, first: $first) @connection(key: "User_feed") {
       edges {
         node {
           id
@@ -22,14 +26,21 @@ interface FeedListProps {
 }
 
 export function FeedList({ user }: FeedListProps) {
-  const data = useFragment(FeedListFragment, user)
+  const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
+    FeedListFragment,
+    user
+  )
 
   return (
-    <ol className="grid w-full gap-4">
-      {data.feed?.edges?.map((edge) => {
-        if (!edge?.node) return null
-        return <PostListItem key={edge.node.id} post={edge.node} />
-      })}
-    </ol>
+    <div>
+      <ol className="grid w-full gap-4">
+        {data.feed?.edges?.map((edge) => {
+          if (!edge?.node) return null
+          return <PostListItem key={edge.node.id} post={edge.node} />
+        })}
+      </ol>
+      {isLoadingNext && <p>Loading...</p>}
+      {hasNext && <button onClick={() => loadNext(5)}>Load more</button>}
+    </div>
   )
 }

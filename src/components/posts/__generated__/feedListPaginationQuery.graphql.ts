@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<503b4c0b5e1808e60e72c7e6c90e8a4e>>
+ * @generated SignedSource<<fdb976237ab3a7fb91ecc85662ecb388>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,22 +10,33 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type userQuery$variables = {
+export type feedListPaginationQuery$variables = {
+  cursor?: string | null | undefined;
+  first?: number | null | undefined;
   id: string;
 };
-export type userQuery$data = {
+export type feedListPaginationQuery$data = {
   readonly node: {
-    readonly " $fragmentSpreads": FragmentRefs<"postListFragment" | "recommendedFollowsFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"feedListFragment">;
   } | null | undefined;
-  readonly " $fragmentSpreads": FragmentRefs<"navigationQuery">;
 };
-export type userQuery = {
-  response: userQuery$data;
-  variables: userQuery$variables;
+export type feedListPaginationQuery = {
+  response: feedListPaginationQuery$data;
+  variables: feedListPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  },
+  {
+    "defaultValue": 5,
+    "kind": "LocalArgument",
+    "name": "first"
+  },
   {
     "defaultValue": null,
     "kind": "LocalArgument",
@@ -40,39 +51,38 @@ v1 = [
   }
 ],
 v2 = {
+  "kind": "Variable",
+  "name": "first",
+  "variableName": "first"
+},
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v3 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
-    "kind": "Literal",
-    "name": "first",
-    "value": 5
-  }
-],
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-};
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  (v2/*: any*/)
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "userQuery",
+    "name": "feedListPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -83,29 +93,19 @@ return {
         "plural": false,
         "selections": [
           {
-            "kind": "InlineFragment",
-            "selections": [
+            "args": [
               {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "postListFragment"
+                "kind": "Variable",
+                "name": "cursor",
+                "variableName": "cursor"
               },
-              {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "recommendedFollowsFragment"
-              }
+              (v2/*: any*/)
             ],
-            "type": "User",
-            "abstractKey": null
+            "kind": "FragmentSpread",
+            "name": "feedListFragment"
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "navigationQuery"
       }
     ],
     "type": "Query",
@@ -115,7 +115,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "userQuery",
+    "name": "feedListPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -125,17 +125,17 @@ return {
         "name": "node",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
           {
             "kind": "InlineFragment",
             "selections": [
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v5/*: any*/),
                 "concreteType": "PostConnection",
                 "kind": "LinkedField",
-                "name": "posts",
+                "name": "feed",
                 "plural": false,
                 "selections": [
                   {
@@ -154,7 +154,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
+                          (v4/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -183,7 +183,7 @@ return {
                             "name": "canDestroy",
                             "storageKey": null
                           },
-                          (v2/*: any*/)
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
                       },
@@ -223,58 +223,16 @@ return {
                     "storageKey": null
                   }
                 ],
-                "storageKey": "posts(first:5)"
+                "storageKey": null
               },
               {
                 "alias": null,
-                "args": (v4/*: any*/),
+                "args": (v5/*: any*/),
                 "filters": null,
                 "handle": "connection",
-                "key": "User_posts",
+                "key": "User_feed",
                 "kind": "LinkedHandle",
-                "name": "posts"
-              },
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "UserConnection",
-                "kind": "LinkedField",
-                "name": "recommendedFollows",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "UserEdge",
-                    "kind": "LinkedField",
-                    "name": "edges",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "User",
-                        "kind": "LinkedField",
-                        "name": "node",
-                        "plural": false,
-                        "selections": [
-                          (v3/*: any*/),
-                          (v5/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "isFollowing",
-                            "storageKey": null
-                          }
-                        ],
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
+                "name": "feed"
               }
             ],
             "type": "User",
@@ -282,33 +240,20 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "currentUser",
-        "plural": false,
-        "selections": [
-          (v3/*: any*/),
-          (v5/*: any*/)
-        ],
-        "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "4bc3ddab458f5165bd0056e9dd318a29",
+    "cacheID": "c86c4e49cbcebdbb8abb665e3e180fda",
     "id": null,
     "metadata": {},
-    "name": "userQuery",
+    "name": "feedListPaginationQuery",
     "operationKind": "query",
-    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationQuery\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
+    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
   }
 };
 })();
 
-(node as any).hash = "61a6b30e6958f6a807372d0b5cb84d6f";
+(node as any).hash = "fadbcd8bf043158aa550802ec53336fc";
 
 export default node;

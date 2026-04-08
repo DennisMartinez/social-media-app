@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a68ac90dc8a067cdb408cc7421f4dae4>>
+ * @generated SignedSource<<f19ec0d69f2452da9a8a7f316dac7ca0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type postListFragment$data = {
+  readonly id: string;
   readonly posts: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -26,8 +27,26 @@ export type postListFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"postListFragment">;
 };
 
-const node: ReaderFragment = {
+import postListPaginationQuery_graphql from './postListPaginationQuery.graphql';
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "posts"
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "cursor"
+    },
     {
       "defaultValue": 5,
       "kind": "LocalArgument",
@@ -39,13 +58,29 @@ const node: ReaderFragment = {
     "connection": [
       {
         "count": "first",
-        "cursor": null,
+        "cursor": "cursor",
         "direction": "forward",
-        "path": [
-          "posts"
-        ]
+        "path": (v0/*: any*/)
       }
-    ]
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [
+        "node"
+      ],
+      "operation": postListPaginationQuery_graphql,
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
+    }
   },
   "name": "postListFragment",
   "selections": [
@@ -73,13 +108,7 @@ const node: ReaderFragment = {
               "name": "node",
               "plural": false,
               "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
+                (v1/*: any*/),
                 {
                   "args": null,
                   "kind": "FragmentSpread",
@@ -132,12 +161,14 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    }
+    },
+    (v1/*: any*/)
   ],
   "type": "User",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "fb90d2d47314f3932e1dc88894c46bad";
+(node as any).hash = "26af452e509c9d19c3aa7d84f61f2ed8";
 
 export default node;
