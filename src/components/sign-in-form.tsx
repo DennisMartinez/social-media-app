@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-relay'
-import { useNavigate, useSearchParams } from 'react-router'
+import { useSearchParams } from 'react-router'
 import { graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { type signInFormMutation } from './__generated__/signInFormMutation.graphql'
@@ -28,7 +28,6 @@ const SignInFormMutation = graphql`
 export function SignInForm() {
   const [searchParams] = useSearchParams()
   const redirect = searchParams.get('redirect') || '/'
-  const navigate = useNavigate()
   const [signIn, isSigningIn] =
     useMutation<signInFormMutation>(SignInFormMutation)
   const { register, handleSubmit } = useForm({
@@ -52,7 +51,7 @@ export function SignInForm() {
               return
             }
 
-            navigate(redirect, { replace: true })
+            window.location.assign(redirect)
           },
           onError: () => {}
         })

@@ -22,6 +22,24 @@ const fetchFn: FetchFunction = async (request, variables) => {
   })
   const data = await resp.json()
 
+  if ('errors' in data) {
+    const hasUnauthorizedError = data.errors.some(
+      (error: { message: string }) => error.message.includes('Unauthorized')
+    )
+
+    if (hasUnauthorizedError) {
+      const redirect = window.location.href
+
+      if (window.location.pathname !== '/sign-in') {
+        throw new Promise(() => {
+          window.location.assign(
+            `/sign-in?redirect=${encodeURIComponent(redirect)}`
+          )
+        })
+      }
+    }
+  }
+
   return data
 }
 
