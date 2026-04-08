@@ -15,7 +15,7 @@ const NewPostFormFragment = graphql`
 const NewPostFormMutation = graphql`
   mutation newPostFormMutation($connections: [ID!]!, $input: CreatePostInput!) {
     createPost(input: $input) {
-      postEdge @appendEdge(connections: $connections) {
+      postEdge @prependEdge(connections: $connections) {
         node {
           id
           content
@@ -55,7 +55,7 @@ export function NewPostForm({ user }: NewPostFormProps) {
       onSubmit={handleSubmit((formData) => {
         const connectionId = ConnectionHandler.getConnectionID(
           data.id,
-          'Feed_posts'
+          'User_posts'
         )
 
         reset()

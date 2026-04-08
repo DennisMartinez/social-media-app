@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a68ac90dc8a067cdb408cc7421f4dae4>>
+ * @generated SignedSource<<d8f4458820d52e8c9fc751c5c2185f8a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,20 +10,20 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type postListFragment$data = {
-  readonly posts: {
+export type feedListFragment$data = {
+  readonly feed: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
         readonly " $fragmentSpreads": FragmentRefs<"postListItemFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
-  } | null | undefined;
-  readonly " $fragmentType": "postListFragment";
+  };
+  readonly " $fragmentType": "feedListFragment";
 };
-export type postListFragment$key = {
-  readonly " $data"?: postListFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"postListFragment">;
+export type feedListFragment$key = {
+  readonly " $data"?: feedListFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"feedListFragment">;
 };
 
 const node: ReaderFragment = {
@@ -42,19 +42,19 @@ const node: ReaderFragment = {
         "cursor": null,
         "direction": "forward",
         "path": [
-          "posts"
+          "feed"
         ]
       }
     ]
   },
-  "name": "postListFragment",
+  "name": "feedListFragment",
   "selections": [
     {
-      "alias": "posts",
+      "alias": "feed",
       "args": null,
       "concreteType": "PostConnection",
       "kind": "LinkedField",
-      "name": "__User_posts_connection",
+      "name": "__User_feed_connection",
       "plural": false,
       "selections": [
         {
@@ -138,6 +138,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "fb90d2d47314f3932e1dc88894c46bad";
+(node as any).hash = "7a0609b943cbd3f481620e4c8ceb8da2";
 
 export default node;

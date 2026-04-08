@@ -34,7 +34,7 @@ export function SignInForm() {
     resolver: yupResolver(schema),
     defaultValues: {
       email: 'admin@example.com',
-      password: 'derp'
+      password: 'admin'
     }
   })
 

@@ -12,6 +12,7 @@ export const router = createBrowserRouter(
       lazy={() => import('./routes/_root')}
       hydrateFallbackElement={<div />}>
       <Route index lazy={() => import('./routes/dashboard')} />
+      <Route path="users/:id" lazy={() => import('./routes/user')} />
       <Route path="sign-in" lazy={() => import('./routes/sign-in')} />
       <Route path="*" lazy={() => import('./routes/not-found')} />
     </Route>

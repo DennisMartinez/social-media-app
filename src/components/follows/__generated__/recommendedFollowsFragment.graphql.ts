@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b30bcf038d6e251977a5cb58147c2509>>
+ * @generated SignedSource<<b6c7c1e5a94967526bca8fe25a644f64>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,8 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type whoToFollowFragment$data = {
-  readonly usersToFollow: {
+export type recommendedFollowsFragment$data = {
+  readonly recommendedFollows: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -21,25 +21,25 @@ export type whoToFollowFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   };
-  readonly " $fragmentType": "whoToFollowFragment";
+  readonly " $fragmentType": "recommendedFollowsFragment";
 };
-export type whoToFollowFragment$key = {
-  readonly " $data"?: whoToFollowFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"whoToFollowFragment">;
+export type recommendedFollowsFragment$key = {
+  readonly " $data"?: recommendedFollowsFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"recommendedFollowsFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "whoToFollowFragment",
+  "name": "recommendedFollowsFragment",
   "selections": [
     {
       "alias": null,
       "args": null,
       "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "usersToFollow",
+      "name": "recommendedFollows",
       "plural": false,
       "selections": [
         {
@@ -99,10 +99,10 @@ const node: ReaderFragment = {
       "storageKey": null
     }
   ],
-  "type": "Query",
+  "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "51b540398c1f19b8446273b8ae026678";
+(node as any).hash = "a881fb7d0cad65f92f7c17cec6937826";
 
 export default node;

@@ -1,12 +1,13 @@
 import { useFragment } from 'react-relay'
+import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
-import { type whoToFollowFragment$key } from './__generated__/whoToFollowFragment.graphql'
+import { type recommendedFollowsFragment$key } from './__generated__/recommendedFollowsFragment.graphql'
 import { FollowUser } from './follow-user'
 import { UnfollowUser } from './unfollow-user'
 
-const WhoToFollowFragment = graphql`
-  fragment whoToFollowFragment on Query {
-    usersToFollow {
+const RecommendedFollowsFragment = graphql`
+  fragment recommendedFollowsFragment on User {
+    recommendedFollows {
       edges {
         node {
           id
@@ -20,22 +21,24 @@ const WhoToFollowFragment = graphql`
   }
 `
 
-interface WhoToFollowProps {
-  query: whoToFollowFragment$key
+interface RecommendedFollowsProps {
+  user: recommendedFollowsFragment$key
 }
 
-export function WhoToFollow({ query }: WhoToFollowProps) {
-  const data = useFragment(WhoToFollowFragment, query)
+export function RecommendedFollows({ user }: RecommendedFollowsProps) {
+  const data = useFragment(RecommendedFollowsFragment, user)
 
   return (
     <div>
       <h2>Who to Follow</h2>
       <ul>
-        {data.usersToFollow.edges?.map((edge) => {
+        {data.recommendedFollows.edges?.map((edge) => {
           if (!edge?.node) return null
           return (
             <li key={edge.node.id}>
-              {edge.node.name}
+              <Link to={`/users/${edge.node.id}`} className="font-bold">
+                {edge.node.name}
+              </Link>
               {edge.node.isFollowing ? (
                 <UnfollowUser user={edge.node} />
               ) : (

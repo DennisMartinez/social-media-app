@@ -1,12 +1,12 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { type postListFragment$key } from './__generated__/postListFragment.graphql'
+import { type feedListFragment$key } from './__generated__/feedListFragment.graphql'
 import { PostListItem } from './post-list-item'
 
-const PostListFragment = graphql`
-  fragment postListFragment on User
+const FeedListFragment = graphql`
+  fragment feedListFragment on User
   @argumentDefinitions(first: { type: "Int", defaultValue: 5 }) {
-    posts(first: $first) @connection(key: "User_posts") {
+    feed(first: $first) @connection(key: "User_feed") {
       edges {
         node {
           id
@@ -17,16 +17,16 @@ const PostListFragment = graphql`
   }
 `
 
-interface PostListProps {
-  user: postListFragment$key
+interface FeedListProps {
+  user: feedListFragment$key
 }
 
-export function PostList({ user }: PostListProps) {
-  const data = useFragment(PostListFragment, user)
+export function FeedList({ user }: FeedListProps) {
+  const data = useFragment(FeedListFragment, user)
 
   return (
     <ol className="grid w-full gap-4">
-      {data.posts?.edges?.map((edge) => {
+      {data.feed?.edges?.map((edge) => {
         if (!edge?.node) return null
         return <PostListItem key={edge.node.id} post={edge.node} />
       })}
