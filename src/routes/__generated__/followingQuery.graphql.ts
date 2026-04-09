@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<827a2a49e72dc8ccf0b7ae5610ad2da6>>
+ * @generated SignedSource<<bdd5a92fcaea27668810f202ea6c1714>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -114,7 +114,14 @@ return {
                     "plural": false,
                     "selections": [
                       (v0/*: any*/),
-                      (v1/*: any*/)
+                      (v1/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "avatarUrl",
+                        "storageKey": null
+                      }
                     ],
                     "storageKey": null
                   }
@@ -132,12 +139,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2228277d68b7fb1aeb3e8d259f3df040",
+    "cacheID": "2b9710729318d835c2a92279d756ab40",
     "id": null,
     "metadata": {},
     "name": "followingQuery",
     "operationKind": "query",
-    "text": "query followingQuery {\n  currentUser {\n    ...followingGridFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment followerCardFragment on User {\n  id\n  name\n}\n\nfragment followingGridFragment on User {\n  following(first: 10) {\n    edges {\n      node {\n        id\n        ...followerCardFragment\n      }\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n"
+    "text": "query followingQuery {\n  currentUser {\n    ...followingGridFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment followerCardFragment on User {\n  id\n  name\n  avatarUrl\n}\n\nfragment followingGridFragment on User {\n  following(first: 10) {\n    edges {\n      node {\n        id\n        ...followerCardFragment\n      }\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n"
   }
 };
 })();

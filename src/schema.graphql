@@ -582,6 +582,9 @@ type UpdatePasswordWithResetTokenPayload {
 
 """A user of the social media platform."""
 type User implements Node {
+  """The URL of the user's avatar image."""
+  avatarUrl: String
+
   """The comments made by the user."""
   comments(
     """Returns the elements in the list that come after the specified cursor."""

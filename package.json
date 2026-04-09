@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "relay": "relay-compiler",
-    "schema": "get-graphql-schema http://localhost:8080/graphql > src/schema.graphql"
+    "schema": "get-graphql-schema http://localhost:3000/graphql > src/schema.graphql"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

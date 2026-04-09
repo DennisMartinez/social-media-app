@@ -13,6 +13,7 @@ const RecommendedFollowsFragment = graphql`
           id
           name
           isFollowing
+          avatarUrl
           ...followUserFragment
           ...unfollowUserFragment
         }
@@ -37,6 +38,13 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
           return (
             <li key={edge.node.id}>
               <Link to={`/users/${edge.node.id}`} className="font-bold">
+                {edge.node.avatarUrl && (
+                  <img
+                    src={edge.node.avatarUrl}
+                    alt={edge.node.name}
+                    className="mr-2 inline-block h-8 w-8 rounded-full"
+                  />
+                )}
                 {edge.node.name}
               </Link>
               {edge.node.isFollowing ? (

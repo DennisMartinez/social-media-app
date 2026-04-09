@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b6c7c1e5a94967526bca8fe25a644f64>>
+ * @generated SignedSource<<0397964cb0aaecaede4d9088f756611a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type recommendedFollowsFragment$data = {
   readonly recommendedFollows: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly avatarUrl: string | null | undefined;
         readonly id: string;
         readonly isFollowing: boolean;
         readonly name: string;
@@ -80,6 +81,13 @@ const node: ReaderFragment = {
                   "storageKey": null
                 },
                 {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "avatarUrl",
+                  "storageKey": null
+                },
+                {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "followUserFragment"
@@ -103,6 +111,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "a881fb7d0cad65f92f7c17cec6937826";
+(node as any).hash = "fee7fe902c4f5f48e6e55b74cfcb3a4f";
 
 export default node;
