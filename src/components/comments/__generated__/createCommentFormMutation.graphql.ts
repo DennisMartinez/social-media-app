@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<02b995f5ab714ff66eade789146194fe>>
+ * @generated SignedSource<<f82a5353fdd16b26e78bc8150a40a9a9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,6 +23,15 @@ export type createCommentFormMutation$data = {
   readonly createComment: {
     readonly commentEdge: {
       readonly node: {
+        readonly commentable: {
+          readonly __typename: "Post";
+          readonly commentsCount: number;
+          readonly id: string;
+        } | {
+          // This will never be '%other', but we need some
+          // value in case none of the concrete values match.
+          readonly __typename: "%other";
+        };
         readonly " $fragmentSpreads": FragmentRefs<"commentFragment">;
       } | null | undefined;
     } | null | undefined;
@@ -65,8 +74,30 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "id",
   "storageKey": null
+},
+v5 = {
+  "kind": "InlineFragment",
+  "selections": [
+    (v4/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "commentsCount",
+      "storageKey": null
+    }
+  ],
+  "type": "Post",
+  "abstractKey": null
 };
 return {
   "fragment": {
@@ -100,6 +131,19 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": null,
+                    "kind": "LinkedField",
+                    "name": "commentable",
+                    "plural": false,
+                    "selections": [
+                      (v3/*: any*/),
+                      (v5/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
                   {
                     "args": null,
                     "kind": "FragmentSpread",
@@ -149,7 +193,28 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v3/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": null,
+                    "kind": "LinkedField",
+                    "name": "commentable",
+                    "plural": false,
+                    "selections": [
+                      (v3/*: any*/),
+                      (v5/*: any*/),
+                      {
+                        "kind": "InlineFragment",
+                        "selections": [
+                          (v4/*: any*/)
+                        ],
+                        "type": "Node",
+                        "abstractKey": "__isNode"
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -186,7 +251,7 @@ return {
                         "name": "avatarUrl",
                         "storageKey": null
                       },
-                      (v3/*: any*/)
+                      (v4/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -200,7 +265,7 @@ return {
             "alias": null,
             "args": null,
             "filters": null,
-            "handle": "appendEdge",
+            "handle": "prependEdge",
             "key": "",
             "kind": "LinkedHandle",
             "name": "commentEdge",
@@ -218,16 +283,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "918fb64973ba372cb611212e7bb58aeb",
+    "cacheID": "3bcd6b0232a69ac36cc86c33548e6596",
     "id": null,
     "metadata": {},
     "name": "createCommentFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        ...commentFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        commentable {\n          __typename\n          ... on Post {\n            id\n            commentsCount\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        ...commentFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "250ebbb13dff3a8453ca267599f74b20";
+(node as any).hash = "ae9d074c51549caeb4ff83259fca465e";
 
 export default node;

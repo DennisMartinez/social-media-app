@@ -399,6 +399,9 @@ type Post implements Node {
     last: Int
   ): CommentConnection!
 
+  """The number of comments on this post."""
+  commentsCount: Int!
+
   """The content of the post."""
   content: String!
 
@@ -413,6 +416,9 @@ type Post implements Node {
 
   """Whether the current user has liked this post."""
   isLikedByCurrentUser: Boolean!
+
+  """The number of likes on this post."""
+  likesCount: Int!
 
   """The time when the post was last updated."""
   updatedAt: ISO8601DateTime!

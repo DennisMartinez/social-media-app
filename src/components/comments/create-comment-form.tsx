@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
@@ -20,7 +20,11 @@ const CreateCommentFormUserFragment = graphql`
 
 const CreateCommentFormCommentableFragment = graphql`
   fragment createCommentFormCommentableFragment on Node {
+    __typename
     id
+    ... on Post {
+      commentsCount
+    }
   }
 `
 
@@ -31,8 +35,15 @@ const CreateCommentFormMutation = graphql`
   ) {
     createComment(input: $input) {
       errors
-      commentEdge @appendEdge(connections: $connections) {
+      commentEdge @prependEdge(connections: $connections) {
         node {
+          commentable {
+            __typename
+            ... on Post {
+              id
+              commentsCount
+            }
+          }
           ...commentFragment
         }
       }
@@ -65,13 +76,12 @@ export function CreateCommentForm({
   )
   const [createComment, isCreatingComment] =
     useMutation<createCommentFormMutation>(CreateCommentFormMutation)
-  const { register, handleSubmit, control, reset, setValue } = useForm({
+  const { register, handleSubmit, reset, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       content: ''
     }
   })
-  const content = useWatch({ control, name: 'content' })
 
   return (
     <form
@@ -99,6 +109,17 @@ export function CreateCommentForm({
                   id: new Date().toISOString(),
                   content: formData.content,
                   createdAt: new Date().toISOString(),
+                  commentable:
+                    commentableData.__typename === 'Post'
+                      ? {
+                          __typename: commentableData.__typename,
+                          id: commentableData.id,
+                          commentsCount:
+                            (commentableData.commentsCount || 0) + 1
+                        }
+                      : {
+                          id: commentableData.id
+                        },
                   user: {
                     id: userData.id,
                     name: userData.name,
