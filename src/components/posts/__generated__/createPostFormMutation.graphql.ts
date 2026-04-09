@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ee8800a1c75c5dd638519fff348a5622>>
+ * @generated SignedSource<<694447168e26ed93a6c88d3fb0323a4d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -302,6 +302,13 @@ return {
                             "key": "Post_comments",
                             "kind": "LinkedHandle",
                             "name": "comments"
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "likesCount",
+                            "storageKey": null
                           }
                         ],
                         "type": "Post",
@@ -339,12 +346,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3d521d5030aed8cd076bd45c6dae9e02",
+    "cacheID": "1ed78cc4223b001e9e4e85b43d3b15da",
     "id": null,
     "metadata": {},
     "name": "createPostFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment likeCountFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n  }\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n  ...likeCountFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

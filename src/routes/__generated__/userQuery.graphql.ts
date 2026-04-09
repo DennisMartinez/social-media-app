@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<97e8dc6b90fa1e48a168ec410d55bfec>>
+ * @generated SignedSource<<18c8e798c9ef8df9faa23046d49a04af>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -308,6 +308,13 @@ return {
                                     "key": "Post_comments",
                                     "kind": "LinkedHandle",
                                     "name": "comments"
+                                  },
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "likesCount",
+                                    "storageKey": null
                                   }
                                 ],
                                 "type": "Post",
@@ -403,12 +410,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d29b1fb97492c8a29b05c9fda69930b0",
+    "cacheID": "6f86aa1d1dcaa7c22127616e0574efa7",
     "id": null,
     "metadata": {},
     "name": "userQuery",
     "operationKind": "query",
-    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n        ...userAvatarFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likeCountFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n  }\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n  ...likeCountFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n        ...userAvatarFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

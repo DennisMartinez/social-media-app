@@ -1,9 +1,10 @@
-import { EllipsisIcon, ThumbsUp } from 'lucide-react'
+import { EllipsisIcon } from 'lucide-react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { CommentCount } from '../comments/comment-count'
 import { CommentList } from '../comments/comment-list'
 import { CreateCommentForm } from '../comments/create-comment-form'
+import { LikeCount } from '../likes/like-count'
 import { UserAvatar } from '../user-avatar'
 import type { postFragment$key } from './__generated__/postFragment.graphql'
 
@@ -24,6 +25,7 @@ const PostFragment = graphql`
     ...createCommentFormCommentableFragment
     ...commentListFragment
     ...commentCountFragment
+    ...likeCountFragment
   }
 `
 
@@ -57,9 +59,7 @@ export function Post({ post }: PostProps) {
       <p className="text-gray-900">{data.content}</p>
       <div className="flex items-center justify-between border-t border-b border-gray-200 py-4">
         <div className="space-between flex gap-12">
-          <div className="flex items-center gap-1 text-sm">
-            <ThumbsUp className="size-4" /> 25 likes
-          </div>
+          <LikeCount likeable={data} />
           <CommentCount commentable={data} />
         </div>
       </div>

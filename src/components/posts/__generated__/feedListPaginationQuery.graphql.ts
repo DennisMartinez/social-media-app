@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dedd742772b8908c9eb3610aed17b6bd>>
+ * @generated SignedSource<<5d432a67fa56bb4acea6b544e7ea70f1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -313,6 +313,13 @@ return {
                                     "key": "Post_comments",
                                     "kind": "LinkedHandle",
                                     "name": "comments"
+                                  },
+                                  {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "likesCount",
+                                    "storageKey": null
                                   }
                                 ],
                                 "type": "Post",
@@ -352,12 +359,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a915a2eafefa9d329d02c1567d1e47c2",
+    "cacheID": "910095a3fe4ee6677cc23bd09721dc9a",
     "id": null,
     "metadata": {},
     "name": "feedListPaginationQuery",
     "operationKind": "query",
-    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likeCountFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n  }\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n  ...likeCountFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
