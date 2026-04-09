@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2027343c922e4b58950ab249a815b702>>
+ * @generated SignedSource<<a4f800ba4e84880bb7ffab8907ddff44>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type postListItemFragment$data = {
   readonly createdAt: any;
   readonly id: string;
   readonly isLikedByCurrentUser: boolean;
-  readonly " $fragmentSpreads": FragmentRefs<"destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormFragment" | "destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
   readonly " $fragmentType": "postListItemFragment";
 };
 export type postListItemFragment$key = {
@@ -71,12 +71,22 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "FragmentSpread",
       "name": "destroyPostFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "createCommentFormFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "commentListFragment"
     }
   ],
   "type": "Post",
   "abstractKey": null
 };
 
-(node as any).hash = "566177a1a0c20c3916af60f7755e3179";
+(node as any).hash = "17ab019e14c10ec25c893c8094d66336";
 
 export default node;

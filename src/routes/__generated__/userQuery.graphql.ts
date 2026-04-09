@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<503b4c0b5e1808e60e72c7e6c90e8a4e>>
+ * @generated SignedSource<<4905597ad6ea1fb26c2fda887a3f87e2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -61,6 +61,45 @@ v4 = [
   }
 ],
 v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "content",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "cursor",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "kind": "LinkedField",
+  "name": "pageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "endCursor",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "hasNextPage",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -155,13 +194,7 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "content",
-                            "storageKey": null
-                          },
+                          (v5/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -183,45 +216,76 @@ return {
                             "name": "canDestroy",
                             "storageKey": null
                           },
-                          (v2/*: any*/)
+                          (v2/*: any*/),
+                          {
+                            "kind": "InlineFragment",
+                            "selections": [
+                              {
+                                "kind": "InlineFragment",
+                                "selections": [
+                                  {
+                                    "alias": null,
+                                    "args": (v4/*: any*/),
+                                    "concreteType": "CommentConnection",
+                                    "kind": "LinkedField",
+                                    "name": "comments",
+                                    "plural": false,
+                                    "selections": [
+                                      {
+                                        "alias": null,
+                                        "args": null,
+                                        "concreteType": "CommentEdge",
+                                        "kind": "LinkedField",
+                                        "name": "edges",
+                                        "plural": true,
+                                        "selections": [
+                                          {
+                                            "alias": null,
+                                            "args": null,
+                                            "concreteType": "Comment",
+                                            "kind": "LinkedField",
+                                            "name": "node",
+                                            "plural": false,
+                                            "selections": [
+                                              (v3/*: any*/),
+                                              (v5/*: any*/),
+                                              (v2/*: any*/)
+                                            ],
+                                            "storageKey": null
+                                          },
+                                          (v6/*: any*/)
+                                        ],
+                                        "storageKey": null
+                                      },
+                                      (v7/*: any*/)
+                                    ],
+                                    "storageKey": "comments(first:5)"
+                                  },
+                                  {
+                                    "alias": null,
+                                    "args": (v4/*: any*/),
+                                    "filters": null,
+                                    "handle": "connection",
+                                    "key": "Post_comments",
+                                    "kind": "LinkedHandle",
+                                    "name": "comments"
+                                  }
+                                ],
+                                "type": "Post",
+                                "abstractKey": null
+                              }
+                            ],
+                            "type": "Node",
+                            "abstractKey": "__isNode"
+                          }
                         ],
                         "storageKey": null
                       },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "cursor",
-                        "storageKey": null
-                      }
+                      (v6/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "PageInfo",
-                    "kind": "LinkedField",
-                    "name": "pageInfo",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "endCursor",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "hasNextPage",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
+                  (v7/*: any*/)
                 ],
                 "storageKey": "posts(first:5)"
               },
@@ -259,7 +323,7 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          (v5/*: any*/),
+                          (v8/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -292,19 +356,19 @@ return {
         "plural": false,
         "selections": [
           (v3/*: any*/),
-          (v5/*: any*/)
+          (v8/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "4bc3ddab458f5165bd0056e9dd318a29",
+    "cacheID": "a11fac06746d62909db74f5a1f04f748",
     "id": null,
     "metadata": {},
     "name": "userQuery",
     "operationKind": "query",
-    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationQuery\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
+    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationQuery\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 5) {\n      edges {\n        node {\n          id\n          content\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormFragment on Node {\n  __isNode: __typename\n  id\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationQuery on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormFragment\n  ...commentListFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
   }
 };
 })();

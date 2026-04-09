@@ -3,6 +3,7 @@ import { graphql } from 'relay-runtime'
 import { type likePostFragment$key } from './__generated__/likePostFragment.graphql'
 import { type likePostMutation } from './__generated__/likePostMutation.graphql'
 
+// TODO: Transform this to use likeable (Node) instead of post
 const LikePostFragment = graphql`
   fragment likePostFragment on Post {
     id

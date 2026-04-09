@@ -3,22 +3,23 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
-import type { createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
-import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
+import { type createCommentFormFragment$key } from './__generated__/createCommentFormFragment.graphql'
+import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
 
-const CreatePostFormFragment = graphql`
-  fragment createPostFormFragment on User {
+const CreateCommentFormFragment = graphql`
+  fragment createCommentFormFragment on Node {
     id
   }
 `
 
-const CreatePostFormMutation = graphql`
-  mutation createPostFormMutation(
+const CreateCommentFormMutation = graphql`
+  mutation createCommentFormMutation(
     $connections: [ID!]!
-    $input: CreatePostInput!
+    $input: CreateCommentInput!
   ) {
-    createPost(input: $input) {
-      postEdge @prependEdge(connections: $connections) {
+    createComment(input: $input) {
+      errors
+      commentEdge @appendEdge(connections: $connections) {
         node {
           id
           content
@@ -29,26 +30,24 @@ const CreatePostFormMutation = graphql`
   }
 `
 
+const MAX_LIMIT = 500
 const schema = yup.object({
   content: yup
     .string()
     .required('Content is required')
-    .max(500, 'Content must be at most 500 characters')
+    .max(MAX_LIMIT, `Content must be at most ${MAX_LIMIT} characters`)
 })
 
-const MAX_LIMIT = 500
-
-interface CreatePostFormProps {
-  user: createPostFormFragment$key
+interface CreateCommentFormProps {
+  commentable: createCommentFormFragment$key
 }
 
-export function CreatePostForm({ user }: CreatePostFormProps) {
-  const data = useFragment(CreatePostFormFragment, user)
+export function CreateCommentForm({ commentable }: CreateCommentFormProps) {
   const env = useRelayEnvironment()
-  const [createPost, isCreatingPost] = useMutation<createPostFormMutation>(
-    CreatePostFormMutation
-  )
-  const { register, handleSubmit, control, reset, setValue } = useForm({
+  const data = useFragment(CreateCommentFormFragment, commentable)
+  const [createComment, isCreatingComment] =
+    useMutation<createCommentFormMutation>(CreateCommentFormMutation)
+  const { register, handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       content: ''
@@ -59,19 +58,22 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
   return (
     <form
       onSubmit={handleSubmit((formData) => {
-        const connections = ['User_posts', 'User_feed']
+        const connections = ['Post_comments']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
           .filter((id) => env.getStore().getSource().get(id))
 
-        reset()
-        createPost({
+        createComment({
           variables: {
             connections,
-            input: formData
+            input: {
+              content: formData.content,
+              commentableId: data.id
+            }
           },
           optimisticResponse: {
-            createPost: {
-              postEdge: {
+            createComment: {
+              errors: [],
+              commentEdge: {
                 node: {
                   id: new Date().toISOString(),
                   content: formData.content,
@@ -79,9 +81,6 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                 }
               }
             }
-          },
-          onError: () => {
-            setValue('content', formData.content)
           }
         })
       })}>
@@ -98,9 +97,9 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           {content.length}/{MAX_LIMIT}
         </div>
         <button
-          disabled={isCreatingPost}
+          disabled={isCreatingComment}
           className="rounded-lg bg-blue-500 px-4 py-1 font-medium text-white">
-          Post
+          Comment
         </button>
       </div>
     </form>
