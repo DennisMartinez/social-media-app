@@ -3,11 +3,21 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
-import { type createCommentFormFragment$key } from './__generated__/createCommentFormFragment.graphql'
+import { type createCommentFormCommentableFragment$key } from './__generated__/createCommentFormCommentableFragment.graphql'
 import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
+import { type createCommentFormUserFragment$key } from './__generated__/createCommentFormUserFragment.graphql'
 
-const CreateCommentFormFragment = graphql`
-  fragment createCommentFormFragment on Node {
+const CreateCommentFormUserFragment = graphql`
+  fragment createCommentFormUserFragment on User {
+    id
+    name
+    avatarUrl
+    ...userAvatarFragment
+  }
+`
+
+const CreateCommentFormCommentableFragment = graphql`
+  fragment createCommentFormCommentableFragment on Node {
     id
   }
 `
@@ -21,9 +31,7 @@ const CreateCommentFormMutation = graphql`
       errors
       commentEdge @appendEdge(connections: $connections) {
         node {
-          id
-          content
-          createdAt
+          ...commentFragment
         }
       }
     }
@@ -39,12 +47,20 @@ const schema = yup.object({
 })
 
 interface CreateCommentFormProps {
-  commentable: createCommentFormFragment$key
+  user: createCommentFormUserFragment$key
+  commentable: createCommentFormCommentableFragment$key
 }
 
-export function CreateCommentForm({ commentable }: CreateCommentFormProps) {
+export function CreateCommentForm({
+  user,
+  commentable
+}: CreateCommentFormProps) {
   const env = useRelayEnvironment()
-  const data = useFragment(CreateCommentFormFragment, commentable)
+  const userData = useFragment(CreateCommentFormUserFragment, user)
+  const commentableData = useFragment(
+    CreateCommentFormCommentableFragment,
+    commentable
+  )
   const [createComment, isCreatingComment] =
     useMutation<createCommentFormMutation>(CreateCommentFormMutation)
   const { register, handleSubmit, control } = useForm({
@@ -59,7 +75,9 @@ export function CreateCommentForm({ commentable }: CreateCommentFormProps) {
     <form
       onSubmit={handleSubmit((formData) => {
         const connections = ['Post_comments']
-          .map((key) => ConnectionHandler.getConnectionID(data.id, key))
+          .map((key) =>
+            ConnectionHandler.getConnectionID(commentableData.id, key)
+          )
           .filter((id) => env.getStore().getSource().get(id))
 
         createComment({
@@ -67,7 +85,7 @@ export function CreateCommentForm({ commentable }: CreateCommentFormProps) {
             connections,
             input: {
               content: formData.content,
-              commentableId: data.id
+              commentableId: commentableData.id
             }
           },
           optimisticResponse: {
@@ -77,29 +95,32 @@ export function CreateCommentForm({ commentable }: CreateCommentFormProps) {
                 node: {
                   id: new Date().toISOString(),
                   content: formData.content,
-                  createdAt: new Date().toISOString()
+                  createdAt: new Date().toISOString(),
+                  user: {
+                    id: userData.id,
+                    name: userData.name,
+                    avatarUrl: userData.avatarUrl
+                  }
                 }
               }
             }
           }
         })
       })}>
-      <div>
-        <textarea
+      <div className="relative grow">
+        <input
+          type="text"
+          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
+          placeholder="Write a comment..."
           {...register('content')}
           maxLength={MAX_LIMIT}
-          className="w-full rounded-lg border border-gray-200"
-          rows={5}
         />
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="text-sm text-gray-400">
-          {content.length}/{MAX_LIMIT}
-        </div>
         <button
           disabled={isCreatingComment}
-          className="rounded-lg bg-blue-500 px-4 py-1 font-medium text-white">
-          Comment
+          aria-label="Send comment"
+          className="abssolute top-1.5 right-1 flex items-center justify-center rounded bg-slate-500 p-2 text-sm text-white hover:bg-slate-700">
+          Send
+          {/* <SendIcon className="size-4" /> */}
         </button>
       </div>
     </form>

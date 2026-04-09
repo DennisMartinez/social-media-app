@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a4f800ba4e84880bb7ffab8907ddff44>>
+ * @generated SignedSource<<7430d661a2f45186b878da41d3a16beb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,11 @@ export type postListItemFragment$data = {
   readonly createdAt: any;
   readonly id: string;
   readonly isLikedByCurrentUser: boolean;
-  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormFragment" | "destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
+  readonly user: {
+    readonly name: string;
+    readonly " $fragmentSpreads": FragmentRefs<"createCommentFormUserFragment" | "userAvatarFragment">;
+  };
+  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
   readonly " $fragmentType": "postListItemFragment";
 };
 export type postListItemFragment$key = {
@@ -58,6 +62,34 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
+      "alias": null,
+      "args": null,
+      "concreteType": "User",
+      "kind": "LinkedField",
+      "name": "user",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "name",
+          "storageKey": null
+        },
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "userAvatarFragment"
+        },
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "createCommentFormUserFragment"
+        }
+      ],
+      "storageKey": null
+    },
+    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "likePostFragment"
@@ -75,7 +107,7 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "createCommentFormFragment"
+      "name": "createCommentFormCommentableFragment"
     },
     {
       "args": null,
@@ -87,6 +119,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "17ab019e14c10ec25c893c8094d66336";
+(node as any).hash = "c2b6d63b758a61ee55080fc918ef5ca2";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bdd5a92fcaea27668810f202ea6c1714>>
+ * @generated SignedSource<<d3a5efc9a68b488d921118b087bdb1d1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -139,12 +139,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2b9710729318d835c2a92279d756ab40",
+    "cacheID": "81e6a15a990178aa76ffd5388c170d2f",
     "id": null,
     "metadata": {},
     "name": "followingQuery",
     "operationKind": "query",
-    "text": "query followingQuery {\n  currentUser {\n    ...followingGridFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment followerCardFragment on User {\n  id\n  name\n  avatarUrl\n}\n\nfragment followingGridFragment on User {\n  following(first: 10) {\n    edges {\n      node {\n        id\n        ...followerCardFragment\n      }\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n"
+    "text": "query followingQuery {\n  currentUser {\n    ...followingGridFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment followerCardFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment followingGridFragment on User {\n  following(first: 10) {\n    edges {\n      node {\n        id\n        ...followerCardFragment\n      }\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

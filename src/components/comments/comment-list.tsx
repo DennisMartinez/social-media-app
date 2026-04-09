@@ -1,6 +1,7 @@
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type commentListFragment$key } from './__generated__/commentListFragment.graphql'
+import { Comment } from './comment'
 
 const CommentListFragment = graphql`
   fragment commentListFragment on Node
@@ -15,7 +16,7 @@ const CommentListFragment = graphql`
         edges {
           node {
             id
-            content
+            ...commentFragment
           }
         }
       }
@@ -34,16 +35,11 @@ export function CommentList({ commentable }: CommentListProps) {
   )
 
   return (
-    <div>
+    <div className="p-4">
       <ol className="grid w-full gap-4">
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
-
-          return (
-            <div key={edge.node.id}>
-              {edge.node.id} - {edge.node.content}
-            </div>
-          )
+          return <Comment key={edge.node.id} comment={edge.node} />
         })}
       </ol>
       {isLoadingNext && <p>Loading...</p>}

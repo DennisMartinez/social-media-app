@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7d4534a98cc27aeda5941cd987141cad>>
+ * @generated SignedSource<<6f73cc3e0561c899ab0951c92aa526ea>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,20 +10,20 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type createCommentFormFragment$data = {
+export type createCommentFormCommentableFragment$data = {
   readonly id: string;
-  readonly " $fragmentType": "createCommentFormFragment";
+  readonly " $fragmentType": "createCommentFormCommentableFragment";
 };
-export type createCommentFormFragment$key = {
-  readonly " $data"?: createCommentFormFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"createCommentFormFragment">;
+export type createCommentFormCommentableFragment$key = {
+  readonly " $data"?: createCommentFormCommentableFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"createCommentFormCommentableFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "createCommentFormFragment",
+  "name": "createCommentFormCommentableFragment",
   "selections": [
     {
       "alias": null,
@@ -37,6 +37,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isNode"
 };
 
-(node as any).hash = "97ba945585056a93795747d1412d47f7";
+(node as any).hash = "7214a7713aa300adf01d57a00a6a1a83";
 
 export default node;

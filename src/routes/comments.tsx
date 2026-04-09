@@ -14,10 +14,9 @@ export function Component() {
 
   return (
     <div className="flex w-full justify-center gap-8">
-      <div className="w-3/12">
-        <Navigation query={data} />
-      </div>
-      <main className="w-9/12">
+      <Navigation query={data} />
+
+      <main>
         <h1 className="mb-4 text-2xl font-bold">Comments</h1>
       </main>
     </div>

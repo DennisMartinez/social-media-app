@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<055af31ddd970f312b9baf3f6213e285>>
+ * @generated SignedSource<<1a6e80380cfb9a67ba0c8bd011c2b39c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -84,21 +84,54 @@ v6 = {
   "name": "content",
   "storageKey": null
 },
-v7 = [
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "createdAt",
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "name",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "avatarUrl",
+      "storageKey": null
+    },
+    (v4/*: any*/)
+  ],
+  "storageKey": null
+},
+v9 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 5
   }
 ],
-v8 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v9 = {
+v11 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -202,13 +235,7 @@ return {
                         "selections": [
                           (v4/*: any*/),
                           (v6/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "createdAt",
-                            "storageKey": null
-                          },
+                          (v7/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -216,6 +243,7 @@ return {
                             "name": "isLikedByCurrentUser",
                             "storageKey": null
                           },
+                          (v8/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -232,7 +260,7 @@ return {
                                 "selections": [
                                   {
                                     "alias": null,
-                                    "args": (v7/*: any*/),
+                                    "args": (v9/*: any*/),
                                     "concreteType": "CommentConnection",
                                     "kind": "LinkedField",
                                     "name": "comments",
@@ -256,21 +284,23 @@ return {
                                             "selections": [
                                               (v4/*: any*/),
                                               (v6/*: any*/),
+                                              (v7/*: any*/),
+                                              (v8/*: any*/),
                                               (v3/*: any*/)
                                             ],
                                             "storageKey": null
                                           },
-                                          (v8/*: any*/)
+                                          (v10/*: any*/)
                                         ],
                                         "storageKey": null
                                       },
-                                      (v9/*: any*/)
+                                      (v11/*: any*/)
                                     ],
                                     "storageKey": "comments(first:5)"
                                   },
                                   {
                                     "alias": null,
-                                    "args": (v7/*: any*/),
+                                    "args": (v9/*: any*/),
                                     "filters": null,
                                     "handle": "connection",
                                     "key": "Post_comments",
@@ -288,11 +318,11 @@ return {
                         ],
                         "storageKey": null
                       },
-                      (v8/*: any*/)
+                      (v10/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v9/*: any*/)
+                  (v11/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -315,12 +345,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5150f883a523873ddb10e15372135a41",
+    "cacheID": "dd378f4f74d70854edef3396db4fd949",
     "id": null,
     "metadata": {},
     "name": "feedListPaginationQuery",
     "operationKind": "query",
-    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 5) {\n      edges {\n        node {\n          id\n          content\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormFragment on Node {\n  __isNode: __typename\n  id\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormFragment\n  ...commentListFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
+    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 5) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  id\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

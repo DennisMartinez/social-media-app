@@ -3,12 +3,14 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
+import { UserAvatar } from '../user-avatar'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
 const CreatePostFormFragment = graphql`
   fragment createPostFormFragment on User {
     id
+    ...userAvatarFragment
   }
 `
 
@@ -58,6 +60,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form
+      className="flex items-center gap-4 px-4 py-3"
       onSubmit={handleSubmit((formData) => {
         const connections = ['User_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
@@ -85,24 +88,30 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           }
         })
       })}>
-      <div>
-        <textarea
+      <UserAvatar user={data} />
+      <div className="relative grow">
+        <input
+          type="text"
+          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
+          placeholder="Write a comment..."
           {...register('content')}
           maxLength={MAX_LIMIT}
-          className="w-full rounded-lg border border-gray-200"
-          rows={5}
         />
+        <button
+          disabled={isCreatingPost}
+          aria-label="Send comment"
+          className="abssolute top-1.5 right-1 flex items-center justify-center rounded bg-slate-500 p-2 text-sm text-white hover:bg-slate-700">
+          Send
+          {/* <SendIcon className="size-4" /> */}
+        </button>
       </div>
-      <div className="flex items-center justify-between">
+
+      {/* <div className="flex items-center justify-between">
         <div className="text-sm text-gray-400">
           {content.length}/{MAX_LIMIT}
         </div>
-        <button
-          disabled={isCreatingPost}
-          className="rounded-lg bg-blue-500 px-4 py-1 font-medium text-white">
-          Post
-        </button>
-      </div>
+        <Button disabled={isCreatingPost}>Post</Button>
+      </div> */}
     </form>
   )
 }

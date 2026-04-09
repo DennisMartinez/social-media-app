@@ -25,5 +25,5 @@
     "prettier-plugin-organize-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "tailwindFunctions": ["cn", "clsx", "twMerge"]
+  "tailwindFunctions": ["cn", "clsx", "twMerge", "cva"]
 }

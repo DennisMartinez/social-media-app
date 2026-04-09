@@ -1,5 +1,6 @@
 import { useFragment, useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Button } from '../common/button'
 import { type unfollowUserFragment$key } from './__generated__/unfollowUserFragment.graphql'
 
 const UnfollowUserFragment = graphql`
@@ -30,9 +31,8 @@ export function UnfollowUser({ user }: UnfollowUserProps) {
   const [unfollowUser, isPending] = useMutation(UnfollowUserMutation)
 
   return (
-    <button
+    <Button
       disabled={isPending || !data.isFollowing}
-      className="rounded bg-blue-500 px-4 py-2 text-white opacity-50 hover:bg-blue-600"
       onClick={() => {
         unfollowUser({
           variables: {
@@ -52,6 +52,6 @@ export function UnfollowUser({ user }: UnfollowUserProps) {
         })
       }}>
       Unfollow
-    </button>
+    </Button>
   )
 }

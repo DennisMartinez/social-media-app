@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<738345e41980032d7ddea73deb584dea>>
+ * @generated SignedSource<<1a492d7e23d752c13e03cb777da43fb2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,8 +14,8 @@ export type commentListFragment$data = {
   readonly comments?: {
     readonly edges: ReadonlyArray<{
       readonly node: {
-        readonly content: string;
         readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"commentFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   };
@@ -113,11 +113,9 @@ return {
                   "selections": [
                     (v1/*: any*/),
                     {
-                      "alias": null,
                       "args": null,
-                      "kind": "ScalarField",
-                      "name": "content",
-                      "storageKey": null
+                      "kind": "FragmentSpread",
+                      "name": "commentFragment"
                     },
                     {
                       "alias": null,
@@ -178,6 +176,6 @@ return {
 };
 })();
 
-(node as any).hash = "511a8b48c3adae6ed77603e20c58dbee";
+(node as any).hash = "a358a19a5025bc9ff19e7370f49194e1";
 
 export default node;

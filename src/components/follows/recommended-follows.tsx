@@ -32,26 +32,32 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
   return (
     <div>
       <h2>Who to Follow</h2>
-      <ul>
+      <ul className="flex flex-col gap-4">
         {data.recommendedFollows.edges?.map((edge) => {
           if (!edge?.node) return null
           return (
-            <li key={edge.node.id}>
-              <Link to={`/users/${edge.node.id}`} className="font-bold">
+            <li key={edge.node.id} className="flex items-center gap-2">
+              <div className="inline-block h-8 w-8 overflow-hidden rounded-full">
                 {edge.node.avatarUrl && (
                   <img
                     src={edge.node.avatarUrl}
                     alt={edge.node.name}
-                    className="mr-2 inline-block h-8 w-8 rounded-full"
+                    className="h-full w-full object-center"
                   />
                 )}
+              </div>
+              <Link
+                to={`/users/${edge.node.id}`}
+                className="font-medium text-gray-800">
                 {edge.node.name}
               </Link>
-              {edge.node.isFollowing ? (
-                <UnfollowUser user={edge.node} />
-              ) : (
-                <FollowUser user={edge.node} />
-              )}
+              <div>
+                {edge.node.isFollowing ? (
+                  <UnfollowUser user={edge.node} />
+                ) : (
+                  <FollowUser user={edge.node} />
+                )}
+              </div>
             </li>
           )
         })}

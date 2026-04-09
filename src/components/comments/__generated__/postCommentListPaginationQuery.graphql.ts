@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e34c585169c871a84c9337f4fded106f>>
+ * @generated SignedSource<<66ce38dc6d2da6b608bbf1f29d89126f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -165,6 +165,39 @@ return {
                             "name": "content",
                             "storageKey": null
                           },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "createdAt",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "User",
+                            "kind": "LinkedField",
+                            "name": "user",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "name",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "avatarUrl",
+                                "storageKey": null
+                              },
+                              (v5/*: any*/)
+                            ],
+                            "storageKey": null
+                          },
                           (v3/*: any*/)
                         ],
                         "storageKey": null
@@ -227,16 +260,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "739371889e312f3b11257648bf106689",
+    "cacheID": "9b4fb95f60f1df25e83150bdc89cbe7b",
     "id": null,
     "metadata": {},
     "name": "postCommentListPaginationQuery",
     "operationKind": "query",
-    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          content\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n"
+    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "511a8b48c3adae6ed77603e20c58dbee";
+(node as any).hash = "a358a19a5025bc9ff19e7370f49194e1";
 
 export default node;

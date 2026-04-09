@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<74666f342684aa4695e083cb4c135b71>>
+ * @generated SignedSource<<8811a43f44bdd779b873d13d1d5fc39a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -71,10 +71,45 @@ v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "cursor",
+  "name": "createdAt",
   "storageKey": null
 },
 v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "avatarUrl",
+  "storageKey": null
+},
+v9 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "user",
+  "plural": false,
+  "selections": [
+    (v7/*: any*/),
+    (v8/*: any*/),
+    (v3/*: any*/)
+  ],
+  "storageKey": null
+},
+v10 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "cursor",
+  "storageKey": null
+},
+v11 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -97,13 +132,6 @@ v7 = {
       "storageKey": null
     }
   ],
-  "storageKey": null
-},
-v8 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
   "storageKey": null
 };
 return {
@@ -195,13 +223,7 @@ return {
                         "selections": [
                           (v3/*: any*/),
                           (v5/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "createdAt",
-                            "storageKey": null
-                          },
+                          (v6/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -209,6 +231,7 @@ return {
                             "name": "isLikedByCurrentUser",
                             "storageKey": null
                           },
+                          (v9/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -249,15 +272,17 @@ return {
                                             "selections": [
                                               (v3/*: any*/),
                                               (v5/*: any*/),
+                                              (v6/*: any*/),
+                                              (v9/*: any*/),
                                               (v2/*: any*/)
                                             ],
                                             "storageKey": null
                                           },
-                                          (v6/*: any*/)
+                                          (v10/*: any*/)
                                         ],
                                         "storageKey": null
                                       },
-                                      (v7/*: any*/)
+                                      (v11/*: any*/)
                                     ],
                                     "storageKey": "comments(first:5)"
                                   },
@@ -281,11 +306,11 @@ return {
                         ],
                         "storageKey": null
                       },
-                      (v6/*: any*/)
+                      (v10/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v7/*: any*/)
+                  (v11/*: any*/)
                 ],
                 "storageKey": "posts(first:5)"
               },
@@ -323,7 +348,7 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          (v8/*: any*/),
+                          (v7/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -331,13 +356,7 @@ return {
                             "name": "isFollowing",
                             "storageKey": null
                           },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "avatarUrl",
-                            "storageKey": null
-                          }
+                          (v8/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -363,19 +382,19 @@ return {
         "plural": false,
         "selections": [
           (v3/*: any*/),
-          (v8/*: any*/)
+          (v7/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "43fcb885c6a13cdb65e005132c0f3814",
+    "cacheID": "f7f4fb9cd92c994f5c9de0c48e1f6ccb",
     "id": null,
     "metadata": {},
     "name": "userQuery",
     "operationKind": "query",
-    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 5) {\n      edges {\n        node {\n          id\n          content\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormFragment on Node {\n  __isNode: __typename\n  id\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormFragment\n  ...commentListFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        avatarUrl\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n"
+    "text": "query userQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 5) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  id\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment followUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment likePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postListItemFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListItemFragment on Post {\n  id\n  content\n  createdAt\n  isLikedByCurrentUser\n  user {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...likePostFragment\n  ...unlikePostFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows {\n    edges {\n      node {\n        id\n        name\n        isFollowing\n        avatarUrl\n        ...followUserFragment\n        ...unfollowUserFragment\n      }\n    }\n  }\n}\n\nfragment unfollowUserFragment on User {\n  id\n  isFollowing\n}\n\nfragment unlikePostFragment on Post {\n  id\n  isLikedByCurrentUser\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

@@ -19,14 +19,12 @@ export function Component() {
   const data = useLazyLoadQuery<dashboardQuery>(DashboardQuery, {})
 
   return (
-    <div className="flex w-full justify-center gap-8">
-      <div className="w-3/12">
+    <div className="flex w-full">
+      <div className="w-72">
         <Navigation query={data} />
       </div>
-      <main className="w-6/12">
+      <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
         <Feed user={data.currentUser} />
-      </main>
-      <div className="w-3/12">
         <RecommendedFollows user={data.currentUser} />
       </div>
     </div>

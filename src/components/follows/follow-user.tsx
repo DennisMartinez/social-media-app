@@ -1,5 +1,6 @@
 import { useFragment, useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Button } from '../common/button'
 import { type followUserFragment$key } from './__generated__/followUserFragment.graphql'
 
 const FollowUserFragment = graphql`
@@ -30,9 +31,8 @@ export function FollowUser({ user }: FollowUserProps) {
   const [followUser, isPending] = useMutation(FollowUserMutation)
 
   return (
-    <button
+    <Button
       disabled={isPending || data.isFollowing}
-      className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 disabled:opacity-50"
       onClick={() => {
         followUser({
           variables: {
@@ -52,6 +52,6 @@ export function FollowUser({ user }: FollowUserProps) {
         })
       }}>
       Follow
-    </button>
+    </Button>
   )
 }

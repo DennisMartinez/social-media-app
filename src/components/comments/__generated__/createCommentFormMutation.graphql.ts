@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<04b95ac35620cfb40b9665ba48c866bb>>
+ * @generated SignedSource<<02b995f5ab714ff66eade789146194fe>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type CreateCommentInput = {
   clientMutationId?: string | null | undefined;
   commentableId: string;
@@ -22,9 +23,7 @@ export type createCommentFormMutation$data = {
   readonly createComment: {
     readonly commentEdge: {
       readonly node: {
-        readonly content: string;
-        readonly createdAt: any;
-        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"commentFragment">;
       } | null | undefined;
     } | null | undefined;
     readonly errors: ReadonlyArray<string>;
@@ -65,44 +64,8 @@ v2 = {
 v3 = {
   "alias": null,
   "args": null,
-  "concreteType": "CommentEdge",
-  "kind": "LinkedField",
-  "name": "commentEdge",
-  "plural": false,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "Comment",
-      "kind": "LinkedField",
-      "name": "node",
-      "plural": false,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "content",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "createdAt",
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -121,7 +84,33 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/)
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "CommentEdge",
+            "kind": "LinkedField",
+            "name": "commentEdge",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Comment",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  {
+                    "args": null,
+                    "kind": "FragmentSpread",
+                    "name": "commentFragment"
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
         ],
         "storageKey": null
       }
@@ -144,7 +133,69 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "CommentEdge",
+            "kind": "LinkedField",
+            "name": "commentEdge",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Comment",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v3/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "content",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "createdAt",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "kind": "LinkedField",
+                    "name": "user",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "avatarUrl",
+                        "storageKey": null
+                      },
+                      (v3/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -167,16 +218,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cbab2b0fbf7e09f6d868b578b82d4f6c",
+    "cacheID": "918fb64973ba372cb611212e7bb58aeb",
     "id": null,
     "metadata": {},
     "name": "createCommentFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        id\n        content\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        ...commentFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "25b91fcfb31a6a9f3f1fe24b05035cb7";
+(node as any).hash = "250ebbb13dff3a8453ca267599f74b20";
 
 export default node;
