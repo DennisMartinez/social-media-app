@@ -8,7 +8,7 @@ const CommentListFragment = graphql`
   @refetchable(queryName: "postCommentListPaginationQuery")
   @argumentDefinitions(
     cursor: { type: "String" }
-    first: { type: "Int", defaultValue: 5 }
+    first: { type: "Int", defaultValue: 1 }
   ) {
     ... on Post {
       comments(after: $cursor, first: $first)
@@ -35,7 +35,7 @@ export function CommentList({ commentable }: CommentListProps) {
   )
 
   return (
-    <div className="p-4">
+    <div className="grid gap-4">
       <ol className="grid w-full gap-4">
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
@@ -43,7 +43,13 @@ export function CommentList({ commentable }: CommentListProps) {
         })}
       </ol>
       {isLoadingNext && <p>Loading...</p>}
-      {hasNext && <button onClick={() => loadNext(5)}>Load more</button>}
+      {hasNext && (
+        <div>
+          <button className="text-sm text-blue-500" onClick={() => loadNext(5)}>
+            View More
+          </button>
+        </div>
+      )}
     </div>
   )
 }

@@ -32,6 +32,7 @@ export function UnfollowUser({ user }: UnfollowUserProps) {
 
   return (
     <Button
+      variant="outline"
       disabled={isPending || !data.isFollowing}
       onClick={() => {
         unfollowUser({

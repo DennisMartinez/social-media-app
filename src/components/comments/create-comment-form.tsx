@@ -3,6 +3,8 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
+import { Button } from '../common/button'
+import { UserAvatar } from '../user-avatar'
 import { type createCommentFormCommentableFragment$key } from './__generated__/createCommentFormCommentableFragment.graphql'
 import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
 import { type createCommentFormUserFragment$key } from './__generated__/createCommentFormUserFragment.graphql'
@@ -63,7 +65,7 @@ export function CreateCommentForm({
   )
   const [createComment, isCreatingComment] =
     useMutation<createCommentFormMutation>(CreateCommentFormMutation)
-  const { register, handleSubmit, control } = useForm({
+  const { register, handleSubmit, control, reset, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       content: ''
@@ -80,6 +82,7 @@ export function CreateCommentForm({
           )
           .filter((id) => env.getStore().getSource().get(id))
 
+        reset()
         createComment({
           variables: {
             connections,
@@ -104,10 +107,14 @@ export function CreateCommentForm({
                 }
               }
             }
+          },
+          onError: () => {
+            setValue('content', formData.content)
           }
         })
       })}>
-      <div className="relative grow">
+      <div className="flex grow gap-4">
+        <UserAvatar user={userData} />
         <input
           type="text"
           className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
@@ -115,13 +122,9 @@ export function CreateCommentForm({
           {...register('content')}
           maxLength={MAX_LIMIT}
         />
-        <button
-          disabled={isCreatingComment}
-          aria-label="Send comment"
-          className="abssolute top-1.5 right-1 flex items-center justify-center rounded bg-slate-500 p-2 text-sm text-white hover:bg-slate-700">
+        <Button variant="ghost" disabled={isCreatingComment}>
           Send
-          {/* <SendIcon className="size-4" /> */}
-        </button>
+        </Button>
       </div>
     </form>
   )

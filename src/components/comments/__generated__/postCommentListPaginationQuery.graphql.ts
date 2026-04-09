@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<66ce38dc6d2da6b608bbf1f29d89126f>>
+ * @generated SignedSource<<53ba20828a4a400d52c61b0835760a12>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -33,7 +33,7 @@ var v0 = [
     "name": "cursor"
   },
   {
-    "defaultValue": 5,
+    "defaultValue": 1,
     "kind": "LocalArgument",
     "name": "first"
   },
@@ -260,16 +260,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9b4fb95f60f1df25e83150bdc89cbe7b",
+    "cacheID": "d7484fecc89d8e36fca495fa9aa82504",
     "id": null,
     "metadata": {},
     "name": "postCommentListPaginationQuery",
     "operationKind": "query",
-    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 1\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a358a19a5025bc9ff19e7370f49194e1";
+(node as any).hash = "c67536ceef93f249f801e6054daa45b0";
 
 export default node;

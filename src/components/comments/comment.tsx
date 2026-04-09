@@ -1,3 +1,4 @@
+import { ThumbsUp } from 'lucide-react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { UserAvatar } from '../user-avatar'
@@ -37,6 +38,9 @@ export function Comment({ comment }: CommentProps) {
         </div>
       </div>
       <div className="text-sm text-gray-900">{data.content}</div>
+      <div>
+        <ThumbsUp className="size-4 text-gray-500" />
+      </div>
     </div>
   )
 }

@@ -33,7 +33,7 @@ export function Post({ post }: PostProps) {
   const data = useFragment(PostFragment, post)
 
   return (
-    <li className="rounded-xl bg-white p-4">
+    <li className="grid gap-6 rounded-xl bg-white p-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
           <UserAvatar user={data.user} />
@@ -52,13 +52,8 @@ export function Post({ post }: PostProps) {
           </button>
         </div>
       </div>
-
-      <p className="p-4 text-gray-900">{data.content}</p>
-
+      <p className="text-gray-900">{data.content}</p>
       <div className="flex items-center justify-between border-t border-b border-gray-200 py-4">
-        {/* <small className="text-sm text-gray-500">
-          Created at: {new Date(data.createdAt).toLocaleString()}
-        </small> */}
         <div className="space-between flex gap-12">
           <div className="flex items-center gap-1 text-sm">
             <ThumbsUp className="size-4" /> 25 likes
@@ -68,27 +63,9 @@ export function Post({ post }: PostProps) {
           </div>
         </div>
       </div>
-
-      <CreateCommentForm user={data.user} commentable={data} />
-      <CommentList commentable={data} />
-
-      {/* <div className="flex items-start justify-between">
-        <div>
-          <p>{data.content}</p>
-          <small>Created at: {data.createdAt}</small>
-        </div>
-        {data.isLikedByCurrentUser ? (
-          <UnlikePost post={data} />
-        ) : (
-          <LikePost post={data} />
-        )}
-
-        <DestroyFeedItem post={data} />
-      </div> */}
-      <div>
-        {/* <CreateCommentForm commentable={data} /> */}
-        {/* <CommentList commentable={data} /> */}
-        {/* <PostCommentList commentable={data} /> */}
+      <div className="grid gap-4">
+        <CreateCommentForm user={data.user} commentable={data} />
+        <CommentList commentable={data} />
       </div>
     </li>
   )

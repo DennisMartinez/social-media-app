@@ -25,7 +25,9 @@ export function Component() {
       </div>
       <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
         <Feed user={data.currentUser} />
-        <RecommendedFollows user={data.currentUser} />
+        <div className="w-72">
+          <RecommendedFollows user={data.currentUser} />
+        </div>
       </div>
     </div>
   )
