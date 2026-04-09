@@ -1,20 +1,20 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { FollowersGrid } from '../components/follows/followers-grid'
+import { FollowingGrid } from '../components/follows/following-grid'
 import { Navigation } from '../components/navigation'
-import { type followersQuery } from './__generated__/followersQuery.graphql'
+import { type followingQuery } from './__generated__/followingQuery.graphql'
 
-const FollowersQuery = graphql`
-  query followersQuery {
+const FollowingQuery = graphql`
+  query followingQuery {
     currentUser {
-      ...followersGridFragment
+      ...followingGridFragment
     }
     ...navigationFragment
   }
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<followersQuery>(FollowersQuery, {})
+  const data = useLazyLoadQuery<followingQuery>(FollowingQuery, {})
 
   return (
     <div className="flex w-full justify-center gap-8">
@@ -22,8 +22,8 @@ export function Component() {
         <Navigation query={data} />
       </div>
       <main className="w-9/12">
-        <h1 className="mb-4 text-2xl font-bold">Followers</h1>
-        <FollowersGrid user={data.currentUser} />
+        <h1 className="mb-4 text-2xl font-bold">Following</h1>
+        <FollowingGrid user={data.currentUser} />
       </main>
     </div>
   )

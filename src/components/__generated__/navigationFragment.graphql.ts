@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dd8152a265ae4429de1a24ef25a0e169>>
+ * @generated SignedSource<<4fb40f82355172782546bdae77ab769f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,23 +10,23 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type navigationQuery$data = {
+export type navigationFragment$data = {
   readonly currentUser: {
     readonly id: string;
     readonly name: string;
   };
-  readonly " $fragmentType": "navigationQuery";
+  readonly " $fragmentType": "navigationFragment";
 };
-export type navigationQuery$key = {
-  readonly " $data"?: navigationQuery$data;
-  readonly " $fragmentSpreads": FragmentRefs<"navigationQuery">;
+export type navigationFragment$key = {
+  readonly " $data"?: navigationFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"navigationFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "navigationQuery",
+  "name": "navigationFragment",
   "selections": [
     {
       "alias": null,
@@ -58,6 +58,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "221d6d4d4f0cb63e9ee577021cb09e93";
+(node as any).hash = "5a9910fe7ced3a05141a4d9b4fcb227b";
 
 export default node;

@@ -14,7 +14,7 @@ const UserQuery = graphql`
         ...recommendedFollowsFragment
       }
     }
-    ...navigationQuery
+    ...navigationFragment
   }
 `
 

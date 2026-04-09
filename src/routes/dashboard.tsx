@@ -11,7 +11,7 @@ const DashboardQuery = graphql`
       ...feedFragment
       ...recommendedFollowsFragment
     }
-    ...navigationQuery
+    ...navigationFragment
   }
 `
 
@@ -19,7 +19,7 @@ export function Component() {
   const data = useLazyLoadQuery<dashboardQuery>(DashboardQuery, {})
 
   return (
-    <div className="flex h-dvh w-full justify-center gap-8">
+    <div className="flex w-full justify-center gap-8">
       <div className="w-3/12">
         <Navigation query={data} />
       </div>

@@ -1,7 +1,7 @@
 import { useFragment, useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import type { unlikePostFragment$key } from './__generated__/unlikePostFragment.graphql'
-import type { unlikePostMutation } from './__generated__/unlikePostMutation.graphql'
+import { type unlikePostFragment$key } from './__generated__/unlikePostFragment.graphql'
+import { type unlikePostMutation } from './__generated__/unlikePostMutation.graphql'
 
 const UnlikePostFragment = graphql`
   fragment unlikePostFragment on Post {

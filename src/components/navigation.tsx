@@ -1,13 +1,21 @@
+import {
+  MessageCircleIcon,
+  Newspaper,
+  ThumbsUpIcon,
+  UserIcon,
+  UserPlusIcon,
+  UserRoundPlusIcon
+} from 'lucide-react'
 import { type PropsWithChildren } from 'react'
 import { useFragment } from 'react-relay'
 import { NavLink } from 'react-router'
 import { graphql } from 'relay-runtime'
 import { cn } from '../utils'
-import { type navigationQuery$key } from './__generated__/navigationQuery.graphql'
+import { type navigationFragment$key } from './__generated__/navigationFragment.graphql'
 import { SignOutButton } from './sign-out-button'
 
-const NavigationQuery = graphql`
-  fragment navigationQuery on Query {
+const NavigationFragment = graphql`
+  fragment navigationFragment on Query {
     currentUser {
       id
       name
@@ -16,24 +24,42 @@ const NavigationQuery = graphql`
 `
 
 interface NavigationProps {
-  query: navigationQuery$key
+  query: navigationFragment$key
 }
 
 export function Navigation({ query }: NavigationProps) {
-  const data = useFragment(NavigationQuery, query)
+  const data = useFragment(NavigationFragment, query)
 
   return (
-    <nav>
-      <div>welcome, {data.currentUser?.name}</div>
+    <nav className="sticky top-0 h-dvh w-full flex-col items-start gap-4 border-r bg-gray-50 p-4">
+      <div>Social Media</div>
+      {/* <div>welcome, {data.currentUser?.name}</div> */}
       <ul>
-        <NavItem to="/">Feed</NavItem>
-        <NavItem to="/profile">Profile</NavItem>
-        <NavItem to="/followers">Followers</NavItem>
-        <NavItem to="/following">Following</NavItem>
-        <NavItem to="/likes">Likes</NavItem>
-        <NavItem to="/comments">Comments</NavItem>
-        <NavItem to="/settings">Settings</NavItem>
-        <NavItem to="/feedback">Feedback</NavItem>
+        <NavItem to="/">
+          <Newspaper />
+          Feed
+        </NavItem>
+        <NavItem to="/profile">
+          <UserIcon />
+          Profile
+        </NavItem>
+        <NavItem to="/followers">
+          <UserRoundPlusIcon />
+          Followers
+        </NavItem>
+        <NavItem to="/following">
+          <UserPlusIcon />
+          Following
+        </NavItem>
+        <NavItem to="/likes">
+          <ThumbsUpIcon />
+          Likes
+        </NavItem>
+        <NavItem to="/comments">
+          <MessageCircleIcon />
+          Comments
+        </NavItem>
+        <NavItem to="/comments">GitHub</NavItem>
       </ul>
       <SignOutButton />
     </nav>
@@ -51,7 +77,7 @@ function NavItem({ to, children }: PropsWithChildren<NavItemProps>) {
         to={to}
         className={({ isActive }) =>
           cn(
-            'flex rounded-lg p-2 text-2xl font-medium tracking-wide hover:bg-gray-100',
+            'flex items-center gap-4 rounded-lg p-2 text-2xl font-medium tracking-wide hover:bg-gray-200',
             {
               'bg-gray-100': isActive
             }

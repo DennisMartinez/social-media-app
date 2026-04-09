@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
-import type { createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
+import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
 const CreatePostFormFragment = graphql`
