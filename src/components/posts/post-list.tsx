@@ -1,7 +1,7 @@
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type postListFragment$key } from './__generated__/postListFragment.graphql'
-import { PostListItem } from './post-list-item'
+import { Post } from './post'
 
 const PostListFragment = graphql`
   fragment postListFragment on User
@@ -14,7 +14,7 @@ const PostListFragment = graphql`
       edges {
         node {
           id
-          ...postListItemFragment
+          ...postFragment
         }
       }
     }
@@ -36,7 +36,7 @@ export function PostList({ user }: PostListProps) {
       <ol className="grid w-full gap-4">
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
-          return <PostListItem key={edge.node.id} post={edge.node} />
+          return <Post key={edge.node.id} post={edge.node} />
         })}
       </ol>
       {isLoadingNext && <p>Loading...</p>}

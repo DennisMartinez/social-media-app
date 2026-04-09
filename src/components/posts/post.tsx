@@ -4,10 +4,10 @@ import { graphql } from 'relay-runtime'
 import { CommentList } from '../comments/comment-list'
 import { CreateCommentForm } from '../comments/create-comment-form'
 import { UserAvatar } from '../user-avatar'
-import { type postListItemFragment$key } from './__generated__/postListItemFragment.graphql'
+import type { postFragment$key } from './__generated__/postFragment.graphql'
 
-const PostListItemFragment = graphql`
-  fragment postListItemFragment on Post {
+const PostFragment = graphql`
+  fragment postFragment on Post {
     id
     content
     createdAt
@@ -25,12 +25,12 @@ const PostListItemFragment = graphql`
   }
 `
 
-interface PostListItemProps {
-  post: postListItemFragment$key
+interface PostProps {
+  post: postFragment$key
 }
 
-export function PostListItem({ post }: PostListItemProps) {
-  const data = useFragment(PostListItemFragment, post)
+export function Post({ post }: PostProps) {
+  const data = useFragment(PostFragment, post)
 
   return (
     <li className="rounded-xl bg-white p-4">

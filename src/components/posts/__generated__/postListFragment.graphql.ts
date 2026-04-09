@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f19ec0d69f2452da9a8a7f316dac7ca0>>
+ * @generated SignedSource<<7541ebb72993db5ed3571261b9016109>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type postListFragment$data = {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
-        readonly " $fragmentSpreads": FragmentRefs<"postListItemFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
@@ -112,7 +112,7 @@ return {
                 {
                   "args": null,
                   "kind": "FragmentSpread",
-                  "name": "postListItemFragment"
+                  "name": "postFragment"
                 },
                 {
                   "alias": null,
@@ -169,6 +169,6 @@ return {
 };
 })();
 
-(node as any).hash = "26af452e509c9d19c3aa7d84f61f2ed8";
+(node as any).hash = "e27de5bcdaddee89058e854938b00d12";
 
 export default node;

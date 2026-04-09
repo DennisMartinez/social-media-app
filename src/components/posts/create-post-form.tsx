@@ -22,9 +22,7 @@ const CreatePostFormMutation = graphql`
     createPost(input: $input) {
       postEdge @prependEdge(connections: $connections) {
         node {
-          id
-          content
-          createdAt
+          ...postFragment
         }
       }
     }

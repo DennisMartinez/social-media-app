@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7430d661a2f45186b878da41d3a16beb>>
+ * @generated SignedSource<<ddc2c0c9b3b5a90ff3f1118cc1d5838d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type postListItemFragment$data = {
+export type postFragment$data = {
   readonly content: string;
   readonly createdAt: any;
   readonly id: string;
@@ -20,18 +20,18 @@ export type postListItemFragment$data = {
     readonly " $fragmentSpreads": FragmentRefs<"createCommentFormUserFragment" | "userAvatarFragment">;
   };
   readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "likePostFragment" | "unlikePostFragment">;
-  readonly " $fragmentType": "postListItemFragment";
+  readonly " $fragmentType": "postFragment";
 };
-export type postListItemFragment$key = {
-  readonly " $data"?: postListItemFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"postListItemFragment">;
+export type postFragment$key = {
+  readonly " $data"?: postFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "postListItemFragment",
+  "name": "postFragment",
   "selections": [
     {
       "alias": null,
@@ -119,6 +119,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "c2b6d63b758a61ee55080fc918ef5ca2";
+(node as any).hash = "d38eec42f9b323cfff211bef3d8210db";
 
 export default node;
