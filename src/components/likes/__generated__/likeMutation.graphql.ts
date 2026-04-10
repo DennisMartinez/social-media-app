@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6bb487d491ef74081d65f0c815bf9c22>>
+ * @generated SignedSource<<33da6b7a0e59d89e6de1f444e0b56b70>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type CreateLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
@@ -23,11 +24,7 @@ export type likeMutation$data = {
       readonly node: {
         readonly id: string;
         readonly likeable: {
-          readonly currentUserLike?: {
-            readonly id: string;
-          } | null | undefined;
-          readonly id?: string;
-          readonly likesCount?: number;
+          readonly " $fragmentSpreads": FragmentRefs<"likeFragment">;
         };
       } | null | undefined;
     } | null | undefined;
@@ -66,34 +63,6 @@ v3 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v4 = [
-  (v3/*: any*/)
-],
-v5 = {
-  "kind": "InlineFragment",
-  "selections": [
-    (v3/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "likesCount",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "Like",
-      "kind": "LinkedField",
-      "name": "currentUserLike",
-      "plural": false,
-      "selections": (v4/*: any*/),
-      "storageKey": null
-    }
-  ],
-  "type": "Post",
-  "abstractKey": null
 };
 return {
   "fragment": {
@@ -136,7 +105,11 @@ return {
                     "name": "likeable",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/)
+                      {
+                        "args": null,
+                        "kind": "FragmentSpread",
+                        "name": "likeFragment"
+                      }
                     ],
                     "storageKey": null
                   }
@@ -200,10 +173,32 @@ return {
                         "name": "__typename",
                         "storageKey": null
                       },
-                      (v5/*: any*/),
                       {
                         "kind": "InlineFragment",
-                        "selections": (v4/*: any*/),
+                        "selections": [
+                          (v3/*: any*/),
+                          {
+                            "kind": "InlineFragment",
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "likesCount",
+                                "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "viewerHasLiked",
+                                "storageKey": null
+                              }
+                            ],
+                            "type": "Post",
+                            "abstractKey": null
+                          }
+                        ],
                         "type": "Node",
                         "abstractKey": "__isNode"
                       }
@@ -222,16 +217,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "483744df72998ec472bdbe46bd11b98c",
+    "cacheID": "22ae0a9819e38eeeadc0e9171f94582d",
     "id": null,
     "metadata": {},
     "name": "likeMutation",
     "operationKind": "mutation",
-    "text": "mutation likeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ... on Post {\n            id\n            likesCount\n            currentUserLike {\n              id\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "mutation likeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...likeFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment likeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a58a44281497103a8254d9f8b4bb7cd4";
+(node as any).hash = "e8139ff82ac3ddd10a893d0da565acd8";
 
 export default node;

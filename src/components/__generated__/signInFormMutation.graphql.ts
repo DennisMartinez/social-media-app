@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f78851fb2f95330aa3309071cf75a354>>
+ * @generated SignedSource<<ba3e11c05e38f855df7e53dd9e358b3e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,11 +19,11 @@ export type signInFormMutation$variables = {
 };
 export type signInFormMutation$data = {
   readonly signIn: {
-    readonly currentUser: {
+    readonly errors: ReadonlyArray<string>;
+    readonly viewer: {
       readonly id: string;
       readonly name: string;
     } | null | undefined;
-    readonly errors: ReadonlyArray<string>;
   } | null | undefined;
 };
 export type signInFormMutation = {
@@ -59,7 +59,7 @@ v1 = [
         "args": null,
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "currentUser",
+        "name": "viewer",
         "plural": false,
         "selections": [
           {
@@ -108,16 +108,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "68e7035bb42e36287464cfeabffcef4b",
+    "cacheID": "1e9fffd526b72c355ec914822cd07968",
     "id": null,
     "metadata": {},
     "name": "signInFormMutation",
     "operationKind": "mutation",
-    "text": "mutation signInFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    currentUser {\n      id\n      name\n    }\n    errors\n  }\n}\n"
+    "text": "mutation signInFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    viewer {\n      id\n      name\n    }\n    errors\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a80e55432311a6d091c83d9b8e7e601c";
+(node as any).hash = "8c8e76c1ae7b61014d579ac26d6de13e";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5c24546ebffebfb6cfc77f357b853f9f>>
+ * @generated SignedSource<<9759cff381dd21253781c02cbfa82826>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,7 +21,7 @@ export type followButtonDestroyMutation$data = {
     readonly errors: ReadonlyArray<string>;
     readonly unfollowedUser: {
       readonly id: string;
-      readonly isFollowing: boolean;
+      readonly viewerIsFollowing: boolean;
     };
   } | null | undefined;
 };
@@ -79,7 +79,7 @@ v1 = [
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "isFollowing",
+            "name": "viewerIsFollowing",
             "storageKey": null
           }
         ],
@@ -107,16 +107,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "c98dd1f9342e50d017e11379482a2efb",
+    "cacheID": "eaa68198ba3a5cbbdb2dafbfc3b23c69",
     "id": null,
     "metadata": {},
     "name": "followButtonDestroyMutation",
     "operationKind": "mutation",
-    "text": "mutation followButtonDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      isFollowing\n    }\n  }\n}\n"
+    "text": "mutation followButtonDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      viewerIsFollowing\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a5af0aacb50442b5a30e1ff3ed72d373";
+(node as any).hash = "513cb0919532fe5bc37bd69b6d29f868";
 
 export default node;

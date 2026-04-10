@@ -8,10 +8,8 @@ import { type followButtonFragment$key } from './__generated__/followButtonFragm
 const FollowButtonFragment = graphql`
   fragment followButtonFragment on User {
     id
-    isFollowing
-    currentUser {
-      id
-    }
+    viewerIsFollowing
+    viewerCanFollow
   }
 `
 
@@ -21,7 +19,7 @@ const FollowButtonCreateMutation = graphql`
       errors
       followedUser {
         id
-        isFollowing
+        viewerIsFollowing
       }
     }
   }
@@ -33,7 +31,7 @@ const FollowButtonDestroyMutation = graphql`
       errors
       unfollowedUser {
         id
-        isFollowing
+        viewerIsFollowing
       }
     }
   }
@@ -51,17 +49,17 @@ export function FollowButton({ followee }: FollowButtonProps) {
   const [unfollow, isUnfollowPending] =
     useMutation<followButtonDestroyMutation>(FollowButtonDestroyMutation)
 
-  if (data.currentUser.id === data.id) {
+  if (!data.viewerCanFollow) {
     return null
   }
 
   return (
     <Button
       size="sm"
-      variant={data.isFollowing ? 'outline' : 'primary'}
+      variant={data.viewerIsFollowing ? 'outline' : 'primary'}
       disabled={isPending || isUnfollowPending}
       onClick={() => {
-        if (data.isFollowing) {
+        if (data.viewerIsFollowing) {
           unfollow({
             variables: {
               input: {
@@ -73,7 +71,7 @@ export function FollowButton({ followee }: FollowButtonProps) {
                 errors: null,
                 unfollowedUser: {
                   id: data.id,
-                  isFollowing: false
+                  viewerIsFollowing: false
                 }
               }
             }
@@ -92,13 +90,13 @@ export function FollowButton({ followee }: FollowButtonProps) {
               errors: null,
               followedUser: {
                 id: data.id,
-                isFollowing: true
+                viewerIsFollowing: true
               }
             }
           }
         })
       }}>
-      {data.isFollowing ? 'Unfollow' : 'Follow'}
+      {data.viewerIsFollowing ? 'Unfollow' : 'Follow'}
     </Button>
   )
 }

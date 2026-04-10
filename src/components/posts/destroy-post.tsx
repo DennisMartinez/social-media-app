@@ -6,7 +6,7 @@ import { type destroyPostMutation } from './__generated__/destroyPostMutation.gr
 const DestroyPostFragment = graphql`
   fragment destroyPostFragment on Post {
     id
-    canDestroy
+    viewerCanDestroy
   }
 `
 
@@ -29,7 +29,7 @@ export function DestroyFeedItem({ post }: DestroyFeedItemProps) {
   const [destroyPost, isDestroyingPost] =
     useMutation<destroyPostMutation>(DestroyPostMutation)
 
-  if (!data.canDestroy) return null
+  if (!data.viewerCanDestroy) return null
 
   return (
     <button

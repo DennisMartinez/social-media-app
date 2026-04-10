@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<05ad737f6c5c3201d9bc6c6822fd184d>>
+ * @generated SignedSource<<5a0e045db19374e6122dab6b780e8461>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type followeeFragment$data = {
   readonly id: string;
-  readonly isFollowing: boolean;
   readonly name: string;
   readonly " $fragmentSpreads": FragmentRefs<"followButtonFragment" | "userAvatarFragment">;
   readonly " $fragmentType": "followeeFragment";
@@ -43,13 +42,6 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isFollowing",
-      "storageKey": null
-    },
-    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "followButtonFragment"
@@ -64,6 +56,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "ee9358331168f45c104042ee121a2fbe";
+(node as any).hash = "189b1a98e0396bb6b6df8d77a6d2ecd6";
 
 export default node;

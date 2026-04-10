@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4fb40f82355172782546bdae77ab769f>>
+ * @generated SignedSource<<c3fab9534c0ef3f245d3856c939e34bb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type navigationFragment$data = {
-  readonly currentUser: {
+  readonly viewer: {
     readonly id: string;
     readonly name: string;
   };
@@ -33,7 +33,7 @@ const node: ReaderFragment = {
       "args": null,
       "concreteType": "User",
       "kind": "LinkedField",
-      "name": "currentUser",
+      "name": "viewer",
       "plural": false,
       "selections": [
         {
@@ -58,6 +58,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "5a9910fe7ced3a05141a4d9b4fcb227b";
+(node as any).hash = "3e07cbf44f16c0ca2d13621fd4886116";
 
 export default node;

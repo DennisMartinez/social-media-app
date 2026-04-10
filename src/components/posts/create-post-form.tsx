@@ -81,10 +81,8 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                   id: new Date().toISOString(),
                   content: formData.content,
                   createdAt: new Date().toISOString(),
-                  currentUserLike: {
-                    id: new Date().toISOString()
-                  },
-                  canDestroy: true,
+                  viewerHasLiked: true,
+                  viewerCanDestroy: true,
                   commentsCount: 0,
                   likesCount: 0,
                   comments: {

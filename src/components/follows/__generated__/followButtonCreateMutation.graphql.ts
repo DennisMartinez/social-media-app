@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2f1c98e39d58af8b5a625b912dce6769>>
+ * @generated SignedSource<<2f0cd14b0f53f66f9b8091fc86583d51>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,7 +21,7 @@ export type followButtonCreateMutation$data = {
     readonly errors: ReadonlyArray<string>;
     readonly followedUser: {
       readonly id: string;
-      readonly isFollowing: boolean;
+      readonly viewerIsFollowing: boolean;
     } | null | undefined;
   } | null | undefined;
 };
@@ -79,7 +79,7 @@ v1 = [
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "isFollowing",
+            "name": "viewerIsFollowing",
             "storageKey": null
           }
         ],
@@ -107,16 +107,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "361aa8854ac1c8e226accf116b2de702",
+    "cacheID": "a7fb7d53e89b44bd7e4d170e265ebc0b",
     "id": null,
     "metadata": {},
     "name": "followButtonCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation followButtonCreateMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    errors\n    followedUser {\n      id\n      isFollowing\n    }\n  }\n}\n"
+    "text": "mutation followButtonCreateMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    errors\n    followedUser {\n      id\n      viewerIsFollowing\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d58a508a80734b2ca23a347533f4e089";
+(node as any).hash = "6435e3753234432bbfab0b0c9b8f86d2";
 
 export default node;

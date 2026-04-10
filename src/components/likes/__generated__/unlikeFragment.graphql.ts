@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e75a07f9941dbb6e74fee991c4e271b3>>
+ * @generated SignedSource<<d4212b3fdf1b98743635f326304ac86b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,11 +12,9 @@ import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type unlikeFragment$data = {
   readonly __typename: string;
-  readonly currentUserLike?: {
-    readonly id: string;
-  } | null | undefined;
   readonly id: string;
   readonly likesCount?: number;
+  readonly viewerHasLiked?: boolean;
   readonly " $fragmentType": "unlikeFragment";
 };
 export type unlikeFragment$key = {
@@ -24,15 +22,7 @@ export type unlikeFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"unlikeFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -45,7 +35,13 @@ return {
       "name": "__typename",
       "storageKey": null
     },
-    (v0/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
     {
       "kind": "InlineFragment",
       "selections": [
@@ -59,13 +55,8 @@ return {
         {
           "alias": null,
           "args": null,
-          "concreteType": "Like",
-          "kind": "LinkedField",
-          "name": "currentUserLike",
-          "plural": false,
-          "selections": [
-            (v0/*: any*/)
-          ],
+          "kind": "ScalarField",
+          "name": "viewerHasLiked",
           "storageKey": null
         }
       ],
@@ -76,8 +67,7 @@ return {
   "type": "Node",
   "abstractKey": "__isNode"
 };
-})();
 
-(node as any).hash = "b792068f628b94ae104704b936f2e91b";
+(node as any).hash = "c14794d8a54c756ca94e3d9621e1941d";
 
 export default node;

@@ -11,9 +11,7 @@ const UnlikeFragment = graphql`
     id
     ... on Post {
       likesCount
-      currentUserLike {
-        id
-      }
+      viewerHasLiked
     }
   }
 `
@@ -43,9 +41,9 @@ export function Unlike({ likeable }: UnlikeProps) {
   return (
     <button
       aria-label="Unlike"
-      disabled={!data.currentUserLike?.id}
+      disabled={!data.viewerHasLiked}
       className={cn('flex', {
-        'text-blue-500': data.currentUserLike?.id
+        'text-blue-500': data.viewerHasLiked
       })}
       onClick={() => {
         destroyLike({
@@ -62,9 +60,7 @@ export function Unlike({ likeable }: UnlikeProps) {
                 likeable: {
                   __typename: data.__typename,
                   id: data.id,
-                  currentUserLike: {
-                    id: data.currentUserLike?.id
-                  },
+                  viewerHasLiked: false,
                   likesCount: (data.likesCount || 1) - 1
                 }
               }

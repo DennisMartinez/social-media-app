@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<786dc663d6c70f86501298c20d3a5b7b>>
+ * @generated SignedSource<<879821a35509200514688cce915f1ac6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -166,19 +166,14 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "isFollowing",
+                            "name": "viewerIsFollowing",
                             "storageKey": null
                           },
                           {
                             "alias": null,
                             "args": null,
-                            "concreteType": "User",
-                            "kind": "LinkedField",
-                            "name": "currentUser",
-                            "plural": false,
-                            "selections": [
-                              (v4/*: any*/)
-                            ],
+                            "kind": "ScalarField",
+                            "name": "viewerCanFollow",
                             "storageKey": null
                           },
                           {
@@ -249,12 +244,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4110e8aa9c5cfe3494d3ec50f0ed487d",
+    "cacheID": "8e065326cc60fb830d022760b75f2db9",
     "id": null,
     "metadata": {},
     "name": "followingsCardPaginationQuery",
     "operationKind": "query",
-    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  isFollowing\n  currentUser {\n    id\n  }\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  isFollowing\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

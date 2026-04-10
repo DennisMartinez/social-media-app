@@ -14,7 +14,7 @@ const schema = yup.object({
 const SignInFormMutation = graphql`
   mutation signInFormMutation($input: SignInInput!) {
     signIn(input: $input) {
-      currentUser {
+      viewer {
         id
         name
       }

@@ -9,8 +9,6 @@ const FolloweeFragment = graphql`
   fragment followeeFragment on User {
     id
     name
-    isFollowing
-    ...followButtonCurrentUserFragment
     ...followButtonFragment
     ...userAvatarFragment
   }

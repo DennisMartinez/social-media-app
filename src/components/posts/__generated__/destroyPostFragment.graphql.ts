@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<37b78b75697573fae592ec31a2b8f95d>>
+ * @generated SignedSource<<dab278f3ee7cf30d20b240b8cad2f04e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,8 +11,8 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type destroyPostFragment$data = {
-  readonly canDestroy: boolean;
   readonly id: string;
+  readonly viewerCanDestroy: boolean;
   readonly " $fragmentType": "destroyPostFragment";
 };
 export type destroyPostFragment$key = {
@@ -37,7 +37,7 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "canDestroy",
+      "name": "viewerCanDestroy",
       "storageKey": null
     }
   ],
@@ -45,6 +45,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "a2b2618892b0164775b1379b2d428b34";
+(node as any).hash = "4d593ba7a2024189ad8884c58832fc15";
 
 export default node;

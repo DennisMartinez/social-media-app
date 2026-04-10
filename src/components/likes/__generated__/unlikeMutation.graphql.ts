@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<41955b0ddfbffa4ccdd9ee98712f4887>>
+ * @generated SignedSource<<1626d53699bf7c9dc60c6e59cbe2a8d1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -178,13 +178,8 @@ return {
                           {
                             "alias": null,
                             "args": null,
-                            "concreteType": "Like",
-                            "kind": "LinkedField",
-                            "name": "currentUserLike",
-                            "plural": false,
-                            "selections": [
-                              (v3/*: any*/)
-                            ],
+                            "kind": "ScalarField",
+                            "name": "viewerHasLiked",
                             "storageKey": null
                           }
                         ],
@@ -207,12 +202,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d07118a83a1af0078006264579b2d260",
+    "cacheID": "bfcb2285e6413ae8a2726a601d52f18e",
     "id": null,
     "metadata": {},
     "name": "unlikeMutation",
     "operationKind": "mutation",
-    "text": "mutation unlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...unlikeFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    currentUserLike {\n      id\n    }\n  }\n}\n"
+    "text": "mutation unlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...unlikeFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();

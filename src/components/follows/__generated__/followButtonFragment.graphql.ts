@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1cba4e6430123428bf21f27598db4219>>
+ * @generated SignedSource<<8afa492f9f8f7fb90ee0d358ab87805e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,11 +11,9 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type followButtonFragment$data = {
-  readonly currentUser: {
-    readonly id: string;
-  };
   readonly id: string;
-  readonly isFollowing: boolean;
+  readonly viewerCanFollow: boolean;
+  readonly viewerIsFollowing: boolean;
   readonly " $fragmentType": "followButtonFragment";
 };
 export type followButtonFragment$key = {
@@ -23,46 +21,38 @@ export type followButtonFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"followButtonFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "followButtonFragment",
   "selections": [
-    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "isFollowing",
+      "name": "id",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
-      "concreteType": "User",
-      "kind": "LinkedField",
-      "name": "currentUser",
-      "plural": false,
-      "selections": [
-        (v0/*: any*/)
-      ],
+      "kind": "ScalarField",
+      "name": "viewerIsFollowing",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "viewerCanFollow",
       "storageKey": null
     }
   ],
   "type": "User",
   "abstractKey": null
 };
-})();
 
-(node as any).hash = "e80a40d3e7c43958b78ea7624f1c33e6";
+(node as any).hash = "2dc9854c2942cfd3c2dfaf0e256cb9ee";
 
 export default node;

@@ -15,7 +15,7 @@ import { SignOutButton } from './sign-out-button'
 
 const NavigationFragment = graphql`
   fragment navigationFragment on Query {
-    currentUser {
+    viewer {
       id
       name
     }
@@ -91,7 +91,7 @@ export function Navigation({ query }: NavigationProps) {
       </div>
       <div className="mt-auto p-6">
         <div>
-          Signed in as <strong>{data.currentUser.name}</strong>
+          Signed in as <strong>{data.viewer.name}</strong>
         </div>
         <SignOutButton />
       </div>

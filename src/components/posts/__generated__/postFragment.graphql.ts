@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<870ee07ad81b48c7e31ce4ebc6b44e92>>
+ * @generated SignedSource<<1581ef67d6a4e9eae4aa3d4ffff745ee>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,10 +13,6 @@ import { FragmentRefs } from "relay-runtime";
 export type postFragment$data = {
   readonly content: string;
   readonly createdAt: any;
-  readonly currentUser: {
-    readonly name: string;
-    readonly " $fragmentSpreads": FragmentRefs<"createCommentFormUserFragment" | "userAvatarFragment">;
-  };
   readonly id: string;
   readonly user: {
     readonly name: string;
@@ -30,20 +26,7 @@ export type postFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v1 = {
-  "args": null,
-  "kind": "FragmentSpread",
-  "name": "userAvatarFragment"
-};
-return {
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -78,25 +61,17 @@ return {
       "name": "user",
       "plural": false,
       "selections": [
-        (v0/*: any*/),
-        (v1/*: any*/)
-      ],
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "User",
-      "kind": "LinkedField",
-      "name": "currentUser",
-      "plural": false,
-      "selections": [
-        (v0/*: any*/),
-        (v1/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "name",
+          "storageKey": null
+        },
         {
           "args": null,
           "kind": "FragmentSpread",
-          "name": "createCommentFormUserFragment"
+          "name": "userAvatarFragment"
         }
       ],
       "storageKey": null
@@ -130,8 +105,7 @@ return {
   "type": "Post",
   "abstractKey": null
 };
-})();
 
-(node as any).hash = "469a9ab52f99005affac75d55a00bc06";
+(node as any).hash = "fe4cc9c113b739da0f009efca71a2205";
 
 export default node;

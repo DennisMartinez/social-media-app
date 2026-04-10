@@ -10,10 +10,7 @@ const LikeFragment = graphql`
     id
     ... on Post {
       likesCount
-      currentUserLike {
-        id
-      }
-      # ...likeCountFragment
+      viewerHasLiked
     }
   }
 `
@@ -26,13 +23,7 @@ const LikeMutation = graphql`
         node {
           id
           likeable {
-            ... on Post {
-              id
-              likesCount
-              currentUserLike {
-                id
-              }
-            }
+            ...likeFragment
           }
         }
       }
@@ -51,7 +42,7 @@ export function Like({ likeable }: LikeProps) {
   return (
     <button
       aria-label="Like"
-      disabled={!!data.currentUserLike?.id}
+      disabled={data.viewerHasLiked}
       className="flex"
       onClick={() => {
         createLike({
@@ -69,9 +60,7 @@ export function Like({ likeable }: LikeProps) {
                   likeable: {
                     __typename: data.__typename,
                     id: data.id,
-                    currentUserLike: {
-                      id: new Date().toISOString()
-                    },
+                    viewerHasLiked: true,
                     likesCount: (data.likesCount || 0) + 1
                   }
                 }

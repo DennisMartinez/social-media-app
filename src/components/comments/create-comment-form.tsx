@@ -7,10 +7,10 @@ import { Button } from '../common/button'
 import { UserAvatar } from '../user-avatar'
 import { type createCommentFormCommentableFragment$key } from './__generated__/createCommentFormCommentableFragment.graphql'
 import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
-import { type createCommentFormUserFragment$key } from './__generated__/createCommentFormUserFragment.graphql'
+import { type createCommentFormViewerFragment$key } from './__generated__/createCommentFormViewerFragment.graphql'
 
-const CreateCommentFormUserFragment = graphql`
-  fragment createCommentFormUserFragment on User {
+const CreateCommentFormViewerFragment = graphql`
+  fragment createCommentFormViewerFragment on User {
     id
     name
     avatarUrl
@@ -60,16 +60,16 @@ const schema = yup.object({
 })
 
 interface CreateCommentFormProps {
-  user: createCommentFormUserFragment$key
+  viewer: createCommentFormViewerFragment$key
   commentable: createCommentFormCommentableFragment$key
 }
 
 export function CreateCommentForm({
-  user,
+  viewer,
   commentable
 }: CreateCommentFormProps) {
   const env = useRelayEnvironment()
-  const userData = useFragment(CreateCommentFormUserFragment, user)
+  const viewerData = useFragment(CreateCommentFormViewerFragment, viewer)
   const commentableData = useFragment(
     CreateCommentFormCommentableFragment,
     commentable
@@ -121,9 +121,9 @@ export function CreateCommentForm({
                           id: commentableData.id
                         },
                   user: {
-                    id: userData.id,
-                    name: userData.name,
-                    avatarUrl: userData.avatarUrl
+                    id: viewerData.id,
+                    name: viewerData.name,
+                    avatarUrl: viewerData.avatarUrl
                   }
                 }
               }
@@ -135,7 +135,7 @@ export function CreateCommentForm({
         })
       })}>
       <div className="flex grow gap-4">
-        <UserAvatar user={userData} />
+        <UserAvatar user={viewerData} />
         <input
           type="text"
           className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"

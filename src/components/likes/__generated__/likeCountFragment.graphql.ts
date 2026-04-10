@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<17748f5ae391993a19cec98f9a7cf492>>
+ * @generated SignedSource<<2ca948ea0b1f7a067605a4d9e37d7fd8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,10 +11,8 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type likeCountFragment$data = {
-  readonly currentUserLike?: {
-    readonly id: string;
-  } | null | undefined;
   readonly likesCount?: number;
+  readonly viewerHasLiked?: boolean;
   readonly " $fragmentSpreads": FragmentRefs<"likeFragment" | "unlikeFragment">;
   readonly " $fragmentType": "likeCountFragment";
 };
@@ -52,19 +50,8 @@ const node: ReaderFragment = {
         {
           "alias": null,
           "args": null,
-          "concreteType": "Like",
-          "kind": "LinkedField",
-          "name": "currentUserLike",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "id",
-              "storageKey": null
-            }
-          ],
+          "kind": "ScalarField",
+          "name": "viewerHasLiked",
           "storageKey": null
         }
       ],
@@ -76,6 +63,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isNode"
 };
 
-(node as any).hash = "83ebd69f11b8100bb9e03d391442773c";
+(node as any).hash = "57cad2588cadce48fdb00589749836d0";
 
 export default node;

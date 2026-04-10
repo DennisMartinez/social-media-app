@@ -1,7 +1,14 @@
-import { usePaginationFragment } from 'react-relay'
+import { useFragment, usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type postListFragment$key } from './__generated__/postListFragment.graphql'
+import { type postListViewerFragment$key } from './__generated__/postListViewerFragment.graphql'
 import { Post } from './post'
+
+const PostListViewerFragment = graphql`
+  fragment postListViewerFragment on User {
+    ...postViewerFragment
+  }
+`
 
 const PostListFragment = graphql`
   fragment postListFragment on User
@@ -22,10 +29,12 @@ const PostListFragment = graphql`
 `
 
 interface PostListProps {
+  viewer: postListViewerFragment$key
   user: postListFragment$key
 }
 
-export function PostList({ user }: PostListProps) {
+export function PostList({ viewer, user }: PostListProps) {
+  const viewerData = useFragment(PostListViewerFragment, viewer)
   const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
     PostListFragment,
     user
@@ -36,7 +45,9 @@ export function PostList({ user }: PostListProps) {
       <ol className="grid w-full gap-4">
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
-          return <Post key={edge.node.id} post={edge.node} />
+          return (
+            <Post key={edge.node.id} viewer={viewerData} post={edge.node} />
+          )
         })}
       </ol>
       {isLoadingNext && <p>Loading...</p>}

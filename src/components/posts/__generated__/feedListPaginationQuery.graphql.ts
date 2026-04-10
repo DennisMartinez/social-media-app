@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<637c9bf518c658c698d6b8ea11d19ff4>>
+ * @generated SignedSource<<4d84122dcd4610847db3f2378b8f06fc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -91,48 +91,47 @@ v7 = {
   "name": "createdAt",
   "storageKey": null
 },
-v8 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "name",
-    "storageKey": null
-  },
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "avatarUrl",
-    "storageKey": null
-  },
-  (v4/*: any*/)
-],
-v9 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "User",
   "kind": "LinkedField",
   "name": "user",
   "plural": false,
-  "selections": (v8/*: any*/),
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "name",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "avatarUrl",
+      "storageKey": null
+    },
+    (v4/*: any*/)
+  ],
   "storageKey": null
 },
-v10 = [
+v9 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 1
   }
 ],
-v11 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v12 = {
+v11 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -237,22 +236,12 @@ return {
                           (v4/*: any*/),
                           (v6/*: any*/),
                           (v7/*: any*/),
-                          (v9/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "User",
-                            "kind": "LinkedField",
-                            "name": "currentUser",
-                            "plural": false,
-                            "selections": (v8/*: any*/),
-                            "storageKey": null
-                          },
+                          (v8/*: any*/),
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "canDestroy",
+                            "name": "viewerCanDestroy",
                             "storageKey": null
                           },
                           (v3/*: any*/),
@@ -271,7 +260,7 @@ return {
                                   },
                                   {
                                     "alias": null,
-                                    "args": (v10/*: any*/),
+                                    "args": (v9/*: any*/),
                                     "concreteType": "CommentConnection",
                                     "kind": "LinkedField",
                                     "name": "comments",
@@ -296,22 +285,22 @@ return {
                                               (v4/*: any*/),
                                               (v6/*: any*/),
                                               (v7/*: any*/),
-                                              (v9/*: any*/),
+                                              (v8/*: any*/),
                                               (v3/*: any*/)
                                             ],
                                             "storageKey": null
                                           },
-                                          (v11/*: any*/)
+                                          (v10/*: any*/)
                                         ],
                                         "storageKey": null
                                       },
-                                      (v12/*: any*/)
+                                      (v11/*: any*/)
                                     ],
                                     "storageKey": "comments(first:1)"
                                   },
                                   {
                                     "alias": null,
-                                    "args": (v10/*: any*/),
+                                    "args": (v9/*: any*/),
                                     "filters": null,
                                     "handle": "connection",
                                     "key": "Post_comments",
@@ -328,13 +317,8 @@ return {
                                   {
                                     "alias": null,
                                     "args": null,
-                                    "concreteType": "Like",
-                                    "kind": "LinkedField",
-                                    "name": "currentUserLike",
-                                    "plural": false,
-                                    "selections": [
-                                      (v4/*: any*/)
-                                    ],
+                                    "kind": "ScalarField",
+                                    "name": "viewerHasLiked",
                                     "storageKey": null
                                   }
                                 ],
@@ -348,11 +332,11 @@ return {
                         ],
                         "storageKey": null
                       },
-                      (v11/*: any*/)
+                      (v10/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v12/*: any*/)
+                  (v11/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -375,12 +359,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cbed0cacb592ac1ac967a00737f393b5",
+    "cacheID": "68a5e2f6e0e105b48e5da32c06beb137",
     "id": null,
     "metadata": {},
     "name": "feedListPaginationQuery",
     "operationKind": "query",
-    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormUserFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  canDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likeCountFragment on Node {\n  __isNode: __typename\n  ...likeFragment\n  ...unlikeFragment\n  ... on Post {\n    likesCount\n    currentUserLike {\n      id\n    }\n  }\n}\n\nfragment likeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    currentUserLike {\n      id\n    }\n  }\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    name\n    ...userAvatarFragment\n    id\n  }\n  currentUser {\n    name\n    ...userAvatarFragment\n    ...createCommentFormUserFragment\n    id\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n  ...likeCountFragment\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    currentUserLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query feedListPaginationQuery(\n  $cursor: String\n  $first: Int = 5\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...feedListFragment_19XkED\n    id\n  }\n}\n\nfragment commentCountFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment feedListFragment_19XkED on User {\n  feed(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment likeCountFragment on Node {\n  __isNode: __typename\n  ...likeFragment\n  ...unlikeFragment\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n\nfragment likeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    name\n    ...userAvatarFragment\n    id\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...commentCountFragment\n  ...likeCountFragment\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

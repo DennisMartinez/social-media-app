@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dcb53a0a7a478c18aa5e185c5c7f41d9>>
+ * @generated SignedSource<<4e3d306a8c1bde826a2e6ee1226d4b8c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -46,7 +46,7 @@ const node: ConcreteRequest = {
         "args": null,
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "currentUser",
+        "name": "viewer",
         "plural": false,
         "selections": [
           {
@@ -69,12 +69,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "1e1540cc8d6541801e37e3890943c9af",
+    "cacheID": "9f899a3f2eae859005c685bffcf802d7",
     "id": null,
     "metadata": {},
     "name": "commentsQuery",
     "operationKind": "query",
-    "text": "query commentsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  currentUser {\n    id\n    name\n  }\n}\n"
+    "text": "query commentsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n  }\n}\n"
   }
 };
 

@@ -7,6 +7,15 @@ import { CreateCommentForm } from '../comments/create-comment-form'
 import { LikeCount } from '../likes/like-count'
 import { UserAvatar } from '../user-avatar'
 import { type postFragment$key } from './__generated__/postFragment.graphql'
+import { type postViewerFragment$key } from './__generated__/postViewerFragment.graphql'
+
+const PostViewerFragment = graphql`
+  fragment postViewerFragment on User {
+    name
+    ...userAvatarFragment
+    ...createCommentFormViewerFragment
+  }
+`
 
 const PostFragment = graphql`
   fragment postFragment on Post {
@@ -17,11 +26,6 @@ const PostFragment = graphql`
       name
       ...userAvatarFragment
     }
-    currentUser {
-      name
-      ...userAvatarFragment
-      ...createCommentFormUserFragment
-    }
     ...destroyPostFragment
     ...createCommentFormCommentableFragment
     ...commentListFragment
@@ -31,11 +35,13 @@ const PostFragment = graphql`
 `
 
 interface PostProps {
+  viewer: postViewerFragment$key
   post: postFragment$key
 }
 
-export function Post({ post }: PostProps) {
+export function Post({ viewer, post }: PostProps) {
   const data = useFragment(PostFragment, post)
+  const viewerData = useFragment(PostViewerFragment, viewer)
 
   return (
     <li className="grid gap-6 rounded-xl bg-white p-4">
@@ -65,7 +71,7 @@ export function Post({ post }: PostProps) {
         </div>
       </div>
       <div className="grid gap-4">
-        <CreateCommentForm user={data.currentUser} commentable={data} />
+        <CreateCommentForm viewer={viewerData} commentable={data} />
         <CommentList commentable={data} />
       </div>
     </li>

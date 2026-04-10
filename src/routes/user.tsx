@@ -10,6 +10,9 @@ import { type userQuery } from './__generated__/userQuery.graphql'
 
 const UserQuery = graphql`
   query userQuery($id: ID!) {
+    viewer {
+      ...postListViewerFragment
+    }
     node(id: $id) {
       ... on User {
         ...postListFragment
@@ -37,7 +40,7 @@ export function Component() {
       </div>
       <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
         <div className="grow">
-          <PostList user={data.node} />
+          <PostList viewer={data.viewer} user={data.node} />
         </div>
         <div className="flex w-72 flex-col gap-8">
           <RecommendedFollows user={data.node} />

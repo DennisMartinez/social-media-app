@@ -1,16 +1,19 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { Feed } from '../components/feed'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation'
+import { CreatePostForm } from '../components/posts/create-post-form'
+import { FeedList } from '../components/posts/feed-list'
 import { type dashboardQuery } from './__generated__/dashboardQuery.graphql'
 
 const DashboardQuery = graphql`
   query dashboardQuery {
-    currentUser {
-      ...feedFragment
+    viewer {
+      ...feedListFragment
+      ...feedListViewerFragment
+      ...createPostFormFragment
       ...recommendedFollowsFragment
       ...followersCardFragment
       ...followingsCardFragment
@@ -28,13 +31,14 @@ export function Component() {
         <Navigation query={data} />
       </div>
       <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
-        <div className="grow">
-          <Feed user={data.currentUser} />
+        <div className="grid w-full grow gap-4">
+          <CreatePostForm user={data.viewer} />
+          <FeedList viewer={data.viewer} user={data.viewer} />
         </div>
         <div className="flex w-72 flex-col gap-8">
-          <RecommendedFollows user={data.currentUser} />
-          <FollowersCard user={data.currentUser} />
-          <FollowingsCard user={data.currentUser} />
+          <RecommendedFollows user={data.viewer} />
+          <FollowersCard user={data.viewer} />
+          <FollowingsCard user={data.viewer} />
         </div>
       </div>
     </div>

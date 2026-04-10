@@ -10,9 +10,7 @@ const LikeCountFragment = graphql`
     ...unlikeFragment
     ... on Post {
       likesCount
-      currentUserLike {
-        id
-      }
+      viewerHasLiked
     }
   }
 `
@@ -26,7 +24,7 @@ export function LikeCount({ likeable }: LikeCountProps) {
 
   return (
     <div className="flex items-center gap-1 text-sm">
-      {data.currentUserLike?.id ? (
+      {data.viewerHasLiked ? (
         <Unlike likeable={data} />
       ) : (
         <Like likeable={data} />
