@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<27c1073c52a0106629379322a6333121>>
+ * @generated SignedSource<<f7ec93466b58b168f75b692e572f5842>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,12 +14,11 @@ export type postFragment$data = {
   readonly content: string;
   readonly createdAt: any;
   readonly id: string;
-  readonly isLikedByCurrentUser: boolean;
   readonly user: {
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"createCommentFormUserFragment" | "userAvatarFragment">;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"commentCountFragment" | "commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "likeCountFragment" | "likePostFragment" | "unlikePostFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentCountFragment" | "commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "likeCountFragment">;
   readonly " $fragmentType": "postFragment";
 };
 export type postFragment$key = {
@@ -57,13 +56,6 @@ const node: ReaderFragment = {
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "isLikedByCurrentUser",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
       "concreteType": "User",
       "kind": "LinkedField",
       "name": "user",
@@ -88,16 +80,6 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "likePostFragment"
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "unlikePostFragment"
     },
     {
       "args": null,
@@ -129,6 +111,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "24971cbb0e21d086a839899151f010e5";
+(node as any).hash = "abb75b55d79898c31d421ba7fa123bae";
 
 export default node;

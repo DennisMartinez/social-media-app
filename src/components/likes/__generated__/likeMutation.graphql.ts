@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<31f96c0995ae98eaee526cd9f531a586>>
+ * @generated SignedSource<<6bb487d491ef74081d65f0c815bf9c22>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,26 +13,29 @@ export type CreateLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
 };
-export type likeCountMutation$variables = {
+export type likeMutation$variables = {
   input: CreateLikeInput;
 };
-export type likeCountMutation$data = {
+export type likeMutation$data = {
   readonly createLike: {
     readonly errors: ReadonlyArray<string>;
     readonly likeEdge: {
       readonly node: {
         readonly id: string;
         readonly likeable: {
+          readonly currentUserLike?: {
+            readonly id: string;
+          } | null | undefined;
           readonly id?: string;
-          readonly isLikedByCurrentUser?: boolean;
+          readonly likesCount?: number;
         };
       } | null | undefined;
     } | null | undefined;
   } | null | undefined;
 };
-export type likeCountMutation = {
-  response: likeCountMutation$data;
-  variables: likeCountMutation$variables;
+export type likeMutation = {
+  response: likeMutation$data;
+  variables: likeMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -64,7 +67,10 @@ v3 = {
   "name": "id",
   "storageKey": null
 },
-v4 = {
+v4 = [
+  (v3/*: any*/)
+],
+v5 = {
   "kind": "InlineFragment",
   "selections": [
     (v3/*: any*/),
@@ -72,7 +78,17 @@ v4 = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "isLikedByCurrentUser",
+      "name": "likesCount",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "Like",
+      "kind": "LinkedField",
+      "name": "currentUserLike",
+      "plural": false,
+      "selections": (v4/*: any*/),
       "storageKey": null
     }
   ],
@@ -84,7 +100,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "likeCountMutation",
+    "name": "likeMutation",
     "selections": [
       {
         "alias": null,
@@ -120,7 +136,7 @@ return {
                     "name": "likeable",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/)
+                      (v5/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -141,7 +157,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "likeCountMutation",
+    "name": "likeMutation",
     "selections": [
       {
         "alias": null,
@@ -184,12 +200,10 @@ return {
                         "name": "__typename",
                         "storageKey": null
                       },
-                      (v4/*: any*/),
+                      (v5/*: any*/),
                       {
                         "kind": "InlineFragment",
-                        "selections": [
-                          (v3/*: any*/)
-                        ],
+                        "selections": (v4/*: any*/),
                         "type": "Node",
                         "abstractKey": "__isNode"
                       }
@@ -208,16 +222,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a044340a9085a29b7baef753aebffc47",
+    "cacheID": "483744df72998ec472bdbe46bd11b98c",
     "id": null,
     "metadata": {},
-    "name": "likeCountMutation",
+    "name": "likeMutation",
     "operationKind": "mutation",
-    "text": "mutation likeCountMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ... on Post {\n            id\n            isLikedByCurrentUser\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n"
+    "text": "mutation likeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ... on Post {\n            id\n            likesCount\n            currentUserLike {\n              id\n            }\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "eb96044e3364933c388c32e67d554b94";
+(node as any).hash = "a58a44281497103a8254d9f8b4bb7cd4";
 
 export default node;

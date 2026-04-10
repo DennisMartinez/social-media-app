@@ -6,21 +6,18 @@ import { CommentList } from '../comments/comment-list'
 import { CreateCommentForm } from '../comments/create-comment-form'
 import { LikeCount } from '../likes/like-count'
 import { UserAvatar } from '../user-avatar'
-import type { postFragment$key } from './__generated__/postFragment.graphql'
+import { type postFragment$key } from './__generated__/postFragment.graphql'
 
 const PostFragment = graphql`
   fragment postFragment on Post {
     id
     content
     createdAt
-    isLikedByCurrentUser
     user {
       name
       ...userAvatarFragment
       ...createCommentFormUserFragment
     }
-    ...likePostFragment
-    ...unlikePostFragment
     ...destroyPostFragment
     ...createCommentFormCommentableFragment
     ...commentListFragment

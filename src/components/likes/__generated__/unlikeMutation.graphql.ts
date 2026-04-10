@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0d3e79d067447faaea950e4daa3e4407>>
+ * @generated SignedSource<<41955b0ddfbffa4ccdd9ee98712f4887>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,28 +9,28 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type DestroyLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
 };
-export type unlikePostMutation$variables = {
+export type unlikeMutation$variables = {
   input: DestroyLikeInput;
 };
-export type unlikePostMutation$data = {
+export type unlikeMutation$data = {
   readonly destroyLike: {
     readonly errors: ReadonlyArray<string>;
     readonly like: {
       readonly id: string;
       readonly likeable: {
-        readonly id?: string;
-        readonly isLikedByCurrentUser?: boolean;
+        readonly " $fragmentSpreads": FragmentRefs<"unlikeFragment">;
       };
     } | null | undefined;
   } | null | undefined;
 };
-export type unlikePostMutation = {
-  response: unlikePostMutation$data;
-  variables: unlikePostMutation$variables;
+export type unlikeMutation = {
+  response: unlikeMutation$data;
+  variables: unlikeMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -61,28 +61,13 @@ v3 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v4 = {
-  "kind": "InlineFragment",
-  "selections": [
-    (v3/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isLikedByCurrentUser",
-      "storageKey": null
-    }
-  ],
-  "type": "Post",
-  "abstractKey": null
 };
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "unlikePostMutation",
+    "name": "unlikeMutation",
     "selections": [
       {
         "alias": null,
@@ -110,7 +95,11 @@ return {
                 "name": "likeable",
                 "plural": false,
                 "selections": [
-                  (v4/*: any*/)
+                  {
+                    "args": null,
+                    "kind": "FragmentSpread",
+                    "name": "unlikeFragment"
+                  }
                 ],
                 "storageKey": null
               }
@@ -128,7 +117,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "unlikePostMutation",
+    "name": "unlikeMutation",
     "selections": [
       {
         "alias": null,
@@ -172,11 +161,36 @@ return {
                     "name": "__typename",
                     "storageKey": null
                   },
-                  (v4/*: any*/),
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/)
+                      (v3/*: any*/),
+                      {
+                        "kind": "InlineFragment",
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "likesCount",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Like",
+                            "kind": "LinkedField",
+                            "name": "currentUserLike",
+                            "plural": false,
+                            "selections": [
+                              (v3/*: any*/)
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "type": "Post",
+                        "abstractKey": null
+                      }
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -193,16 +207,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "948017fa7061e191641aa26d40539bee",
+    "cacheID": "d07118a83a1af0078006264579b2d260",
     "id": null,
     "metadata": {},
-    "name": "unlikePostMutation",
+    "name": "unlikeMutation",
     "operationKind": "mutation",
-    "text": "mutation unlikePostMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ... on Post {\n          id\n          isLikedByCurrentUser\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "mutation unlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...unlikeFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    currentUserLike {\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cec88e511b5d83eb96010308f60be889";
+(node as any).hash = "4e910cf9ec96f7ca72cc0f2eb6eca87c";
 
 export default node;
