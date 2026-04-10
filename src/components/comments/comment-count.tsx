@@ -21,7 +21,7 @@ export function CommentCount({ commentable }: CommentCountProps) {
   return (
     <div className="flex items-center gap-1 text-sm">
       <MessageCircleIcon className="size-4" />
-      <div>{data.commentsCount} comments</div>
+      <div>{data.commentsCount || 0} comments</div>
     </div>
   )
 }

@@ -31,7 +31,7 @@ export function LikeCount({ likeable }: LikeCountProps) {
       ) : (
         <Like likeable={data} />
       )}
-      <div>{data.likesCount} likes</div>
+      <div>{data.likesCount || 0} likes</div>
     </div>
   )
 }

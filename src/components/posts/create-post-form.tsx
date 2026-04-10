@@ -77,6 +77,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
             createPost: {
               postEdge: {
                 node: {
+                  __typename: 'Post',
                   id: new Date().toISOString(),
                   content: formData.content,
                   createdAt: new Date().toISOString(),
@@ -84,6 +85,15 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                     id: new Date().toISOString()
                   },
                   canDestroy: true,
+                  commentsCount: 0,
+                  likesCount: 0,
+                  comments: {
+                    edges: [],
+                    pageInfo: {
+                      endCursor: null,
+                      hasNextPage: false
+                    }
+                  },
                   user: {
                     id: data.id,
                     avatarUrl: data.avatarUrl,
