@@ -61,7 +61,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form
-      className="grid gap-2 rounded-xl bg-white p-4"
+      className="flex flex-col gap-2 rounded-xl bg-white p-4"
       onSubmit={handleSubmit((formData) => {
         const connections = ['User_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))

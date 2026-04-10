@@ -46,7 +46,7 @@ export function Component() {
             <FollowingsCard user={data.node} />
           </div>
         </div>
-        <div className="grid grow gap-4">
+        <div className="flex grow flex-col gap-4">
           <PostList viewer={data.viewer} user={data.node} />
         </div>
         <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">

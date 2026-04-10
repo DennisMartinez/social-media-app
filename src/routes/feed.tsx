@@ -38,7 +38,7 @@ export function Component() {
             <FollowingsCard user={data.viewer} />
           </div>
         </div>
-        <div className="grid grow gap-4">
+        <div className="flex grow flex-col gap-4">
           <CreatePostForm user={data.viewer} />
           <FeedList viewer={data.viewer} user={data.viewer} />
         </div>

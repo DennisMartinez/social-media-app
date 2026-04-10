@@ -59,8 +59,8 @@ export function PostList({ viewer, user }: PostListProps) {
   }, [hasNext, isLoadingNext, loadNext])
 
   return (
-    <div className="grid gap-4">
-      <ol className="grid w-full gap-4">
+    <div className="flex flex-col gap-4">
+      <ol className="flex w-full flex-col gap-4">
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
           return (

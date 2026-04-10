@@ -27,10 +27,10 @@ export function Navigation({ query }: NavigationProps) {
   const data = useFragment(NavigationFragment, query)
 
   return (
-    <nav className="grid gap-8 rounded-xl bg-white p-4">
-      <div className="grid gap-4">
+    <nav className="flex flex-col gap-8 rounded-xl bg-white p-4">
+      <div className="flex flex-col gap-4">
         <h2 className="text-sm font-medium">Main</h2>
-        <ul className="grid gap-4">
+        <ul className="flex flex-col gap-4">
           <NavItem to="/">
             <Newspaper />
             Feed
@@ -45,9 +45,9 @@ export function Navigation({ query }: NavigationProps) {
           </NavItem>
         </ul>
       </div>
-      <div className="grid gap-4">
+      <div className="flex flex-col gap-4">
         <h2 className="text-sm font-medium">Socials</h2>
-        <ul className="grid gap-4">
+        <ul className="flex flex-col gap-4">
           <NavItem to="https://github.com/DennisMartinez">
             <svg
               xmlns="http://www.w3.org/2000/svg"

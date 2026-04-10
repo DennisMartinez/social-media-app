@@ -136,8 +136,10 @@ export function CreateCommentForm({
       })}>
       <div className="flex grow gap-4">
         <UserAvatar user={viewerData} />
+
         <input
           type="text"
+          autoFocus
           className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
           placeholder="Write a comment..."
           {...register('content')}

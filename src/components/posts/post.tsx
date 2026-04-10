@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { CommentList } from '../comments/comment-list'
@@ -43,9 +44,10 @@ interface PostProps {
 export function Post({ viewer, post }: PostProps) {
   const data = useFragment(PostFragment, post)
   const viewerData = useFragment(PostViewerFragment, viewer)
+  const [displayCommentForm, setDisplayCommentForm] = useState(false)
 
   return (
-    <li className="grid gap-6 rounded-xl bg-white p-4">
+    <li className="flex flex-col gap-6 rounded-xl bg-white p-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
           <UserAvatar user={data.user} />
@@ -63,9 +65,14 @@ export function Post({ viewer, post }: PostProps) {
         </div>
       </div>
       <p className="text-gray-900">{data.content}</p>
-      <PostStats post={data} />
-      <div className="grid gap-4">
-        <CreateCommentForm viewer={viewerData} commentable={data} />
+      <PostStats
+        post={data}
+        onCommentsClick={() => setDisplayCommentForm(!displayCommentForm)}
+      />
+      <div className="flex flex-col gap-4">
+        {displayCommentForm && (
+          <CreateCommentForm viewer={viewerData} commentable={data} />
+        )}
         <CommentList commentable={data} />
       </div>
     </li>
