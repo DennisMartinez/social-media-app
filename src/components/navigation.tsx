@@ -1,10 +1,4 @@
-import {
-  GlobeIcon,
-  MessageCircleIcon,
-  Newspaper,
-  ThumbsUpIcon,
-  UserIcon
-} from 'lucide-react'
+import { GlobeIcon, Newspaper, UserIcon, UsersIcon } from 'lucide-react'
 import { type PropsWithChildren } from 'react'
 import { useFragment } from 'react-relay'
 import { NavLink } from 'react-router'
@@ -41,17 +35,13 @@ export function Navigation({ query }: NavigationProps) {
             <Newspaper />
             Feed
           </NavItem>
-          <NavItem to="/profile">
+          <NavItem to={`/users/${data.viewer.id}`}>
             <UserIcon />
             Profile
           </NavItem>
-          <NavItem to="/likes">
-            <ThumbsUpIcon />
-            Likes
-          </NavItem>
-          <NavItem to="/comments">
-            <MessageCircleIcon />
-            Comments
+          <NavItem to="/discover">
+            <UsersIcon />
+            Discover
           </NavItem>
         </ul>
       </div>
