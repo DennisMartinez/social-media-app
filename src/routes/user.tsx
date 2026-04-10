@@ -35,16 +35,21 @@ export function Component() {
 
   return (
     <div className="p-8">
-      <div className="mx-auto flex max-w-7xl grow gap-8">
-        <div className="w-72 shrink-0">
-          <div className="sticky top-8">
+      <div className="mx-auto flex max-w-7xl grow flex-col gap-8 md:flex-row">
+        <div className="flex w-full shrink-0 flex-col gap-4 md:w-72">
+          <div className="top-8 xl:sticky">
             <Navigation query={data} />
           </div>
+          <div className="flex shrink-0 flex-col gap-4 xl:hidden">
+            <RecommendedFollows user={data.node} />
+            <FollowersCard user={data.node} />
+            <FollowingsCard user={data.node} />
+          </div>
         </div>
-        <div className="grid w-full grow gap-4">
+        <div className="grid grow gap-4">
           <PostList viewer={data.viewer} user={data.node} />
         </div>
-        <div className="flex w-72 shrink-0 flex-col gap-4">
+        <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">
           <RecommendedFollows user={data.node} />
           <FollowersCard user={data.node} />
           <FollowingsCard user={data.node} />
