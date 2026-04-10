@@ -1,7 +1,7 @@
 import { MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import type { postStatsFragment$key } from './__generated__/postStatsFragment.graphql'
+import { type postStatsFragment$key } from './__generated__/postStatsFragment.graphql'
 
 const PostStatsFragment = graphql`
   fragment postStatsFragment on Post {

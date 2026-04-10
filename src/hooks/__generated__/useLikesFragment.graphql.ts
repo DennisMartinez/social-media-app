@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d4212b3fdf1b98743635f326304ac86b>>
+ * @generated SignedSource<<dfe1c84551c28651436c34fd03833925>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,23 +10,23 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type unlikeFragment$data = {
+export type useLikesFragment$data = {
   readonly __typename: string;
   readonly id: string;
   readonly likesCount?: number;
   readonly viewerHasLiked?: boolean;
-  readonly " $fragmentType": "unlikeFragment";
+  readonly " $fragmentType": "useLikesFragment";
 };
-export type unlikeFragment$key = {
-  readonly " $data"?: unlikeFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"unlikeFragment">;
+export type useLikesFragment$key = {
+  readonly " $data"?: useLikesFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "unlikeFragment",
+  "name": "useLikesFragment",
   "selections": [
     {
       "alias": null,
@@ -68,6 +68,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isNode"
 };
 
-(node as any).hash = "c14794d8a54c756ca94e3d9621e1941d";
+(node as any).hash = "b08e6bd0c835466ff76837c618cfc57c";
 
 export default node;

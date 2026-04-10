@@ -1,7 +1,7 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Navigation } from '../components/navigation'
-import type { discoverQuery } from './__generated__/discoverQuery.graphql'
+import { type discoverQuery } from './__generated__/discoverQuery.graphql'
 
 const DiscoverQuery = graphql`
   query discoverQuery {

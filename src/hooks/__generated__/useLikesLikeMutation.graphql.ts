@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<33da6b7a0e59d89e6de1f444e0b56b70>>
+ * @generated SignedSource<<17c72a29fb1e9d54aa04dd7a8b5e87d1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,25 +14,25 @@ export type CreateLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
 };
-export type likeMutation$variables = {
+export type useLikesLikeMutation$variables = {
   input: CreateLikeInput;
 };
-export type likeMutation$data = {
+export type useLikesLikeMutation$data = {
   readonly createLike: {
     readonly errors: ReadonlyArray<string>;
     readonly likeEdge: {
       readonly node: {
         readonly id: string;
         readonly likeable: {
-          readonly " $fragmentSpreads": FragmentRefs<"likeFragment">;
+          readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
         };
       } | null | undefined;
     } | null | undefined;
   } | null | undefined;
 };
-export type likeMutation = {
-  response: likeMutation$data;
-  variables: likeMutation$variables;
+export type useLikesLikeMutation = {
+  response: useLikesLikeMutation$data;
+  variables: useLikesLikeMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -69,7 +69,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "likeMutation",
+    "name": "useLikesLikeMutation",
     "selections": [
       {
         "alias": null,
@@ -108,7 +108,7 @@ return {
                       {
                         "args": null,
                         "kind": "FragmentSpread",
-                        "name": "likeFragment"
+                        "name": "useLikesFragment"
                       }
                     ],
                     "storageKey": null
@@ -130,7 +130,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "likeMutation",
+    "name": "useLikesLikeMutation",
     "selections": [
       {
         "alias": null,
@@ -217,16 +217,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "22ae0a9819e38eeeadc0e9171f94582d",
+    "cacheID": "59026b8c098728f998581d9f718e90b3",
     "id": null,
     "metadata": {},
-    "name": "likeMutation",
+    "name": "useLikesLikeMutation",
     "operationKind": "mutation",
-    "text": "mutation likeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...likeFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment likeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "e8139ff82ac3ddd10a893d0da565acd8";
+(node as any).hash = "dc8273e675e1d90fdcf60cf755ff9f76";
 
 export default node;

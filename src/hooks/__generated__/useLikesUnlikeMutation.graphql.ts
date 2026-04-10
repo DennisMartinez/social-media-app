@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1626d53699bf7c9dc60c6e59cbe2a8d1>>
+ * @generated SignedSource<<73cb35ba709596c69e3b7d808f8abb06>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,23 +14,23 @@ export type DestroyLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
 };
-export type unlikeMutation$variables = {
+export type useLikesUnlikeMutation$variables = {
   input: DestroyLikeInput;
 };
-export type unlikeMutation$data = {
+export type useLikesUnlikeMutation$data = {
   readonly destroyLike: {
     readonly errors: ReadonlyArray<string>;
     readonly like: {
       readonly id: string;
       readonly likeable: {
-        readonly " $fragmentSpreads": FragmentRefs<"unlikeFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
       };
     } | null | undefined;
   } | null | undefined;
 };
-export type unlikeMutation = {
-  response: unlikeMutation$data;
-  variables: unlikeMutation$variables;
+export type useLikesUnlikeMutation = {
+  response: useLikesUnlikeMutation$data;
+  variables: useLikesUnlikeMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -67,7 +67,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "unlikeMutation",
+    "name": "useLikesUnlikeMutation",
     "selections": [
       {
         "alias": null,
@@ -98,7 +98,7 @@ return {
                   {
                     "args": null,
                     "kind": "FragmentSpread",
-                    "name": "unlikeFragment"
+                    "name": "useLikesFragment"
                   }
                 ],
                 "storageKey": null
@@ -117,7 +117,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "unlikeMutation",
+    "name": "useLikesUnlikeMutation",
     "selections": [
       {
         "alias": null,
@@ -202,16 +202,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bfcb2285e6413ae8a2726a601d52f18e",
+    "cacheID": "49335171c4661e3c3d9e818dff3aa711",
     "id": null,
     "metadata": {},
-    "name": "unlikeMutation",
+    "name": "useLikesUnlikeMutation",
     "operationKind": "mutation",
-    "text": "mutation unlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...unlikeFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment unlikeFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesUnlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...useLikesFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4e910cf9ec96f7ca72cc0f2eb6eca87c";
+(node as any).hash = "9bb8728556f75a45c4f1ef3694bd6a57";
 
 export default node;

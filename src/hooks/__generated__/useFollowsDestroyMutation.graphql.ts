@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9759cff381dd21253781c02cbfa82826>>
+ * @generated SignedSource<<1c4847c5982685d7d8ec19e5113d0e99>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,10 +13,10 @@ export type UnfollowUserInput = {
   clientMutationId?: string | null | undefined;
   userId: string;
 };
-export type followButtonDestroyMutation$variables = {
+export type useFollowsDestroyMutation$variables = {
   input: UnfollowUserInput;
 };
-export type followButtonDestroyMutation$data = {
+export type useFollowsDestroyMutation$data = {
   readonly unfollowUser: {
     readonly errors: ReadonlyArray<string>;
     readonly unfollowedUser: {
@@ -25,9 +25,9 @@ export type followButtonDestroyMutation$data = {
     };
   } | null | undefined;
 };
-export type followButtonDestroyMutation = {
-  response: followButtonDestroyMutation$data;
-  variables: followButtonDestroyMutation$variables;
+export type useFollowsDestroyMutation = {
+  response: useFollowsDestroyMutation$data;
+  variables: useFollowsDestroyMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -94,7 +94,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "followButtonDestroyMutation",
+    "name": "useFollowsDestroyMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -103,20 +103,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "followButtonDestroyMutation",
+    "name": "useFollowsDestroyMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "eaa68198ba3a5cbbdb2dafbfc3b23c69",
+    "cacheID": "52d3fe1de16a1b67a61a2b46dfda0813",
     "id": null,
     "metadata": {},
-    "name": "followButtonDestroyMutation",
+    "name": "useFollowsDestroyMutation",
     "operationKind": "mutation",
-    "text": "mutation followButtonDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      viewerIsFollowing\n    }\n  }\n}\n"
+    "text": "mutation useFollowsDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      viewerIsFollowing\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "513cb0919532fe5bc37bd69b6d29f868";
+(node as any).hash = "a076323a1a34e30fdba8e382f8b8b7f9";
 
 export default node;

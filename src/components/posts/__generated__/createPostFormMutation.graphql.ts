@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0b3850e4949e123d422b962f0647369e>>
+ * @generated SignedSource<<2ec94017e39bec39af8fe1e75a2f256b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -374,12 +374,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "120ecb4897e64508860edc7557b0210f",
+    "cacheID": "c0c3c33951b92b268083a6d2fd5c8a10",
     "id": null,
     "metadata": {},
     "name": "createPostFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    name\n    ...userAvatarFragment\n    id\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    name\n    avatarUrl\n    ...userAvatarFragment\n    id\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    name\n    ...userAvatarFragment\n    id\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  ...useLikesFragment\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n}\n\nfragment useLikesFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

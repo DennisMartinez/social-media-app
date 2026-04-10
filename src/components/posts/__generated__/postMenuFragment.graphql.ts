@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3144abb6ae38515bf7f55933bcdfdb3f>>
+ * @generated SignedSource<<3d61004b3ac41ccb4b2c9c20ae8804c6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,7 @@ export type postMenuFragment$data = {
   };
   readonly viewerCanDestroy: boolean;
   readonly viewerHasLiked: boolean;
+  readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
   readonly " $fragmentType": "postMenuFragment";
 };
 export type postMenuFragment$key = {
@@ -40,6 +41,11 @@ return {
   "metadata": null,
   "name": "postMenuFragment",
   "selections": [
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "useLikesFragment"
+    },
     (v0/*: any*/),
     {
       "alias": null,
@@ -87,6 +93,6 @@ return {
 };
 })();
 
-(node as any).hash = "951710a4e0a9dfdc0484f4923eccfd6e";
+(node as any).hash = "cda590ecf81c42aef76f1f4202d5fd1c";
 
 export default node;
