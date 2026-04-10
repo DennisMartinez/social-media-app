@@ -1,13 +1,12 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { CommentCount } from '../comments/comment-count'
 import { CommentList } from '../comments/comment-list'
 import { CreateCommentForm } from '../comments/create-comment-form'
-import { LikeCount } from '../likes/like-count'
 import { UserAvatar } from '../user-avatar'
 import { type postFragment$key } from './__generated__/postFragment.graphql'
 import { type postViewerFragment$key } from './__generated__/postViewerFragment.graphql'
 import { PostMenu } from './post-menu'
+import { PostStats } from './post-stats'
 
 const PostViewerFragment = graphql`
   fragment postViewerFragment on User {
@@ -29,8 +28,9 @@ const PostFragment = graphql`
     ...destroyPostFragment
     ...createCommentFormCommentableFragment
     ...commentListFragment
-    ...commentCountFragment
-    ...likeCountFragment
+    ...postStatsFragment
+    # ...commentCountFragment
+    # ...likeCountFragment
     ...postMenuFragment
   }
 `
@@ -63,12 +63,7 @@ export function Post({ viewer, post }: PostProps) {
         </div>
       </div>
       <p className="text-gray-900">{data.content}</p>
-      <div className="flex items-center justify-between border-t border-b border-gray-200 py-4">
-        <div className="space-between flex gap-12">
-          <LikeCount likeable={data} />
-          <CommentCount commentable={data} />
-        </div>
-      </div>
+      <PostStats post={data} />
       <div className="grid gap-4">
         <CreateCommentForm viewer={viewerData} commentable={data} />
         <CommentList commentable={data} />

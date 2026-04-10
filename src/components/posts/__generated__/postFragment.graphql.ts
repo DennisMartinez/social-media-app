@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<325bc0c4b5c0f275aee744f0c9213773>>
+ * @generated SignedSource<<51ce22d4a0a6915718156d2587d0b41a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,7 +18,7 @@ export type postFragment$data = {
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"commentCountFragment" | "commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "likeCountFragment" | "postMenuFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "postMenuFragment" | "postStatsFragment">;
   readonly " $fragmentType": "postFragment";
 };
 export type postFragment$key = {
@@ -94,12 +94,7 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "commentCountFragment"
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "likeCountFragment"
+      "name": "postStatsFragment"
     },
     {
       "args": null,
@@ -111,6 +106,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "a8070d3b90f046248b7569fe4fe71bfd";
+(node as any).hash = "9c39ca48f406ae6045901ca06bb6f4f9";
 
 export default node;

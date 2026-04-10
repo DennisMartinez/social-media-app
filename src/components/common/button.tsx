@@ -1,5 +1,5 @@
+import { Button as BaseButton } from '@base-ui/react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type ComponentProps } from 'react'
 import { cn } from '../../utils'
 
 const buttonVariants = cva('border', {
@@ -25,11 +25,11 @@ const buttonVariants = cva('border', {
 })
 
 interface ButtonProps
-  extends ComponentProps<'button'>, VariantProps<typeof buttonVariants> {}
+  extends BaseButton.Props, VariantProps<typeof buttonVariants> {}
 
 export function Button({ variant, size, className, ...props }: ButtonProps) {
   return (
-    <button
+    <BaseButton
       {...props}
       className={cn(buttonVariants({ variant, size, className }))}
     />
