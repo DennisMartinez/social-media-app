@@ -81,8 +81,8 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                   id: new Date().toISOString(),
                   content: formData.content,
                   createdAt: new Date().toISOString(),
-                  viewerHasLiked: true,
-                  viewerCanDestroy: true,
+                  viewerHasLiked: false,
+                  viewerCanDestroy: false,
                   commentsCount: 0,
                   likesCount: 0,
                   comments: {
@@ -95,7 +95,9 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                   user: {
                     id: data.id,
                     avatarUrl: data.avatarUrl,
-                    name: data.name
+                    name: data.name,
+                    viewerIsFollowing: false,
+                    viewerCanFollow: false
                   }
                 }
               }

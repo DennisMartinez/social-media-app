@@ -1,4 +1,3 @@
-import { EllipsisIcon } from 'lucide-react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { CommentCount } from '../comments/comment-count'
@@ -8,6 +7,7 @@ import { LikeCount } from '../likes/like-count'
 import { UserAvatar } from '../user-avatar'
 import { type postFragment$key } from './__generated__/postFragment.graphql'
 import { type postViewerFragment$key } from './__generated__/postViewerFragment.graphql'
+import { PostMenu } from './post-menu'
 
 const PostViewerFragment = graphql`
   fragment postViewerFragment on User {
@@ -31,19 +31,7 @@ const PostFragment = graphql`
     ...commentListFragment
     ...commentCountFragment
     ...likeCountFragment
-
-    likes {
-      edges {
-        node {
-          id
-          likeable {
-            ... on Post {
-              content
-            }
-          }
-        }
-      }
-    }
+    ...postMenuFragment
   }
 `
 
@@ -71,9 +59,7 @@ export function Post({ viewer, post }: PostProps) {
           </div>
         </div>
         <div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
-            <EllipsisIcon className="size-6" />
-          </button>
+          <PostMenu post={data} />
         </div>
       </div>
       <p className="text-gray-900">{data.content}</p>
