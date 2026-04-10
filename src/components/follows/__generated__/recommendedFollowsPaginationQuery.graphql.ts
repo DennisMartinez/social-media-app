@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<97b7f0e8acda86a688a073884e41c94a>>
+ * @generated SignedSource<<8920b367dea1c38feb552aa89b5aff15>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -166,6 +166,13 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
+                            "name": "email",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
                             "name": "viewerIsFollowing",
                             "storageKey": null
                           },
@@ -244,12 +251,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "95b4ad3df9292b892f57052ae4a60c73",
+    "cacheID": "1b90095300ad57f2805f1212c18995ab",
     "id": null,
     "metadata": {},
     "name": "recommendedFollowsPaginationQuery",
     "operationKind": "query",
-    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

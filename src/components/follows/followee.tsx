@@ -9,6 +9,7 @@ const FolloweeFragment = graphql`
   fragment followeeFragment on User {
     id
     name
+    email
     ...followButtonFragment
     ...userAvatarFragment
   }
@@ -28,7 +29,7 @@ export function Followee({ followee }: FolloweeProps) {
         <Link to={`/users/${data.id}`} className="truncate">
           <div className="truncate font-medium text-gray-800">{data.name}</div>
           <span className="block truncate text-sm text-gray-500">
-            @jvoorhees
+            {data.email}
           </span>
         </Link>
       </div>

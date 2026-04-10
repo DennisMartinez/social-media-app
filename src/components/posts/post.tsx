@@ -31,6 +31,19 @@ const PostFragment = graphql`
     ...commentListFragment
     ...commentCountFragment
     ...likeCountFragment
+
+    likes {
+      edges {
+        node {
+          id
+          likeable {
+            ... on Post {
+              content
+            }
+          }
+        }
+      }
+    }
   }
 `
 
