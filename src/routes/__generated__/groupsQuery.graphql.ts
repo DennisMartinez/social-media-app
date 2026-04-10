@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<11d4a3e4f6ed690a2754a025f72bc3c4>>
+ * @generated SignedSource<<23f0b65f2fc3b19849ff91ed98098677>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,13 +10,13 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type discoverQuery$variables = Record<PropertyKey, never>;
-export type discoverQuery$data = {
+export type groupsQuery$variables = Record<PropertyKey, never>;
+export type groupsQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"navigationFragment">;
 };
-export type discoverQuery = {
-  response: discoverQuery$data;
-  variables: discoverQuery$variables;
+export type groupsQuery = {
+  response: groupsQuery$data;
+  variables: groupsQuery$variables;
 };
 
 const node: ConcreteRequest = {
@@ -24,7 +24,7 @@ const node: ConcreteRequest = {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "discoverQuery",
+    "name": "groupsQuery",
     "selections": [
       {
         "args": null,
@@ -39,7 +39,7 @@ const node: ConcreteRequest = {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "discoverQuery",
+    "name": "groupsQuery",
     "selections": [
       {
         "alias": null,
@@ -83,15 +83,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "6496468a3b9b561560139698a47be6fa",
+    "cacheID": "527c6b538765b0d11c319c451aff3e0e",
     "id": null,
     "metadata": {},
-    "name": "discoverQuery",
+    "name": "groupsQuery",
     "operationKind": "query",
-    "text": "query discoverQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query groupsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 
-(node as any).hash = "e4a6a52c48c06df6c978a22600c888f0";
+(node as any).hash = "3d8296200a2b817e2d0aaa47c3f2ba1e";
 
 export default node;

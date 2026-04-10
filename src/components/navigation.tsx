@@ -35,13 +35,13 @@ export function Navigation({ query }: NavigationProps) {
             <Newspaper />
             Feed
           </NavItem>
-          <NavItem to={`/users/${data.viewer.id}`}>
+          <NavItem to="/profile">
             <UserIcon />
             Profile
           </NavItem>
-          <NavItem to="/discover">
+          <NavItem to="/groups">
             <UsersIcon />
-            Discover
+            Groups
           </NavItem>
         </ul>
       </div>

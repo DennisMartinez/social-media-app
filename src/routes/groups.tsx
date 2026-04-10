@@ -1,16 +1,16 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Navigation } from '../components/navigation'
-import { type discoverQuery } from './__generated__/discoverQuery.graphql'
+import { type groupsQuery } from './__generated__/groupsQuery.graphql'
 
-const DiscoverQuery = graphql`
-  query discoverQuery {
+const GroupsQuery = graphql`
+  query groupsQuery {
     ...navigationFragment
   }
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<discoverQuery>(DiscoverQuery, {})
+  const data = useLazyLoadQuery<groupsQuery>(GroupsQuery, {})
 
   return (
     <div className="p-8">
@@ -21,8 +21,8 @@ export function Component() {
           </div>
         </div>
         <div className="grow">
-          <h1 className="text-2xl font-bold">Discover</h1>
-          <p className="text-gray-500">Discover new people and posts here.</p>
+          <h1 className="text-2xl font-bold">Groups</h1>
+          <p className="text-gray-500">Discover new groups here.</p>
         </div>
       </div>
     </div>
