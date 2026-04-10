@@ -12,12 +12,15 @@ import { graphql } from 'relay-runtime'
 import { cn } from '../utils'
 import { type navigationFragment$key } from './__generated__/navigationFragment.graphql'
 import { SignOutButton } from './sign-out-button'
+import { UserAvatar } from './user-avatar'
 
 const NavigationFragment = graphql`
   fragment navigationFragment on Query {
     viewer {
       id
       name
+      email
+      ...userAvatarFragment
     }
   }
 `
@@ -30,13 +33,10 @@ export function Navigation({ query }: NavigationProps) {
   const data = useFragment(NavigationFragment, query)
 
   return (
-    <nav className="sticky top-0 flex h-dvh w-full flex-col gap-8 bg-white">
-      <div className="flex h-20 items-center px-6">
-        <div className="text-3xl">Social Media</div>
-      </div>
-      <div className="flex flex-col gap-1">
-        <strong className="px-6 text-sm">Main</strong>
-        <ul>
+    <nav className="grid gap-8 rounded-xl bg-white p-4">
+      <div className="grid gap-4">
+        <h2 className="text-sm font-medium">Main</h2>
+        <ul className="grid gap-4">
           <NavItem to="/">
             <Newspaper />
             Feed
@@ -55,9 +55,9 @@ export function Navigation({ query }: NavigationProps) {
           </NavItem>
         </ul>
       </div>
-      <div>
-        <strong className="px-6 text-sm">Socials</strong>
-        <ul>
+      <div className="grid gap-4">
+        <h2 className="text-sm font-medium">Socials</h2>
+        <ul className="grid gap-4">
           <NavItem to="https://github.com/DennisMartinez">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,11 +89,17 @@ export function Navigation({ query }: NavigationProps) {
           </NavItem>
         </ul>
       </div>
-      <div className="mt-auto p-6">
+      <div className="mt-auto flex w-full gap-4">
+        <UserAvatar user={data.viewer} />
         <div>
-          Signed in as <strong>{data.viewer.name}</strong>
+          <p className="text-sm font-medium text-gray-900">
+            {data.viewer.name}
+          </p>
+          <p className="text-sm text-gray-500">{data.viewer.email}</p>
         </div>
-        <SignOutButton />
+        <div className="ml-auto">
+          <SignOutButton />
+        </div>
       </div>
     </nav>
   )
@@ -110,7 +116,7 @@ function NavItem({ to, children }: PropsWithChildren<NavItemProps>) {
         to={to}
         className={({ isActive }) =>
           cn(
-            'flex items-center gap-4 px-6 py-2 text-sm font-semibold tracking-wide [&_svg]:size-5',
+            'flex items-center gap-4 text-sm font-semibold tracking-wide [&_svg]:size-5',
             {
               'text-gray-900 hover:text-gray-900 [&_svg]:text-gray-600':
                 !isActive,

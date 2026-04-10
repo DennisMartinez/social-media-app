@@ -1,3 +1,5 @@
+import { LoaderCircleIcon } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { useFragment, usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type feedListFragment$key } from './__generated__/feedListFragment.graphql'
@@ -40,8 +42,24 @@ export function FeedList({ viewer, user }: FeedListProps) {
     user
   )
 
+  const inifiniteScrollRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const ref = inifiniteScrollRef.current
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasNext && !isLoadingNext) {
+        loadNext(5)
+      }
+    })
+
+    if (ref) observer.observe(ref)
+
+    return () => {
+      if (ref) observer.unobserve(ref)
+    }
+  }, [hasNext, isLoadingNext, loadNext])
+
   return (
-    <div>
+    <div className="grid gap-4">
       <ol className="grid w-full gap-4">
         {data.feed?.edges?.map((edge) => {
           if (!edge?.node) return null
@@ -50,8 +68,13 @@ export function FeedList({ viewer, user }: FeedListProps) {
           )
         })}
       </ol>
-      {isLoadingNext && <p>Loading...</p>}
-      {hasNext && <button onClick={() => loadNext(5)}>Load more</button>}
+      {isLoadingNext && (
+        <div role="alert" className="flex justify-center text-blue-500">
+          <LoaderCircleIcon className="size-6 animate-spin" />
+          <span className="sr-only">Loading more posts...</span>
+        </div>
+      )}
+      {hasNext && <div ref={inifiniteScrollRef} />}
     </div>
   )
 }

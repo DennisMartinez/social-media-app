@@ -61,7 +61,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form
-      className="grid gap-2"
+      className="grid gap-2 rounded-xl bg-white p-4"
       onSubmit={handleSubmit((formData) => {
         const connections = ['User_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
@@ -109,8 +109,8 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
       <div className="flex gap-4">
         <UserAvatar user={data} />
         <textarea
-          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
-          placeholder="Write a comment..."
+          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-white px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
+          placeholder="What's on your mind?"
           {...register('content')}
           maxLength={MAX_LIMIT}
         />

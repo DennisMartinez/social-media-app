@@ -6,10 +6,10 @@ import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation'
 import { CreatePostForm } from '../components/posts/create-post-form'
 import { FeedList } from '../components/posts/feed-list'
-import { type dashboardQuery } from './__generated__/dashboardQuery.graphql'
+import { type feedQuery } from './__generated__/feedQuery.graphql'
 
-const DashboardQuery = graphql`
-  query dashboardQuery {
+const FeedQuery = graphql`
+  query feedQuery {
     viewer {
       ...feedListFragment
       ...feedListViewerFragment
@@ -23,19 +23,21 @@ const DashboardQuery = graphql`
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<dashboardQuery>(DashboardQuery, {})
+  const data = useLazyLoadQuery<feedQuery>(FeedQuery, {})
 
   return (
-    <div className="flex w-full">
-      <div className="w-72">
-        <Navigation query={data} />
-      </div>
-      <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
+    <div className="p-8">
+      <div className="mx-auto flex max-w-7xl grow gap-8">
+        <div className="w-72 shrink-0">
+          <div className="sticky top-8">
+            <Navigation query={data} />
+          </div>
+        </div>
         <div className="grid w-full grow gap-4">
           <CreatePostForm user={data.viewer} />
           <FeedList viewer={data.viewer} user={data.viewer} />
         </div>
-        <div className="flex w-72 flex-col gap-8">
+        <div className="flex w-72 shrink-0 flex-col gap-4">
           <RecommendedFollows user={data.viewer} />
           <FollowersCard user={data.viewer} />
           <FollowingsCard user={data.viewer} />

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4e3d306a8c1bde826a2e6ee1226d4b8c>>
+ * @generated SignedSource<<72e36b8c1d82f2233a5ea2fbd29a5545>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -62,6 +62,20 @@ const node: ConcreteRequest = {
             "kind": "ScalarField",
             "name": "name",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "email",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "avatarUrl",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -69,12 +83,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "9f899a3f2eae859005c685bffcf802d7",
+    "cacheID": "87e9e792e69e2a8f5d6e85973d4e7269",
     "id": null,
     "metadata": {},
     "name": "commentsQuery",
     "operationKind": "query",
-    "text": "query commentsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n  }\n}\n"
+    "text": "query commentsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 

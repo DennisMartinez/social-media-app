@@ -11,7 +11,7 @@ export const router = createBrowserRouter(
     <Route
       lazy={() => import('./routes/_root')}
       hydrateFallbackElement={<div />}>
-      <Route index lazy={() => import('./routes/dashboard')} />
+      <Route index lazy={() => import('./routes/feed')} />
       <Route path="users/:id" lazy={() => import('./routes/user')} />
       <Route path="likes" lazy={() => import('./routes/likes')} />
       <Route path="comments" lazy={() => import('./routes/comments')} />

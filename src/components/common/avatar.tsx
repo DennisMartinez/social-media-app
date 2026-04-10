@@ -3,7 +3,7 @@ import { useState, type ComponentProps } from 'react'
 import { cn } from '../../utils'
 
 const avatarVariants = cva(
-  'flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-50 text-gray-900',
+  'flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-50 text-blue-900',
   {
     variants: {
       size: {

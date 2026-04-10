@@ -1,3 +1,4 @@
+import { LoaderCircleIcon } from 'lucide-react'
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type followersCardFragment$key } from './__generated__/followersCardFragment.graphql'
@@ -44,7 +45,12 @@ export function FollowersCard({ user }: FollowersCardProps) {
           return <Followee key={edge.node.id} followee={edge.node} />
         })}
       </ul>
-      {isLoadingNext && <p>Loading...</p>}
+      {isLoadingNext && (
+        <div role="alert" className="text-blue-500">
+          <LoaderCircleIcon className="size-5 animate-spin" />
+          <span className="sr-only">Loading more followers...</span>
+        </div>
+      )}
       {hasNext && (
         <div>
           <button className="text-sm text-blue-500" onClick={() => loadNext(3)}>

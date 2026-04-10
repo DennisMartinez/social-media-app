@@ -1,3 +1,4 @@
+import { LoaderCircleIcon } from 'lucide-react'
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type recommendedFollowsFragment$key } from './__generated__/recommendedFollowsFragment.graphql'
@@ -35,14 +36,23 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
   return (
     <div className="flex flex-col gap-4 rounded-xl bg-white p-4">
       <h2 className="text-sm font-medium">Who to Follow</h2>
-      <ul className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
+        {!data.recommendedFollows?.edges?.length && (
+          <p className="text-sm text-gray-500">
+            No recommendations at this time.
+          </p>
+        )}
         {data.recommendedFollows?.edges?.map((edge) => {
           if (!edge?.node) return null
-
           return <Followee key={edge.node.id} followee={edge.node} />
         })}
-      </ul>
-      {isLoadingNext && <p>Loading...</p>}
+      </div>
+      {isLoadingNext && (
+        <div role="alert" className="text-blue-500">
+          <LoaderCircleIcon className="size-5 animate-spin" />
+          <span className="sr-only">Loading more recommended followees...</span>
+        </div>
+      )}
       {hasNext && (
         <div>
           <button className="text-sm text-blue-500" onClick={() => loadNext(3)}>
