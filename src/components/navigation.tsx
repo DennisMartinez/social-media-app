@@ -3,9 +3,7 @@ import {
   MessageCircleIcon,
   Newspaper,
   ThumbsUpIcon,
-  UserIcon,
-  UserPlusIcon,
-  UserRoundPlusIcon
+  UserIcon
 } from 'lucide-react'
 import { type PropsWithChildren } from 'react'
 import { useFragment } from 'react-relay'
@@ -46,14 +44,6 @@ export function Navigation({ query }: NavigationProps) {
           <NavItem to="/profile">
             <UserIcon />
             Profile
-          </NavItem>
-          <NavItem to="/followers">
-            <UserRoundPlusIcon />
-            Followers
-          </NavItem>
-          <NavItem to="/following">
-            <UserPlusIcon />
-            Following
           </NavItem>
           <NavItem to="/likes">
             <ThumbsUpIcon />

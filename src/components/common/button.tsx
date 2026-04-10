@@ -2,13 +2,16 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { type ComponentProps } from 'react'
 import { cn } from '../../utils'
 
-const buttonVariants = cva('', {
+const buttonVariants = cva('border', {
   variants: {
     variant: {
-      primary: 'bg-blue-500 text-white hover:bg-blue-700',
-      secondary: 'bg-gray-500 text-white hover:bg-gray-700',
-      ghost: 'bg-transparent text-gray-500 hover:bg-gray-100',
-      outline: 'border border-gray-500 text-gray-500 hover:bg-gray-100'
+      primary:
+        'border-blue-500 bg-blue-500 text-white hover:border-blue-700 hover:bg-blue-700',
+      secondary:
+        'border-gray-500 bg-gray-500 text-white hover:border-gray-700 hover:bg-gray-700',
+      ghost:
+        'border-transparent bg-transparent text-gray-500 hover:bg-gray-100',
+      outline: 'border-gray-500 text-gray-500 hover:bg-gray-100'
     },
     size: {
       sm: 'rounded px-2 py-1 text-xs font-semibold',

@@ -1,17 +1,17 @@
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { type recommendedFollowsFragment$key } from './__generated__/recommendedFollowsFragment.graphql'
+import { type followersCardFragment$key } from './__generated__/followersCardFragment.graphql'
 import { Followee } from './followee'
 
-const RecommendedFollowsFragment = graphql`
-  fragment recommendedFollowsFragment on User
-  @refetchable(queryName: "recommendedFollowsPaginationQuery")
+const FollowersCardFragment = graphql`
+  fragment followersCardFragment on User
+  @refetchable(queryName: "followersCardPaginationQuery")
   @argumentDefinitions(
     cursor: { type: "String" }
     first: { type: "Int", defaultValue: 3 }
   ) {
-    recommendedFollows(after: $cursor, first: $first)
-      @connection(key: "User_recommendedFollows") {
+    followers(after: $cursor, first: $first)
+      @connection(key: "User_followers") {
       edges {
         node {
           id
@@ -22,23 +22,25 @@ const RecommendedFollowsFragment = graphql`
   }
 `
 
-interface RecommendedFollowsProps {
-  user: recommendedFollowsFragment$key
+interface FollowersCardProps {
+  user: followersCardFragment$key
 }
 
-export function RecommendedFollows({ user }: RecommendedFollowsProps) {
+export function FollowersCard({ user }: FollowersCardProps) {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
-    RecommendedFollowsFragment,
+    FollowersCardFragment,
     user
   )
 
   return (
     <div className="flex flex-col gap-4 rounded-xl bg-white p-4">
-      <h2 className="text-sm font-medium">Who to Follow</h2>
+      <h2 className="text-sm font-medium">Followers</h2>
       <ul className="flex flex-col gap-4">
-        {data.recommendedFollows?.edges?.map((edge) => {
+        {!data.followers?.edges?.length && (
+          <li className="text-sm text-gray-500">You have no followers yet.</li>
+        )}
+        {data.followers?.edges?.map((edge) => {
           if (!edge?.node) return null
-
           return <Followee key={edge.node.id} followee={edge.node} />
         })}
       </ul>

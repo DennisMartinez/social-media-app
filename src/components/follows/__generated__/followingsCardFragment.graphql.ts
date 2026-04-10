@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<58dc59112ab1d8741576513c29cf4b68>>
+ * @generated SignedSource<<1f5b98be8db10d4fc00f2f36caa7e01e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,9 +10,8 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type recommendedFollowsFragment$data = {
-  readonly id: string;
-  readonly recommendedFollows: {
+export type followingsCardFragment$data = {
+  readonly following: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -20,18 +19,19 @@ export type recommendedFollowsFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
-  readonly " $fragmentType": "recommendedFollowsFragment";
+  readonly id: string;
+  readonly " $fragmentType": "followingsCardFragment";
 };
-export type recommendedFollowsFragment$key = {
-  readonly " $data"?: recommendedFollowsFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"recommendedFollowsFragment">;
+export type followingsCardFragment$key = {
+  readonly " $data"?: followingsCardFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"followingsCardFragment">;
 };
 
-import recommendedFollowsPaginationQuery_graphql from './recommendedFollowsPaginationQuery.graphql';
+import followingsCardPaginationQuery_graphql from './followingsCardPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
-  "recommendedFollows"
+  "following"
 ],
 v1 = {
   "alias": null,
@@ -75,21 +75,21 @@ return {
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": recommendedFollowsPaginationQuery_graphql,
+      "operation": followingsCardPaginationQuery_graphql,
       "identifierInfo": {
         "identifierField": "id",
         "identifierQueryVariableName": "id"
       }
     }
   },
-  "name": "recommendedFollowsFragment",
+  "name": "followingsCardFragment",
   "selections": [
     {
-      "alias": "recommendedFollows",
+      "alias": "following",
       "args": null,
       "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "__User_recommendedFollows_connection",
+      "name": "__User_following_connection",
       "plural": false,
       "selections": [
         {
@@ -169,6 +169,6 @@ return {
 };
 })();
 
-(node as any).hash = "24de62878ea99602be424220d596e1c8";
+(node as any).hash = "86a1d63266ac060d341b498a5e49ce97";
 
 export default node;

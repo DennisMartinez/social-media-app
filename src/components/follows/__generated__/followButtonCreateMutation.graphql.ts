@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<684d2374fb62d6222cfbfcaae63f4b21>>
+ * @generated SignedSource<<2f1c98e39d58af8b5a625b912dce6769>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,10 +13,10 @@ export type FollowUserInput = {
   clientMutationId?: string | null | undefined;
   userId: string;
 };
-export type followUserMutation$variables = {
+export type followButtonCreateMutation$variables = {
   input: FollowUserInput;
 };
-export type followUserMutation$data = {
+export type followButtonCreateMutation$data = {
   readonly followUser: {
     readonly errors: ReadonlyArray<string>;
     readonly followedUser: {
@@ -25,9 +25,9 @@ export type followUserMutation$data = {
     } | null | undefined;
   } | null | undefined;
 };
-export type followUserMutation = {
-  response: followUserMutation$data;
-  variables: followUserMutation$variables;
+export type followButtonCreateMutation = {
+  response: followButtonCreateMutation$data;
+  variables: followButtonCreateMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -94,7 +94,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "followUserMutation",
+    "name": "followButtonCreateMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -103,20 +103,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "followUserMutation",
+    "name": "followButtonCreateMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "4078833965198235eaa008ad58955022",
+    "cacheID": "361aa8854ac1c8e226accf116b2de702",
     "id": null,
     "metadata": {},
-    "name": "followUserMutation",
+    "name": "followButtonCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation followUserMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    errors\n    followedUser {\n      id\n      isFollowing\n    }\n  }\n}\n"
+    "text": "mutation followButtonCreateMutation(\n  $input: FollowUserInput!\n) {\n  followUser(input: $input) {\n    errors\n    followedUser {\n      id\n      isFollowing\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9e01ea93b8ce9373ee938a3fe0a0847e";
+(node as any).hash = "d58a508a80734b2ca23a347533f4e089";
 
 export default node;

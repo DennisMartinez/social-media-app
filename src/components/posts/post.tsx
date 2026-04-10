@@ -16,6 +16,10 @@ const PostFragment = graphql`
     user {
       name
       ...userAvatarFragment
+    }
+    currentUser {
+      name
+      ...userAvatarFragment
       ...createCommentFormUserFragment
     }
     ...destroyPostFragment
@@ -61,7 +65,7 @@ export function Post({ post }: PostProps) {
         </div>
       </div>
       <div className="grid gap-4">
-        <CreateCommentForm user={data.user} commentable={data} />
+        <CreateCommentForm user={data.currentUser} commentable={data} />
         <CommentList commentable={data} />
       </div>
     </li>

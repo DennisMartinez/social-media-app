@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<941e68e5475aa4cc82e3257e5ead77ce>>
+ * @generated SignedSource<<05ad737f6c5c3201d9bc6c6822fd184d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,23 +10,23 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type followerCardFragment$data = {
-  readonly avatarUrl: string | null | undefined;
+export type followeeFragment$data = {
   readonly id: string;
+  readonly isFollowing: boolean;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
-  readonly " $fragmentType": "followerCardFragment";
+  readonly " $fragmentSpreads": FragmentRefs<"followButtonFragment" | "userAvatarFragment">;
+  readonly " $fragmentType": "followeeFragment";
 };
-export type followerCardFragment$key = {
-  readonly " $data"?: followerCardFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"followerCardFragment">;
+export type followeeFragment$key = {
+  readonly " $data"?: followeeFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"followeeFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "followerCardFragment",
+  "name": "followeeFragment",
   "selections": [
     {
       "alias": null,
@@ -46,8 +46,13 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "avatarUrl",
+      "name": "isFollowing",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "followButtonFragment"
     },
     {
       "args": null,
@@ -59,6 +64,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "39077f78ccf57617dd97fe08d7c61cd3";
+(node as any).hash = "ee9358331168f45c104042ee121a2fbe";
 
 export default node;

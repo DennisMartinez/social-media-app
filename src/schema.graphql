@@ -408,6 +408,9 @@ type Post implements Node {
   """The time when the post was created."""
   createdAt: ISO8601DateTime!
 
+  """The current user viewing the post."""
+  currentUser: User!
+
   """The like that the current user has on this post, if it exists."""
   currentUserLike: Like
 
@@ -625,6 +628,9 @@ type User implements Node {
   """The time when the user was created."""
   createdAt: ISO8601DateTime!
 
+  """The current user viewing the profile."""
+  currentUser: User!
+
   """The email address of the user."""
   email: String!
 
@@ -737,7 +743,7 @@ type User implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): UserConnection!
+  ): UserConnection
 
   """The time when the user was last updated."""
   updatedAt: ISO8601DateTime!

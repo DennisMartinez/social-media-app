@@ -1,6 +1,8 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { useParams } from 'react-router'
 import { graphql } from 'relay-runtime'
+import { FollowersCard } from '../components/follows/followers-card'
+import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation'
 import { PostList } from '../components/posts/post-list'
@@ -12,6 +14,8 @@ const UserQuery = graphql`
       ... on User {
         ...postListFragment
         ...recommendedFollowsFragment
+        ...followersCardFragment
+        ...followingsCardFragment
       }
     }
     ...navigationFragment
@@ -27,17 +31,19 @@ export function Component() {
   }
 
   return (
-    <div className="flex h-dvh w-full justify-center gap-8">
-      <div className="w-3/12">
+    <div className="flex w-full">
+      <div className="w-72">
         <Navigation query={data} />
       </div>
-      <main className="w-6/12">
-        <div className="grid w-full gap-4">
+      <div className="mx-auto flex max-w-5xl grow gap-8 p-8">
+        <div className="grow">
           <PostList user={data.node} />
         </div>
-      </main>
-      <div className="w-3/12">
-        <RecommendedFollows user={data.node} />
+        <div className="flex w-72 flex-col gap-8">
+          <RecommendedFollows user={data.node} />
+          <FollowersCard user={data.node} />
+          <FollowingsCard user={data.node} />
+        </div>
       </div>
     </div>
   )
