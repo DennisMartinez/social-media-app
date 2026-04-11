@@ -42,15 +42,14 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
       <CardBody>
         <div className="flex flex-col gap-4">
           {!data.recommendedFollows?.edges?.length && (
-            <p className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500">
               No recommendations at this time.
-            </p>
+            </div>
           )}
           {data.recommendedFollows?.edges?.map((edge) => {
             if (!edge?.node) return null
             return <Followee key={edge.node.id} followee={edge.node} />
           })}
-
           {hasNext && (
             <Button
               size="xs"

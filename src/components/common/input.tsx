@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type ComponentProps } from 'react'
+import { type ComponentProps, type ElementType } from 'react'
 import { cn } from '../../utils'
 
 /**
@@ -32,14 +32,22 @@ const inputVariants = cva(
   }
 )
 
-interface InputProps
-  extends
-    Omit<ComponentProps<'input'>, 'size'>,
-    VariantProps<typeof inputVariants> {}
+type PolymorphicInputProps<C extends ElementType> = ComponentProps<C> &
+  VariantProps<typeof inputVariants> & {
+    as?: C
+  }
 
-export function Input({ variant, size, className, ...props }: InputProps) {
+export function Input<C extends ElementType = 'input'>({
+  as,
+  variant,
+  size,
+  className,
+  ...props
+}: PolymorphicInputProps<C>) {
+  const Component = as || 'input'
+
   return (
-    <input
+    <Component
       {...props}
       className={cn(inputVariants({ variant, size, className }))}
     />

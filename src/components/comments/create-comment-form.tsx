@@ -144,7 +144,7 @@ export function CreateCommentForm({
           {...register('content')}
           maxLength={MAX_LIMIT}
         />
-        <Button type="submit" variant="ghost" disabled={isCreatingComment}>
+        <Button variant="ghost" disabled={isCreatingComment}>
           Send
         </Button>
       </div>

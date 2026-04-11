@@ -1,3 +1,4 @@
+import { type ComponentProps } from 'react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type userAvatarFragment$key } from './__generated__/userAvatarFragment.graphql'
@@ -10,12 +11,12 @@ const UserAvatarFragment = graphql`
   }
 `
 
-interface UserAvatar {
+interface UserAvatar extends ComponentProps<typeof Avatar> {
   user: userAvatarFragment$key
 }
 
-export function UserAvatar({ user }: UserAvatar) {
+export function UserAvatar({ user, ...props }: UserAvatar) {
   const data = useFragment(UserAvatarFragment, user)
 
-  return <Avatar name={data.name} url={data.avatarUrl} />
+  return <Avatar {...props} name={data.name} url={data.avatarUrl} />
 }

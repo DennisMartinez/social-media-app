@@ -1,5 +1,7 @@
 import { useLazyLoadQuery } from 'react-relay'
+import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
+import { Button } from '../components/common/button'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
@@ -27,6 +29,9 @@ export function Component() {
 
   return (
     <div className="p-8">
+      <Button as={Link} to="/some-path">
+        asdasd
+      </Button>
       <div className="mx-auto flex max-w-7xl grow flex-col gap-8 md:flex-row">
         <div className="flex w-full shrink-0 flex-col gap-4 md:w-72">
           <div className="top-8 xl:sticky">

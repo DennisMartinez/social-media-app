@@ -118,19 +118,17 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
         <UserAvatar user={data} />
         <Input
           {...register('content')}
+          as={TextareaAutosize}
           placeholder="What's on your mind?"
           maxLength={MAX_LIMIT}
           className="pr-29"
-          render={<TextareaAutosize />}
         />
       </div>
       <div className="absolute top-6 right-6 flex items-center justify-end gap-2">
         <div className="text-sm text-gray-400">
           {content.length}/{MAX_LIMIT}
         </div>
-        <Button type="submit" size="sm">
-          Post
-        </Button>
+        <Button size="sm">Post</Button>
       </div>
     </form>
   )

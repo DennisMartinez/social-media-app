@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Loader2Icon } from 'lucide-react'
-import { type ComponentProps } from 'react'
+import { type ComponentProps, type ElementType } from 'react'
 import { cn } from '../../utils'
 
 /**
@@ -9,6 +9,7 @@ import { cn } from '../../utils'
  * <Button>Click me</Button>
  * <Button variant="secondary" size="lg">Click me</Button>
  * <Button variant="ghost" size="sm" rounded="full">Click me</Button>
+ * <Button as={Link} size="xs" rounded="md">Click me</Button>
  */
 
 const buttonVariants = cva(
@@ -17,12 +18,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'border-blue-500 bg-blue-500 text-white not-disabled:hover:border-blue-700 not-disabled:hover:bg-blue-700',
+          'border-blue-500 bg-blue-500 text-white not-disabled:hover:border-blue-600 not-disabled:hover:bg-blue-600',
         secondary:
-          'border-gray-500 bg-gray-500 text-white not-disabled:hover:border-gray-700 not-disabled:hover:bg-gray-700',
+          'border-gray-500 bg-gray-500 text-white not-disabled:hover:border-gray-600 not-disabled:hover:bg-gray-600',
         ghost:
           'border-transparent bg-transparent text-gray-500 not-disabled:hover:bg-gray-100',
-        outline: 'border-gray-500 text-gray-500 not-disabled:hover:bg-gray-100'
+        outline: 'border-gray-300 text-gray-500 not-disabled:hover:bg-gray-100'
       },
       size: {
         xs: 'px-2 py-1 text-xs font-semibold [&_svg]:size-4',
@@ -47,12 +48,14 @@ const buttonVariants = cva(
   }
 )
 
-interface ButtonProps
-  extends ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
-  loading?: boolean
-}
+type PolymorphicButtonProps<C extends ElementType> = ComponentProps<C> &
+  VariantProps<typeof buttonVariants> & {
+    as?: C
+    loading?: boolean
+  }
 
-export function Button({
+export function Button<C extends ElementType = 'button'>({
+  as,
   variant,
   size,
   radius,
@@ -60,12 +63,13 @@ export function Button({
   className,
   children,
   ...props
-}: ButtonProps) {
+}: PolymorphicButtonProps<C>) {
   const _radius = radius ?? size ?? 'md'
   const _disabled = props.disabled || loading
+  const Component = as || 'button'
 
   return (
-    <button
+    <Component
       {...props}
       disabled={_disabled}
       className={cn(
@@ -73,6 +77,6 @@ export function Button({
       )}>
       {loading && <Loader2Icon className="animate-spin" />}
       {children}
-    </button>
+    </Component>
   )
 }

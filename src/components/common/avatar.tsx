@@ -35,14 +35,15 @@ const avatarVariants = cva(
     },
     defaultVariants: {
       variant: 'default',
-      size: 'md'
+      size: 'md',
+      radius: 'md'
     }
   }
 )
 
 interface AvatarProps
   extends ComponentProps<'div'>, VariantProps<typeof avatarVariants> {
-  name: string
+  name?: string | null
   url?: string | null
 }
 
@@ -74,7 +75,7 @@ export function Avatar({
           onDragStart={(e) => e.preventDefault()}
         />
       ) : (
-        getInitials(name)
+        getInitials(name ?? '??')
       )}
     </div>
   )
