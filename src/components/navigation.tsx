@@ -110,7 +110,7 @@ function NavItem({ to, children }: PropsWithChildren<NavItemProps>) {
             {
               'text-gray-900 hover:text-gray-900 [&_svg]:text-gray-600':
                 !isActive,
-              'text-blue-500 [&_svg]:text-blue-500': isActive
+              'text-blue-500': isActive
             }
           )
         }>

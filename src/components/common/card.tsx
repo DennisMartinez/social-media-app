@@ -16,10 +16,22 @@ import { cn } from '../../utils'
  *     Card footer content goes here.
  *   </CardFooter>
  * </Card>
+ *
+ * <Card variant="default" size="lg">
+ *   <CardHeader>
+ *     <CardTitle>Large Card</CardTitle>
+ *   </CardHeader>
+ *   <CardBody>
+ *     This is a larger card with more padding and rounded corners.
+ *   </CardBody>
+ * </Card>
  */
 
-const cardVariants = cva('flex flex-col gap-4 overflow-hidden bg-white', {
+const cardVariants = cva('flex flex-col gap-4', {
   variants: {
+    variant: {
+      default: 'bg-white'
+    },
     size: {
       md: 'rounded-xl p-4',
       lg: 'rounded-2xl p-6',
@@ -27,6 +39,7 @@ const cardVariants = cva('flex flex-col gap-4 overflow-hidden bg-white', {
     }
   },
   defaultVariants: {
+    variant: 'default',
     size: 'md'
   }
 })
@@ -34,8 +47,13 @@ const cardVariants = cva('flex flex-col gap-4 overflow-hidden bg-white', {
 interface CardProps
   extends ComponentProps<'div'>, VariantProps<typeof cardVariants> {}
 
-export function Card({ size, className, ...props }: CardProps) {
-  return <div className={cn(cardVariants({ size, className }))} {...props} />
+export function Card({ variant, size, className, ...props }: CardProps) {
+  return (
+    <div
+      {...props}
+      className={cn(cardVariants({ variant, size, className }))}
+    />
+  )
 }
 
 // Here for simplicity, CardHeader, CardBody, and CardFooter are just divs, but you can customize them as needed.
@@ -44,7 +62,7 @@ export function CardHeader(props: ComponentProps<'div'>) {
 }
 
 export function CardTitle({ className, ...props }: ComponentProps<'h2'>) {
-  return <h2 className={cn('text-sm font-medium', className)} {...props} />
+  return <h2 {...props} className={cn('text-sm font-medium', className)} />
 }
 
 export function CardBody(props: ComponentProps<'div'>) {

@@ -82,7 +82,7 @@ export function SignInForm(props: ComponentProps<'form'>) {
       </FormField>
       <Button disabled={isSigningIn}>Sign In</Button>
       {error && (
-        <Alert>
+        <Alert variant="danger">
           <AlertBody>
             <AlertContent>{error}</AlertContent>
           </AlertBody>

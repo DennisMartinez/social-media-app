@@ -68,6 +68,8 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
           .filter((id) => env.getStore().getSource().get(id))
 
+        console.log(data.avatarUrl)
+
         reset()
         createPost({
           variables: {
@@ -118,8 +120,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           <Input
             {...register('content')}
             as={TextareaAutosize}
-            autoFocus
-            placeholder="Write a comment..."
+            placeholder="What's on your mind?"
             maxLength={MAX_LIMIT}
             className="rounded-xl pb-10 outline-transparent focus:outline-blue-500"
             data-gramm="false"
@@ -134,7 +135,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
               variant={content ? 'primary' : 'outline'}
               size="xs"
               disabled={!content}>
-              Post Comment
+              Create Post
             </Button>
           </div>
         </div>
