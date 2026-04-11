@@ -11,7 +11,7 @@ Backend Application: https://github.com/DennisMartinez/social-media-api
 ### Prerequisites
 
 1. **Node.js** — https://nodejs.org/en  
-   - Recommended: **NVM** — https://github.com/nvm-sh/nvm  
+   1. Recommended: **NVM** — https://github.com/nvm-sh/nvm  
 2. **Watchman** — https://facebook.github.io/watchman/docs/install.html  
 
 ### Running the Backend App
