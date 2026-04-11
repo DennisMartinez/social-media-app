@@ -38,9 +38,9 @@ export function FollowingsCard({ user }: FollowingsCardProps) {
       <h2 className="text-sm font-medium">Following</h2>
       <div className="flex flex-col gap-4">
         {!data.following?.edges?.length && (
-          <li className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500">
             You are not following anyone yet.
-          </li>
+          </div>
         )}
         {data.following?.edges?.map((edge) => {
           if (!edge?.node) return null
