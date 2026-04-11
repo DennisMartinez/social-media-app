@@ -86,6 +86,9 @@ export function useUnlike(likeable: useLikesLikeableFragment$key) {
           errors
           like {
             id @deleteRecord
+            likeable {
+              ...useLikesLikeableFragment
+            }
           }
         }
       }
@@ -103,14 +106,6 @@ export function useUnlike(likeable: useLikesLikeableFragment$key) {
       destroyLike({
         ...config,
         variables: { input },
-        optimisticResponse: {
-          destroyLike: {
-            errors: [],
-            like: {
-              id: data.viewerLike?.id
-            }
-          }
-        },
         optimisticUpdater: (store) => {
           const likeableRecord = store.get(data.id)
           if (likeableRecord) {
@@ -119,6 +114,11 @@ export function useUnlike(likeable: useLikesLikeableFragment$key) {
               | undefined
             likeableRecord.setValue((currentLikesCount || 1) - 1, 'likesCount')
             likeableRecord.setValue(false, 'viewerHasLiked')
+          }
+
+          const likeRecord = store.get(data.viewerLike?.id || '')
+          if (likeRecord) {
+            store.delete(likeRecord.getDataID())
           }
         }
       })
