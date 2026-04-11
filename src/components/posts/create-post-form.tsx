@@ -48,7 +48,7 @@ interface CreatePostFormProps {
 export function CreatePostForm({ user }: CreatePostFormProps) {
   const data = useFragment(CreatePostFormFragment, user)
   const env = useRelayEnvironment()
-  const [createPost, isCreatingPost] = useMutation<createPostFormMutation>(
+  const [createPost] = useMutation<createPostFormMutation>(
     CreatePostFormMutation
   )
   const { register, handleSubmit, control, reset, setValue } = useForm({
@@ -123,9 +123,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
         <div className="text-sm text-gray-400">
           {content.length}/{MAX_LIMIT}
         </div>
-        <Button type="submit" disabled={isCreatingPost}>
-          Post
-        </Button>
+        <Button type="submit">Post</Button>
       </div>
     </form>
   )

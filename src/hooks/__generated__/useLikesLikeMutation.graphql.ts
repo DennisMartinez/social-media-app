@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3dd45991bbca7f2f26d71cd83607da6a>>
+ * @generated SignedSource<<d84f8055bda390e691c194f9c607451c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -193,6 +193,18 @@ return {
                                 "kind": "ScalarField",
                                 "name": "viewerHasLiked",
                                 "storageKey": null
+                              },
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Like",
+                                "kind": "LinkedField",
+                                "name": "viewerLike",
+                                "plural": false,
+                                "selections": [
+                                  (v3/*: any*/)
+                                ],
+                                "storageKey": null
                               }
                             ],
                             "type": "Post",
@@ -217,12 +229,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ef60966e8c39f5aaee4bac9ce4cc0090",
+    "cacheID": "40a6ce1bc792420954c9008d56c1d067",
     "id": null,
     "metadata": {},
     "name": "useLikesLikeMutation",
     "operationKind": "mutation",
-    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesLikeableFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesLikeableFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n"
   }
 };
 })();

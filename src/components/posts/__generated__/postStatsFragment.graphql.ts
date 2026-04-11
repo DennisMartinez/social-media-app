@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<828547509d655cb47eb8960afd3d0b95>>
+ * @generated SignedSource<<b07a07b8c2687fee7dd3bd848114eca5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -30,11 +30,6 @@ const node: ReaderFragment = {
   "name": "postStatsFragment",
   "selections": [
     {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "useLikesLikeableFragment"
-    },
-    {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
@@ -61,12 +56,17 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "viewerHasLiked",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "useLikesLikeableFragment"
     }
   ],
   "type": "Post",
   "abstractKey": null
 };
 
-(node as any).hash = "e7c25be03d2d4ff60d0e5c8efe545d44";
+(node as any).hash = "32613f365dfb527af30973218804dacf";
 
 export default node;

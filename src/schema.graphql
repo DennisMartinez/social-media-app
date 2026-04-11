@@ -442,6 +442,11 @@ type Post implements Node {
 
   """Whether the current viewer is liking this post."""
   viewerHasLiked: Boolean!
+
+  """
+  The like object representing the current viewer's like on this post, if it exists.
+  """
+  viewerLike: Like
 }
 
 """The connection type for Post."""

@@ -38,7 +38,7 @@ export function useFollow() {
         variables: { input },
         optimisticResponse: {
           followUser: {
-            errors: null,
+            errors: [],
             followedUser: {
               id: input.userId,
               viewerIsFollowing: true
@@ -81,7 +81,7 @@ export function useUnfollow() {
         variables: { input },
         optimisticResponse: {
           unfollowUser: {
-            errors: null,
+            errors: [],
             unfollowedUser: {
               id: input.userId,
               viewerIsFollowing: false

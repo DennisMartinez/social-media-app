@@ -18,8 +18,8 @@ interface FollowButtonProps {
 
 export function FollowButton({ followee }: FollowButtonProps) {
   const data = useFragment(FollowButtonFragment, followee)
-  const [follow, isFollowPending] = useFollow()
-  const [unfollow, isUnfollowPending] = useUnfollow()
+  const [follow] = useFollow()
+  const [unfollow] = useUnfollow()
 
   if (!data.viewerCanFollow) {
     return null
@@ -29,7 +29,6 @@ export function FollowButton({ followee }: FollowButtonProps) {
     <Button
       size="sm"
       variant={data.viewerIsFollowing ? 'outline' : 'primary'}
-      disabled={isFollowPending || isUnfollowPending}
       onClick={() => {
         if (data.viewerIsFollowing) {
           unfollow({ userId: data.id })

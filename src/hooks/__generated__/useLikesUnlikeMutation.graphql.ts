@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b5eff3fc3b2bc0a641905afdc3c2a588>>
+ * @generated SignedSource<<f6e0f51182e4d6ab6df5f2bf594b64c8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
 export type DestroyLikeInput = {
   clientMutationId?: string | null | undefined;
   likeableId: string;
@@ -22,9 +21,6 @@ export type useLikesUnlikeMutation$data = {
     readonly errors: ReadonlyArray<string>;
     readonly like: {
       readonly id: string;
-      readonly likeable: {
-        readonly " $fragmentSpreads": FragmentRefs<"useLikesLikeableFragment">;
-      };
     } | null | undefined;
   } | null | undefined;
 };
@@ -86,23 +82,7 @@ return {
             "name": "like",
             "plural": false,
             "selections": [
-              (v3/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": null,
-                "kind": "LinkedField",
-                "name": "likeable",
-                "plural": false,
-                "selections": [
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "useLikesLikeableFragment"
-                  }
-                ],
-                "storageKey": null
-              }
+              (v3/*: any*/)
             ],
             "storageKey": null
           }
@@ -145,53 +125,6 @@ return {
                 "key": "",
                 "kind": "ScalarHandle",
                 "name": "id"
-              },
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": null,
-                "kind": "LinkedField",
-                "name": "likeable",
-                "plural": false,
-                "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "InlineFragment",
-                    "selections": [
-                      (v3/*: any*/),
-                      {
-                        "kind": "InlineFragment",
-                        "selections": [
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "likesCount",
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "viewerHasLiked",
-                            "storageKey": null
-                          }
-                        ],
-                        "type": "Post",
-                        "abstractKey": null
-                      }
-                    ],
-                    "type": "Node",
-                    "abstractKey": "__isNode"
-                  }
-                ],
-                "storageKey": null
               }
             ],
             "storageKey": null
@@ -202,16 +135,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a7a7681625d4857dd406c10c0e5313b1",
+    "cacheID": "f21f947e1a62e7182836726eb7087a7b",
     "id": null,
     "metadata": {},
     "name": "useLikesUnlikeMutation",
     "operationKind": "mutation",
-    "text": "mutation useLikesUnlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...useLikesLikeableFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesUnlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1b15fa9e3ef1d1475b67a0660dff3527";
+(node as any).hash = "5a9072314145b80f72b87077ee38ebb1";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4acafba8dfdb5cebe93ad3583987803e>>
+ * @generated SignedSource<<1082c66b793c58d27443393bbf865c8f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,9 @@ export type useLikesLikeableFragment$data = {
   readonly id: string;
   readonly likesCount?: number;
   readonly viewerHasLiked?: boolean;
+  readonly viewerLike?: {
+    readonly id: string;
+  } | null | undefined;
   readonly " $fragmentType": "useLikesLikeableFragment";
 };
 export type useLikesLikeableFragment$key = {
@@ -22,7 +25,15 @@ export type useLikesLikeableFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"useLikesLikeableFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -35,13 +46,7 @@ const node: ReaderFragment = {
       "name": "__typename",
       "storageKey": null
     },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "kind": "InlineFragment",
       "selections": [
@@ -58,6 +63,18 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "viewerHasLiked",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "Like",
+          "kind": "LinkedField",
+          "name": "viewerLike",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ],
+          "storageKey": null
         }
       ],
       "type": "Post",
@@ -67,7 +84,8 @@ const node: ReaderFragment = {
   "type": "Node",
   "abstractKey": "__isNode"
 };
+})();
 
-(node as any).hash = "59c61d96b0807edc6163452d15f53512";
+(node as any).hash = "d50d78e39cb51519ec06cf0873399c47";
 
 export default node;

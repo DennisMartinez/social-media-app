@@ -5,6 +5,7 @@ import {
   useMutation,
   type UseMutationConfig
 } from 'react-relay'
+import { type useLikesLikeableFragment$key } from './__generated__/useLikesLikeableFragment.graphql'
 import {
   type CreateLikeInput,
   type useLikesLikeMutation
@@ -21,11 +22,14 @@ const UseLikesLikeableFragment = graphql`
     ... on Post {
       likesCount
       viewerHasLiked
+      viewerLike {
+        id
+      }
     }
   }
 `
 
-export function useLike(likeable: any) {
+export function useLike(likeable: useLikesLikeableFragment$key) {
   const data = useFragment(UseLikesLikeableFragment, likeable)
   const [createLike, isPendingLike] = useMutation<useLikesLikeMutation>(graphql`
     mutation useLikesLikeMutation($input: CreateLikeInput!) {
@@ -54,21 +58,16 @@ export function useLike(likeable: any) {
       createLike({
         ...config,
         variables: { input },
-        optimisticResponse: {
-          createLike: {
-            errors: [],
-            likeEdge: {
-              node: {
-                id: data.id,
-                likeable: {
-                  id: data.id,
-                  __typename: data.__typename,
-                  viewerHasLiked: true,
-                  likesCount: (data.likesCount || 0) + 1
-                }
-              }
-            }
-          }
+        optimisticUpdater: (store) => {
+          const likeableRecord = store.get(data.id)
+
+          if (!likeableRecord) return
+
+          const currentLikesCount = likeableRecord.getValue('likesCount') as
+            | number
+            | undefined
+          likeableRecord.setValue((currentLikesCount || 0) + 1, 'likesCount')
+          likeableRecord.setValue(true, 'viewerHasLiked')
         }
       })
     },
@@ -78,7 +77,7 @@ export function useLike(likeable: any) {
   return [handleLike, isPendingLike] as const
 }
 
-export function useUnlike(likeable: any) {
+export function useUnlike(likeable: useLikesLikeableFragment$key) {
   const data = useFragment(UseLikesLikeableFragment, likeable)
   const [destroyLike, isPendingUnlike] = useMutation<useLikesUnlikeMutation>(
     graphql`
@@ -87,9 +86,6 @@ export function useUnlike(likeable: any) {
           errors
           like {
             id @deleteRecord
-            likeable {
-              ...useLikesLikeableFragment
-            }
           }
         }
       }
@@ -111,14 +107,18 @@ export function useUnlike(likeable: any) {
           destroyLike: {
             errors: [],
             like: {
-              id: data.id,
-              likeable: {
-                __typename: data.__typename,
-                id: data.id,
-                viewerHasLiked: false,
-                likesCount: (data.likesCount || 1) - 1
-              }
+              id: data.viewerLike?.id
             }
+          }
+        },
+        optimisticUpdater: (store) => {
+          const likeableRecord = store.get(data.id)
+          if (likeableRecord) {
+            const currentLikesCount = likeableRecord.getValue('likesCount') as
+              | number
+              | undefined
+            likeableRecord.setValue((currentLikesCount || 1) - 1, 'likesCount')
+            likeableRecord.setValue(false, 'viewerHasLiked')
           }
         }
       })

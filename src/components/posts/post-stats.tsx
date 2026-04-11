@@ -8,11 +8,11 @@ import { type postStatsFragment$key } from './__generated__/postStatsFragment.gr
 
 const PostStatsFragment = graphql`
   fragment postStatsFragment on Post {
-    ...useLikesLikeableFragment
     id
     likesCount
     commentsCount
     viewerHasLiked
+    ...useLikesLikeableFragment
   }
 `
 
@@ -23,14 +23,13 @@ interface PostStatsProps {
 
 export function PostStats({ post, onCommentsClick }: PostStatsProps) {
   const data = useFragment(PostStatsFragment, post)
-  const [like, isPendingLike] = useLike(data)
-  const [unlike, isPendingUnlike] = useUnlike(data)
+  const [like] = useLike(data)
+  const [unlike] = useUnlike(data)
 
   return (
     <div className="flex items-center justify-between border-t border-b border-gray-200 py-2">
       <div className="space-between flex">
         <Button
-          disabled={isPendingLike || isPendingUnlike}
           variant="ghost"
           onClick={() => {
             if (data.viewerHasLiked) {
