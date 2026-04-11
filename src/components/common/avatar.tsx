@@ -1,39 +1,71 @@
-import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { useState } from 'react'
+import { useState, type ComponentProps } from 'react'
 import { cn } from '../../utils'
 
+/**
+ * Usage:
+ *
+ * <Avatar name="John Doe" url="https://example.com/avatar.jpg" />
+ * <Avatar name="John Doe" size="lg" />
+ * <Avatar name="John Doe" variant="default" size="sm" radius="full" />
+ */
+
 const avatarVariants = cva(
-  'flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-50 text-blue-900 select-none',
+  'flex shrink-0 items-center justify-center overflow-hidden rounded-full select-none',
   {
     variants: {
+      variant: {
+        default: 'bg-blue-50 text-blue-900'
+      },
       size: {
-        sm: 'h-6 w-6 text-sm font-medium',
-        md: 'h-10 w-10 text-sm font-medium',
-        lg: 'h-16 w-16 text-base font-medium'
+        xs: 'size-6',
+        sm: 'size-8',
+        md: 'size-10',
+        lg: 'size-12',
+        xl: 'size-14'
+      },
+      radius: {
+        full: 'rounded-full',
+        xs: 'rounded-xs',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        xl: 'rounded-xl'
       }
     },
     defaultVariants: {
+      variant: 'default',
       size: 'md'
     }
   }
 )
 
 interface AvatarProps
-  extends BaseAvatar.Root.Props, VariantProps<typeof avatarVariants> {
+  extends ComponentProps<'div'>, VariantProps<typeof avatarVariants> {
   name: string
   url?: string | null
 }
 
-export function Avatar({ size, name, url, className, ...props }: AvatarProps) {
+export function Avatar({
+  variant,
+  size,
+  radius,
+  name,
+  url,
+  className,
+  ...props
+}: AvatarProps) {
   const [showAvatar, setShowAvatar] = useState(!!url)
+  const _radius = radius ?? size ?? 'full'
 
   return (
-    <BaseAvatar.Root
+    <div
       {...props}
-      className={cn(avatarVariants({ size, className }))}>
-      {showAvatar && url && (
-        <BaseAvatar.Image
+      className={cn(
+        avatarVariants({ variant, size, radius: _radius, className })
+      )}>
+      {showAvatar && url ? (
+        <img
           src={url}
           width="40"
           height="40"
@@ -41,9 +73,10 @@ export function Avatar({ size, name, url, className, ...props }: AvatarProps) {
           onError={() => setShowAvatar(false)}
           onDragStart={(e) => e.preventDefault()}
         />
+      ) : (
+        getInitials(name)
       )}
-      <BaseAvatar.Fallback>{getInitials(name)}</BaseAvatar.Fallback>
-    </BaseAvatar.Root>
+    </div>
   )
 }
 

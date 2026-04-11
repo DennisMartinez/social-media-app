@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<51ce22d4a0a6915718156d2587d0b41a>>
+ * @generated SignedSource<<a6ab267a17f3b7ac146143383c50c04e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,7 @@ export type postFragment$data = {
   readonly createdAt: any;
   readonly id: string;
   readonly user: {
+    readonly id: string;
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
@@ -26,19 +27,21 @@ export type postFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "postFragment",
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -61,6 +64,7 @@ const node: ReaderFragment = {
       "name": "user",
       "plural": false,
       "selections": [
+        (v0/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -105,7 +109,8 @@ const node: ReaderFragment = {
   "type": "Post",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "9c39ca48f406ae6045901ca06bb6f4f9";
+(node as any).hash = "79d02a2dc4d9e68a9cf1d05417523015";
 
 export default node;

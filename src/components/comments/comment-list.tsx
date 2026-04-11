@@ -37,6 +37,9 @@ export function CommentList({ commentable }: CommentListProps) {
   return (
     <div className="flex flex-col gap-4">
       <ol className="flex w-full flex-col gap-4">
+        {!data.comments?.edges?.length && (
+          <p className="text-center text-sm text-gray-500">No comments yet</p>
+        )}
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
           return <Comment key={edge.node.id} comment={edge.node} />

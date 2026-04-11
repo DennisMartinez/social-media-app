@@ -60,14 +60,14 @@ export function PostList({ viewer, user }: PostListProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <ol className="flex w-full flex-col gap-4">
+      <div className="flex w-full flex-col gap-4">
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
           return (
             <Post key={edge.node.id} viewer={viewerData} post={edge.node} />
           )
         })}
-      </ol>
+      </div>
       {isLoadingNext && (
         <div role="alert" className="flex justify-center text-blue-500">
           <LoaderCircleIcon className="size-6 animate-spin" />

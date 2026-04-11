@@ -46,7 +46,7 @@ export function PostStats({ post, onCommentsClick }: PostStatsProps) {
           />
           <div>{data.likesCount || 0} likes</div>
         </Button>
-        <Button variant="ghost" onClick={onCommentsClick}>
+        <Button variant="ghost" size="sm" onClick={onCommentsClick}>
           <MessageCircleIcon className="size-4" />
           <div>{data.commentsCount || 0} comments</div>
         </Button>

@@ -27,7 +27,8 @@ export function FollowButton({ followee }: FollowButtonProps) {
 
   return (
     <Button
-      size="sm"
+      size="xs"
+      radius="full"
       variant={data.viewerIsFollowing ? 'outline' : 'primary'}
       onClick={() => {
         if (data.viewerIsFollowing) {

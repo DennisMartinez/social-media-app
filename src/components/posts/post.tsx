@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useFragment } from 'react-relay'
+import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
 import { CommentList } from '../comments/comment-list'
 import { CreateCommentForm } from '../comments/create-comment-form'
@@ -23,6 +24,7 @@ const PostFragment = graphql`
     content
     createdAt
     user {
+      id
       name
       ...userAvatarFragment
     }
@@ -30,8 +32,6 @@ const PostFragment = graphql`
     ...createCommentFormCommentableFragment
     ...commentListFragment
     ...postStatsFragment
-    # ...commentCountFragment
-    # ...likeCountFragment
     ...postMenuFragment
   }
 `
@@ -47,15 +47,19 @@ export function Post({ viewer, post }: PostProps) {
   const [displayCommentForm, setDisplayCommentForm] = useState(false)
 
   return (
-    <li className="flex flex-col gap-6 rounded-xl bg-white p-4">
+    <div className="flex flex-col gap-6 rounded-xl bg-white p-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <UserAvatar user={data.user} />
+          <Link to={`/users/${data.user.id}`} className="mt-1">
+            <UserAvatar user={data.user} />
+          </Link>
           <div>
-            <strong className="block text-base font-medium text-gray-900">
+            <Link
+              to={`/users/${data.user.id}`}
+              className="block text-base font-medium text-gray-900">
               {data.user.name}
-            </strong>
-            <small className="block text-sm text-gray-500">
+            </Link>
+            <small className="block text-xs text-gray-500">
               {new Date(data.createdAt).toLocaleString()}
             </small>
           </div>
@@ -64,7 +68,7 @@ export function Post({ viewer, post }: PostProps) {
           <PostMenu post={data} />
         </div>
       </div>
-      <p className="text-gray-900">{data.content}</p>
+      <p className="truncate text-gray-900">{data.content}</p>
       <PostStats
         post={data}
         onCommentsClick={() => setDisplayCommentForm(!displayCommentForm)}
@@ -75,6 +79,6 @@ export function Post({ viewer, post }: PostProps) {
         )}
         <CommentList commentable={data} />
       </div>
-    </li>
+    </div>
   )
 }

@@ -4,9 +4,12 @@ import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
+import { Input } from '../common/input'
 import { UserAvatar } from '../user-avatar'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
+
+import TextareaAutosize from 'react-textarea-autosize'
 
 const CreatePostFormFragment = graphql`
   fragment createPostFormFragment on User {
@@ -61,7 +64,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form
-      className="flex flex-col gap-2 rounded-xl bg-white p-4"
+      className="relative flex flex-col gap-2 rounded-xl bg-white p-4"
       onSubmit={handleSubmit((formData) => {
         const connections = ['User_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
@@ -100,7 +103,8 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                     name: data.name,
                     viewerIsFollowing: false,
                     viewerCanFollow: false
-                  }
+                  },
+                  viewerLike: null
                 }
               }
             }
@@ -112,18 +116,21 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
       })}>
       <div className="flex gap-4">
         <UserAvatar user={data} />
-        <textarea
-          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-white px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
-          placeholder="What's on your mind?"
+        <Input
           {...register('content')}
+          placeholder="What's on your mind?"
           maxLength={MAX_LIMIT}
+          className="pr-29"
+          render={<TextareaAutosize />}
         />
       </div>
-      <div className="flex items-center justify-end gap-4">
+      <div className="absolute top-6 right-6 flex items-center justify-end gap-2">
         <div className="text-sm text-gray-400">
           {content.length}/{MAX_LIMIT}
         </div>
-        <Button type="submit">Post</Button>
+        <Button type="submit" size="sm">
+          Post
+        </Button>
       </div>
     </form>
   )

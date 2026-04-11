@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<03f468632ef53a3eda49bbe229ec6c70>>
+ * @generated SignedSource<<4250064d42bf7d5d7cac1fb340dcfc34>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type commentFragment$data = {
   readonly id: string;
   readonly user: {
     readonly avatarUrl: string | null | undefined;
+    readonly id: string;
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
@@ -26,19 +27,21 @@ export type commentFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"commentFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "commentFragment",
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -61,6 +64,7 @@ const node: ReaderFragment = {
       "name": "user",
       "plural": false,
       "selections": [
+        (v0/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -87,7 +91,8 @@ const node: ReaderFragment = {
   "type": "Comment",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "7c893846ae14730851104b352232f9b5";
+(node as any).hash = "4129404a516752dfe651cdab52b76c38";
 
 export default node;
