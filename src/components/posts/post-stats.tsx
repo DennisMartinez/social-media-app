@@ -2,13 +2,13 @@ import { MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { useLike, useUnlike } from '../../hooks/use-likes'
+import { cn } from '../../utils'
 import { Button } from '../common/button'
 import { type postStatsFragment$key } from './__generated__/postStatsFragment.graphql'
 
 const PostStatsFragment = graphql`
   fragment postStatsFragment on Post {
-    ...useLikesFragment
-
+    ...useLikesLikeableFragment
     id
     likesCount
     commentsCount
@@ -40,7 +40,11 @@ export function PostStats({ post, onCommentsClick }: PostStatsProps) {
 
             like({ likeableId: data.id })
           }}>
-          <ThumbsUpIcon className="size-4" />
+          <ThumbsUpIcon
+            className={cn('size-4', {
+              'text-blue-500': data.viewerHasLiked
+            })}
+          />
           <div>{data.likesCount || 0} likes</div>
         </Button>
         <Button variant="ghost" onClick={onCommentsClick}>

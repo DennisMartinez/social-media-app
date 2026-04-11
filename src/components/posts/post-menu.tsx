@@ -16,8 +16,7 @@ import { type postMenuFragment$key } from './__generated__/postMenuFragment.grap
 
 const PostMenuFragment = graphql`
   fragment postMenuFragment on Post {
-    ...useLikesFragment
-
+    ...useLikesLikeableFragment
     id
     viewerHasLiked
     viewerCanDestroy

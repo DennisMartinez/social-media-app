@@ -136,7 +136,6 @@ export function CreateCommentForm({
       })}>
       <div className="flex grow gap-4">
         <UserAvatar user={viewerData} />
-
         <input
           type="text"
           autoFocus
@@ -145,7 +144,7 @@ export function CreateCommentForm({
           {...register('content')}
           maxLength={MAX_LIMIT}
         />
-        <Button variant="ghost" disabled={isCreatingComment}>
+        <Button type="submit" variant="ghost" disabled={isCreatingComment}>
           Send
         </Button>
       </div>

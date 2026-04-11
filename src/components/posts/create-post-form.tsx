@@ -71,7 +71,9 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
         createPost({
           variables: {
             connections,
-            input: formData
+            input: {
+              content: formData.content
+            }
           },
           optimisticResponse: {
             createPost: {
@@ -121,7 +123,9 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
         <div className="text-sm text-gray-400">
           {content.length}/{MAX_LIMIT}
         </div>
-        <Button disabled={isCreatingPost}>Post</Button>
+        <Button type="submit" disabled={isCreatingPost}>
+          Post
+        </Button>
       </div>
     </form>
   )

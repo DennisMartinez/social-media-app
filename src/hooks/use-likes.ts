@@ -5,7 +5,6 @@ import {
   useMutation,
   type UseMutationConfig
 } from 'react-relay'
-import { type useLikesFragment$key } from './__generated__/useLikesFragment.graphql'
 import {
   type CreateLikeInput,
   type useLikesLikeMutation
@@ -15,8 +14,8 @@ import {
   type useLikesUnlikeMutation
 } from './__generated__/useLikesUnlikeMutation.graphql'
 
-const UseLikesFragment = graphql`
-  fragment useLikesFragment on Node {
+const UseLikesLikeableFragment = graphql`
+  fragment useLikesLikeableFragment on Node {
     __typename
     id
     ... on Post {
@@ -26,8 +25,8 @@ const UseLikesFragment = graphql`
   }
 `
 
-export function useLike(like: useLikesFragment$key) {
-  const data = useFragment(UseLikesFragment, like)
+export function useLike(likeable: any) {
+  const data = useFragment(UseLikesLikeableFragment, likeable)
   const [createLike, isPendingLike] = useMutation<useLikesLikeMutation>(graphql`
     mutation useLikesLikeMutation($input: CreateLikeInput!) {
       createLike(input: $input) {
@@ -36,7 +35,7 @@ export function useLike(like: useLikesFragment$key) {
           node {
             id
             likeable {
-              ...useLikesFragment
+              ...useLikesLikeableFragment
             }
           }
         }
@@ -60,10 +59,10 @@ export function useLike(like: useLikesFragment$key) {
             errors: [],
             likeEdge: {
               node: {
-                id: new Date().toISOString(),
+                id: data.id,
                 likeable: {
-                  __typename: data.__typename,
                   id: data.id,
+                  __typename: data.__typename,
                   viewerHasLiked: true,
                   likesCount: (data.likesCount || 0) + 1
                 }
@@ -79,8 +78,8 @@ export function useLike(like: useLikesFragment$key) {
   return [handleLike, isPendingLike] as const
 }
 
-export function useUnlike(like: useLikesFragment$key) {
-  const data = useFragment(UseLikesFragment, like)
+export function useUnlike(likeable: any) {
+  const data = useFragment(UseLikesLikeableFragment, likeable)
   const [destroyLike, isPendingUnlike] = useMutation<useLikesUnlikeMutation>(
     graphql`
       mutation useLikesUnlikeMutation($input: DestroyLikeInput!) {
@@ -89,7 +88,7 @@ export function useUnlike(like: useLikesFragment$key) {
           like {
             id @deleteRecord
             likeable {
-              ...useLikesFragment
+              ...useLikesLikeableFragment
             }
           }
         }
@@ -112,7 +111,7 @@ export function useUnlike(like: useLikesFragment$key) {
           destroyLike: {
             errors: [],
             like: {
-              id: new Date().toISOString(),
+              id: data.id,
               likeable: {
                 __typename: data.__typename,
                 id: data.id,
