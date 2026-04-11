@@ -7,6 +7,7 @@
     "node": ">=24.0.0"
   },
   "scripts": {
+    "predev": "yarn install && yarn schema",
     "dev": "concurrently \"vite\" \"relay-compiler --watch\"",
     "build": "relay-compiler --validate && tsc -b && vite build",
     "lint": "eslint .",
