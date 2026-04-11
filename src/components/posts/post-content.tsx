@@ -22,7 +22,7 @@ export function PostContent({ post }: PostContentProps) {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: highlightedContent }}
-      className="wrap-break-word"
+      className="wrap-break-word text-gray-900"
     />
   )
 }

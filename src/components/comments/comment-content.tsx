@@ -22,7 +22,7 @@ export function CommentContent({ comment }: CommentContentProps) {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: highlightedContent }}
-      className="text-sm wrap-break-word"
+      className="text-sm wrap-break-word text-gray-900"
     />
   )
 }
