@@ -3,11 +3,11 @@ import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
 import { UserAvatar } from '../user-avatar'
 import { type commentFragment$key } from './__generated__/commentFragment.graphql'
+import { CommentContent } from './comment-content'
 
 const CommentFragment = graphql`
   fragment commentFragment on Comment {
     id
-    content
     createdAt
     user {
       id
@@ -15,6 +15,7 @@ const CommentFragment = graphql`
       avatarUrl
       ...userAvatarFragment
     }
+    ...commentContentFragment
   }
 `
 
@@ -26,11 +27,11 @@ export function Comment({ comment }: CommentProps) {
   const data = useFragment(CommentFragment, comment)
 
   return (
-    <div key={data.id} className="flex items-start gap-4">
-      <Link to={`/users/${data.user.id}`} className="mt-1">
-        <UserAvatar user={data.user} />
+    <div className="flex items-start gap-4">
+      <Link to={`/users/${data.user.id}`} className="mt-2">
+        <UserAvatar user={data.user} size="sm" />
       </Link>
-      <div className="flex flex-col gap-2">
+      <div className="flex min-w-0 flex-col gap-2">
         <div>
           <Link
             to={`/users/${data.user.id}`}
@@ -41,7 +42,7 @@ export function Comment({ comment }: CommentProps) {
             {new Date(data.createdAt).toLocaleString()}
           </small>
         </div>
-        <div className="text-sm text-gray-900">{data.content}</div>
+        <CommentContent comment={data} />
       </div>
     </div>
   )

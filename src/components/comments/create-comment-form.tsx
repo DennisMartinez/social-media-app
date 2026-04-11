@@ -1,9 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
+import TextareaAutosize from 'react-textarea-autosize'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
+import { Input } from '../common/input'
 import { UserAvatar } from '../user-avatar'
 import { type createCommentFormCommentableFragment$key } from './__generated__/createCommentFormCommentableFragment.graphql'
 import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
@@ -74,14 +76,16 @@ export function CreateCommentForm({
     CreateCommentFormCommentableFragment,
     commentable
   )
-  const [createComment, isCreatingComment] =
-    useMutation<createCommentFormMutation>(CreateCommentFormMutation)
-  const { register, handleSubmit, reset, setValue } = useForm({
+  const [createComment] = useMutation<createCommentFormMutation>(
+    CreateCommentFormMutation
+  )
+  const { register, handleSubmit, reset, control, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       content: ''
     }
   })
+  const content = useWatch({ control, name: 'content' })
 
   return (
     <form
@@ -134,19 +138,33 @@ export function CreateCommentForm({
           }
         })
       })}>
-      <div className="flex grow gap-4">
+      <div className="flex w-full gap-4">
         <UserAvatar user={viewerData} />
-        <input
-          type="text"
-          autoFocus
-          className="focus:ring-opacity-50 w-full flex-1 rounded-lg bg-gray-50 px-4 py-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500"
-          placeholder="Write a comment..."
-          {...register('content')}
-          maxLength={MAX_LIMIT}
-        />
-        <Button variant="ghost" disabled={isCreatingComment}>
-          Send
-        </Button>
+        <div className="relative w-full">
+          <Input
+            {...register('content')}
+            as={TextareaAutosize}
+            autoFocus
+            variant="secondary"
+            placeholder="Write a comment..."
+            maxLength={MAX_LIMIT}
+            className="rounded-xl pb-10"
+            data-gramm="false"
+            data-gramm_editor="false"
+            data-enable-grammarly="false"
+          />
+          <div className="absolute right-2 bottom-2 flex items-center gap-2">
+            <div className="text-xs text-gray-400">
+              {content.length}/{MAX_LIMIT}
+            </div>
+            <Button
+              variant={content ? 'primary' : 'outline'}
+              size="xs"
+              disabled={!content}>
+              Post Comment
+            </Button>
+          </div>
+        </div>
       </div>
     </form>
   )

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5ae6d7f609a06707f840c9e694dd84a3>>
+ * @generated SignedSource<<3bf65f9af4f8f1c4f544b8d2bb95e741>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -63,28 +63,28 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "content",
+  "name": "createdAt",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "createdAt",
+  "name": "name",
   "storageKey": null
 },
 v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "avatarUrl",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "avatarUrl",
+  "name": "content",
   "storageKey": null
 },
 v7 = {
@@ -182,7 +182,6 @@ return {
                 "selections": [
                   (v2/*: any*/),
                   (v3/*: any*/),
-                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -192,8 +191,8 @@ return {
                     "plural": false,
                     "selections": [
                       (v2/*: any*/),
+                      (v4/*: any*/),
                       (v5/*: any*/),
-                      (v6/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -211,6 +210,7 @@ return {
                     ],
                     "storageKey": null
                   },
+                  (v6/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -272,7 +272,6 @@ return {
                                     "selections": [
                                       (v2/*: any*/),
                                       (v3/*: any*/),
-                                      (v4/*: any*/),
                                       {
                                         "alias": null,
                                         "args": null,
@@ -282,11 +281,12 @@ return {
                                         "plural": false,
                                         "selections": [
                                           (v2/*: any*/),
-                                          (v5/*: any*/),
-                                          (v6/*: any*/)
+                                          (v4/*: any*/),
+                                          (v5/*: any*/)
                                         ],
                                         "storageKey": null
                                       },
+                                      (v6/*: any*/),
                                       (v7/*: any*/)
                                     ],
                                     "storageKey": null
@@ -386,12 +386,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1670d24077bc0727317ba741688b029e",
+    "cacheID": "f696eec4f918a3df2c11438186ca0ec8",
     "id": null,
     "metadata": {},
     "name": "createPostFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n  ...postContentFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

@@ -7,6 +7,7 @@ import { CreateCommentForm } from '../comments/create-comment-form'
 import { UserAvatar } from '../user-avatar'
 import { type postFragment$key } from './__generated__/postFragment.graphql'
 import { type postViewerFragment$key } from './__generated__/postViewerFragment.graphql'
+import { PostContent } from './post-content'
 import { PostMenu } from './post-menu'
 import { PostStats } from './post-stats'
 
@@ -21,13 +22,13 @@ const PostViewerFragment = graphql`
 const PostFragment = graphql`
   fragment postFragment on Post {
     id
-    content
     createdAt
     user {
       id
       name
       ...userAvatarFragment
     }
+    ...postContentFragment
     ...destroyPostFragment
     ...createCommentFormCommentableFragment
     ...commentListFragment
@@ -50,7 +51,7 @@ export function Post({ viewer, post }: PostProps) {
     <div className="flex flex-col gap-6 rounded-xl bg-white p-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <Link to={`/users/${data.user.id}`} className="mt-1">
+          <Link to={`/users/${data.user.id}`}>
             <UserAvatar user={data.user} />
           </Link>
           <div>
@@ -68,7 +69,7 @@ export function Post({ viewer, post }: PostProps) {
           <PostMenu post={data} />
         </div>
       </div>
-      <p className="truncate text-gray-900">{data.content}</p>
+      <PostContent post={data} />
       <PostStats
         post={data}
         onCommentsClick={() => setDisplayCommentForm(!displayCommentForm)}

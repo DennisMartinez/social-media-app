@@ -12,17 +12,19 @@ import { cn } from '../../utils'
  */
 
 const inputVariants = cva(
-  'block w-full outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2',
+  'block w-full rounded-full outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2',
   {
     variants: {
       variant: {
         default:
-          'text-gray-900 outline-gray-300 placeholder:text-gray-400 focus:outline-blue-600',
+          'bg-white text-gray-900 outline-gray-300 placeholder:text-gray-400 focus:outline-blue-600',
+        secondary:
+          'bg-gray-100 text-gray-900 outline-gray-100 placeholder:text-gray-400 focus:outline-gray-600',
         danger:
-          'text-red-900 outline-red-300 placeholder:text-red-400 focus:outline-red-600'
+          'bg-red-100 text-red-900 outline-red-300 placeholder:text-red-400 focus:outline-red-600'
       },
       size: {
-        md: 'rounded-md px-3 py-1.5 text-base sm:text-sm/6'
+        md: 'px-3 py-1.5 text-base sm:text-sm/6'
       }
     },
     defaultVariants: {

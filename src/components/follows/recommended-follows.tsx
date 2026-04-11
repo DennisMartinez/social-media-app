@@ -54,7 +54,6 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
             <Button
               size="xs"
               variant="outline"
-              radius="full"
               loading={isLoadingNext}
               onClick={() => loadNext(3)}>
               View More

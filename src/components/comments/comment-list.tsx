@@ -1,5 +1,6 @@
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Button } from '../common/button'
 import { type commentListFragment$key } from './__generated__/commentListFragment.graphql'
 import { Comment } from './comment'
 
@@ -36,21 +37,26 @@ export function CommentList({ commentable }: CommentListProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <ol className="flex w-full flex-col gap-4">
+      <div className="flex w-full flex-col gap-4">
         {!data.comments?.edges?.length && (
-          <p className="text-center text-sm text-gray-500">No comments yet</p>
+          <div className="text-xs font-semibold text-gray-500">
+            No comments yet. Be the first to comment!
+          </div>
         )}
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
           return <Comment key={edge.node.id} comment={edge.node} />
         })}
-      </ol>
-      {isLoadingNext && <p>Loading...</p>}
+      </div>
       {hasNext && (
         <div>
-          <button className="text-sm text-blue-500" onClick={() => loadNext(5)}>
-            View More
-          </button>
+          <Button
+            variant="ghost"
+            size="xs"
+            loading={isLoadingNext}
+            onClick={() => loadNext(5)}>
+            View More Comments
+          </Button>
         </div>
       )}
     </div>

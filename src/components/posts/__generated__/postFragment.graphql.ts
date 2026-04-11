@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a6ab267a17f3b7ac146143383c50c04e>>
+ * @generated SignedSource<<c88b5d481e189feca1a2929493cf50c6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,6 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type postFragment$data = {
-  readonly content: string;
   readonly createdAt: any;
   readonly id: string;
   readonly user: {
@@ -19,7 +18,7 @@ export type postFragment$data = {
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "postMenuFragment" | "postStatsFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "postContentFragment" | "postMenuFragment" | "postStatsFragment">;
   readonly " $fragmentType": "postFragment";
 };
 export type postFragment$key = {
@@ -42,13 +41,6 @@ return {
   "name": "postFragment",
   "selections": [
     (v0/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "content",
-      "storageKey": null
-    },
     {
       "alias": null,
       "args": null,
@@ -83,6 +75,11 @@ return {
     {
       "args": null,
       "kind": "FragmentSpread",
+      "name": "postContentFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
       "name": "destroyPostFragment"
     },
     {
@@ -111,6 +108,6 @@ return {
 };
 })();
 
-(node as any).hash = "79d02a2dc4d9e68a9cf1d05417523015";
+(node as any).hash = "5458fbce7fca80cd9e83866d30fcd805";
 
 export default node;

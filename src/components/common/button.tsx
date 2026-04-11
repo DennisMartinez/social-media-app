@@ -13,7 +13,7 @@ import { cn } from '../../utils'
  */
 
 const buttonVariants = cva(
-  'flex items-center justify-center gap-2 border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'flex items-center justify-center gap-2 rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -31,14 +31,6 @@ const buttonVariants = cva(
         md: 'px-2.5 py-1.5 text-sm font-semibold [&_svg]:size-4',
         lg: 'px-3 py-2 text-sm font-semibold [&_svg]:size-4',
         xl: 'px-3.5 py-2.5 text-sm font-semibold [&_svg]:size-4'
-      },
-      radius: {
-        full: 'rounded-full',
-        xs: 'rounded-xs',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl'
       }
     },
     defaultVariants: {
@@ -58,13 +50,11 @@ export function Button<C extends ElementType = 'button'>({
   as,
   variant,
   size,
-  radius,
   loading,
   className,
   children,
   ...props
 }: PolymorphicButtonProps<C>) {
-  const _radius = radius ?? size ?? 'md'
   const _disabled = props.disabled || loading
   const Component = as || 'button'
 
@@ -72,9 +62,7 @@ export function Button<C extends ElementType = 'button'>({
     <Component
       {...props}
       disabled={_disabled}
-      className={cn(
-        buttonVariants({ variant, size, radius: _radius, className })
-      )}>
+      className={cn(buttonVariants({ variant, size, className }))}>
       {loading && <Loader2Icon className="animate-spin" />}
       {children}
     </Component>

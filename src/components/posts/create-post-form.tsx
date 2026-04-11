@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
+import TextareaAutosize from 'react-textarea-autosize'
 import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
@@ -8,8 +9,6 @@ import { Input } from '../common/input'
 import { UserAvatar } from '../user-avatar'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
-
-import TextareaAutosize from 'react-textarea-autosize'
 
 const CreatePostFormFragment = graphql`
   fragment createPostFormFragment on User {
@@ -64,7 +63,6 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form
-      className="relative flex flex-col gap-2 rounded-xl bg-white p-4"
       onSubmit={handleSubmit((formData) => {
         const connections = ['User_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
@@ -114,21 +112,32 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           }
         })
       })}>
-      <div className="flex gap-4">
-        <UserAvatar user={data} />
-        <Input
-          {...register('content')}
-          as={TextareaAutosize}
-          placeholder="What's on your mind?"
-          maxLength={MAX_LIMIT}
-          className="pr-29"
-        />
-      </div>
-      <div className="absolute top-6 right-6 flex items-center justify-end gap-2">
-        <div className="text-sm text-gray-400">
-          {content.length}/{MAX_LIMIT}
+      <div className="flex w-full gap-4">
+        <UserAvatar user={data} size="sm" />
+        <div className="relative w-full">
+          <Input
+            {...register('content')}
+            as={TextareaAutosize}
+            autoFocus
+            placeholder="Write a comment..."
+            maxLength={MAX_LIMIT}
+            className="rounded-xl pb-10 outline-transparent focus:outline-blue-500"
+            data-gramm="false"
+            data-gramm_editor="false"
+            data-enable-grammarly="false"
+          />
+          <div className="absolute right-2 bottom-2 flex items-center gap-2">
+            <div className="text-xs text-gray-400">
+              {content.length}/{MAX_LIMIT}
+            </div>
+            <Button
+              variant={content ? 'primary' : 'outline'}
+              size="xs"
+              disabled={!content}>
+              Post Comment
+            </Button>
+          </div>
         </div>
-        <Button size="sm">Post</Button>
       </div>
     </form>
   )

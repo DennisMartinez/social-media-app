@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9603bfcd75d065a3cf8a7897052ce99>>
+ * @generated SignedSource<<32ee6295089da988b5998d0c2d9a90bb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -162,13 +162,6 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "content",
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
                             "name": "createdAt",
                             "storageKey": null
                           },
@@ -196,6 +189,13 @@ return {
                                 "storageKey": null
                               }
                             ],
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "content",
                             "storageKey": null
                           },
                           (v3/*: any*/)
@@ -260,12 +260,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ce88463b34e80cffb151732ae5bfb1b2",
+    "cacheID": "c287c4d7ff2fa3631c4f69de785a83a8",
     "id": null,
     "metadata": {},
     "name": "postCommentListPaginationQuery",
     "operationKind": "query",
-    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 1\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 1\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

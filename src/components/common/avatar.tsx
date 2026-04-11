@@ -7,7 +7,7 @@ import { cn } from '../../utils'
  *
  * <Avatar name="John Doe" url="https://example.com/avatar.jpg" />
  * <Avatar name="John Doe" size="lg" />
- * <Avatar name="John Doe" variant="default" size="sm" radius="full" />
+ * <Avatar name="John Doe" variant="default" size="sm"  />
  */
 
 const avatarVariants = cva(
@@ -23,20 +23,11 @@ const avatarVariants = cva(
         md: 'size-10',
         lg: 'size-12',
         xl: 'size-14'
-      },
-      radius: {
-        full: 'rounded-full',
-        xs: 'rounded-xs',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl'
       }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'md',
-      radius: 'md'
+      size: 'md'
     }
   }
 )
@@ -50,21 +41,17 @@ interface AvatarProps
 export function Avatar({
   variant,
   size,
-  radius,
   name,
   url,
   className,
   ...props
 }: AvatarProps) {
   const [showAvatar, setShowAvatar] = useState(!!url)
-  const _radius = radius ?? size ?? 'full'
 
   return (
     <div
       {...props}
-      className={cn(
-        avatarVariants({ variant, size, radius: _radius, className })
-      )}>
+      className={cn(avatarVariants({ variant, size, className }))}>
       {showAvatar && url ? (
         <img
           src={url}

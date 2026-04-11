@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<df162140f8dcfcd2d2f486fdd2a33ec9>>
+ * @generated SignedSource<<9444c76221fafb9dff4b857b881a5a96>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -88,28 +88,28 @@ v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "content",
+  "name": "createdAt",
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "createdAt",
+  "name": "viewerIsFollowing",
   "storageKey": null
 },
 v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "viewerIsFollowing",
+  "name": "viewerCanFollow",
   "storageKey": null
 },
 v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "viewerCanFollow",
+  "name": "content",
   "storageKey": null
 },
 v12 = [
@@ -178,8 +178,8 @@ v16 = [
           (v4/*: any*/),
           (v2/*: any*/),
           (v5/*: any*/),
+          (v9/*: any*/),
           (v10/*: any*/),
-          (v11/*: any*/),
           (v3/*: any*/),
           (v6/*: any*/)
         ],
@@ -321,7 +321,6 @@ return {
                         "selections": [
                           (v4/*: any*/),
                           (v8/*: any*/),
-                          (v9/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -333,11 +332,12 @@ return {
                               (v4/*: any*/),
                               (v2/*: any*/),
                               (v3/*: any*/),
-                              (v10/*: any*/),
-                              (v11/*: any*/)
+                              (v9/*: any*/),
+                              (v10/*: any*/)
                             ],
                             "storageKey": null
                           },
+                          (v11/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -399,7 +399,6 @@ return {
                                             "selections": [
                                               (v4/*: any*/),
                                               (v8/*: any*/),
-                                              (v9/*: any*/),
                                               {
                                                 "alias": null,
                                                 "args": null,
@@ -414,6 +413,7 @@ return {
                                                 ],
                                                 "storageKey": null
                                               },
+                                              (v11/*: any*/),
                                               (v6/*: any*/)
                                             ],
                                             "storageKey": null
@@ -542,12 +542,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ddd9ab0d012bf18694c03c6b77e816e6",
+    "cacheID": "bd1f6ef40413ce7f774bf308aa27ef42",
     "id": null,
     "metadata": {},
     "name": "userQuery",
     "operationKind": "query",
-    "text": "query userQuery(\n  $id: ID!\n) {\n  viewer {\n    ...postListViewerFragment\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n      ...followersCardFragment\n      ...followingsCardFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentFragment on Comment {\n  id\n  content\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormViewerFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followersCardFragment on User {\n  followers(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment followingsCardFragment on User {\n  following(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment postFragment on Post {\n  id\n  content\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListViewerFragment on User {\n  ...postViewerFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postViewerFragment on User {\n  name\n  ...userAvatarFragment\n  ...createCommentFormViewerFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query userQuery(\n  $id: ID!\n) {\n  viewer {\n    ...postListViewerFragment\n    id\n  }\n  node(id: $id) {\n    __typename\n    ... on User {\n      ...postListFragment\n      ...recommendedFollowsFragment\n      ...followersCardFragment\n      ...followingsCardFragment\n    }\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormViewerFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment destroyPostFragment on Post {\n  id\n  viewerCanDestroy\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followersCardFragment on User {\n  followers(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment followingsCardFragment on User {\n  following(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n  ...postContentFragment\n  ...destroyPostFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListViewerFragment on User {\n  ...postViewerFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postViewerFragment on User {\n  name\n  ...userAvatarFragment\n  ...createCommentFormViewerFragment\n}\n\nfragment recommendedFollowsFragment on User {\n  recommendedFollows(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

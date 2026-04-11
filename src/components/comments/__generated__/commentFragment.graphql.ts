@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4250064d42bf7d5d7cac1fb340dcfc34>>
+ * @generated SignedSource<<81f377c3faac43f86b32e1f35fad966c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,6 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type commentFragment$data = {
-  readonly content: string;
   readonly createdAt: any;
   readonly id: string;
   readonly user: {
@@ -20,6 +19,7 @@ export type commentFragment$data = {
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
+  readonly " $fragmentSpreads": FragmentRefs<"commentContentFragment">;
   readonly " $fragmentType": "commentFragment";
 };
 export type commentFragment$key = {
@@ -42,13 +42,6 @@ return {
   "name": "commentFragment",
   "selections": [
     (v0/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "content",
-      "storageKey": null
-    },
     {
       "alias": null,
       "args": null,
@@ -86,6 +79,11 @@ return {
         }
       ],
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "commentContentFragment"
     }
   ],
   "type": "Comment",
@@ -93,6 +91,6 @@ return {
 };
 })();
 
-(node as any).hash = "4129404a516752dfe651cdab52b76c38";
+(node as any).hash = "951912caaae7107fa134801549133780";
 
 export default node;
