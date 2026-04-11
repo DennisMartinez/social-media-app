@@ -26,7 +26,7 @@ import { cn } from '../../utils'
  * </Alert>
  */
 
-const alertVariants = cva('rounded-md p-4', {
+const alertVariants = cva('', {
   variants: {
     variant: {
       default:
@@ -37,20 +37,30 @@ const alertVariants = cva('rounded-md p-4', {
         'bg-yellow-50 **:data-alert-content:text-yellow-700 **:data-alert-icon:text-yellow-400 **:data-alert-title:text-yellow-800',
       success:
         'bg-green-50 **:data-alert-content:text-green-700 **:data-alert-icon:text-green-400 **:data-alert-title:text-green-800'
+    },
+    size: {
+      md: 'rounded-md p-4'
     }
   },
   defaultVariants: {
-    variant: 'default'
+    variant: 'default',
+    size: 'md'
   }
 })
 
 interface AlertProps
   extends ComponentProps<'div'>, VariantProps<typeof alertVariants> {}
 
-export function Alert({ variant, className, children, ...props }: AlertProps) {
+export function Alert({
+  variant,
+  size,
+  className,
+  children,
+  ...props
+}: AlertProps) {
   return (
-    <div {...props} className={cn(alertVariants({ variant, className }))}>
-      <div className="flex gap-3">{children}</div>
+    <div {...props} className={cn(alertVariants({ variant, size, className }))}>
+      <div className="flex flex-col gap-3">{children}</div>
     </div>
   )
 }
