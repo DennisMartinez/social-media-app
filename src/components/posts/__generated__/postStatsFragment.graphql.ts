@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<66af91a999ccccf8708bd29ce7f9b489>>
+ * @generated SignedSource<<828547509d655cb47eb8960afd3d0b95>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type postStatsFragment$data = {
   readonly id: string;
   readonly likesCount: number;
   readonly viewerHasLiked: boolean;
-  readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"useLikesLikeableFragment">;
   readonly " $fragmentType": "postStatsFragment";
 };
 export type postStatsFragment$key = {
@@ -32,7 +32,7 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "useLikesFragment"
+      "name": "useLikesLikeableFragment"
     },
     {
       "alias": null,
@@ -67,6 +67,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "55c9fc1355f89bb554c1ad393699aa85";
+(node as any).hash = "e7c25be03d2d4ff60d0e5c8efe545d44";
 
 export default node;

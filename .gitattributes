@@ -6,7 +6,6 @@
 # Explicit script safety
 *.sh text eol=lf
 bin/* text eol=lf
-docker-dev-entrypoint text eol=lf
 
 # Lock common languages
 *.rb text eol=lf

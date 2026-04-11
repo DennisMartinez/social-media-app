@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<73cb35ba709596c69e3b7d808f8abb06>>
+ * @generated SignedSource<<b5eff3fc3b2bc0a641905afdc3c2a588>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,7 +23,7 @@ export type useLikesUnlikeMutation$data = {
     readonly like: {
       readonly id: string;
       readonly likeable: {
-        readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"useLikesLikeableFragment">;
       };
     } | null | undefined;
   } | null | undefined;
@@ -98,7 +98,7 @@ return {
                   {
                     "args": null,
                     "kind": "FragmentSpread",
-                    "name": "useLikesFragment"
+                    "name": "useLikesLikeableFragment"
                   }
                 ],
                 "storageKey": null
@@ -202,16 +202,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "49335171c4661e3c3d9e818dff3aa711",
+    "cacheID": "a7a7681625d4857dd406c10c0e5313b1",
     "id": null,
     "metadata": {},
     "name": "useLikesUnlikeMutation",
     "operationKind": "mutation",
-    "text": "mutation useLikesUnlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...useLikesFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesUnlikeMutation(\n  $input: DestroyLikeInput!\n) {\n  destroyLike(input: $input) {\n    errors\n    like {\n      id\n      likeable {\n        __typename\n        ...useLikesLikeableFragment\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9bb8728556f75a45c4f1ef3694bd6a57";
+(node as any).hash = "1b15fa9e3ef1d1475b67a0660dff3527";
 
 export default node;

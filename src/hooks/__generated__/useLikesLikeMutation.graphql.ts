@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<17c72a29fb1e9d54aa04dd7a8b5e87d1>>
+ * @generated SignedSource<<3dd45991bbca7f2f26d71cd83607da6a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ export type useLikesLikeMutation$data = {
       readonly node: {
         readonly id: string;
         readonly likeable: {
-          readonly " $fragmentSpreads": FragmentRefs<"useLikesFragment">;
+          readonly " $fragmentSpreads": FragmentRefs<"useLikesLikeableFragment">;
         };
       } | null | undefined;
     } | null | undefined;
@@ -108,7 +108,7 @@ return {
                       {
                         "args": null,
                         "kind": "FragmentSpread",
-                        "name": "useLikesFragment"
+                        "name": "useLikesLikeableFragment"
                       }
                     ],
                     "storageKey": null
@@ -217,16 +217,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "59026b8c098728f998581d9f718e90b3",
+    "cacheID": "ef60966e8c39f5aaee4bac9ce4cc0090",
     "id": null,
     "metadata": {},
     "name": "useLikesLikeMutation",
     "operationKind": "mutation",
-    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
+    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesLikeableFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "dc8273e675e1d90fdcf60cf755ff9f76";
+(node as any).hash = "626f5becf9fa29ecce32f740f25b66c5";
 
 export default node;
