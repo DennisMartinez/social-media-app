@@ -1,4 +1,5 @@
 import { useFragment } from 'react-relay'
+import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
 import {
   UserBadge,
@@ -14,6 +15,7 @@ import { FollowButton } from './follow-button'
 
 const FolloweeFragment = graphql`
   fragment followeeFragment on User {
+    id
     name
     email
     ...followButtonFragment
@@ -31,10 +33,14 @@ export function Followee({ followee }: FolloweeProps) {
   return (
     <UserBadge>
       <UserBadgeIcon>
-        <UserAvatar user={data} />
+        <Link to={`/users/${data.id}`}>
+          <UserAvatar user={data} />
+        </Link>
       </UserBadgeIcon>
       <UserBadgeInfo>
-        <UserBadgeTitle>{data.name}</UserBadgeTitle>
+        <UserBadgeTitle>
+          <Link to={`/users/${data.id}`}>{data.name}</Link>
+        </UserBadgeTitle>
         <UserBadgeSubtitle>{data.email}</UserBadgeSubtitle>
       </UserBadgeInfo>
       <UserBadgeAction>
