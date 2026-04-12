@@ -1,8 +1,8 @@
 import { LogOutIcon } from 'lucide-react'
 import { useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Button } from '../common/button'
 import { type signOutButtonMutation } from './__generated__/signOutButtonMutation.graphql'
-import { Button } from './common/button'
 
 const SignOutButtonMutation = graphql`
   mutation signOutButtonMutation($input: SignOutInput!) {

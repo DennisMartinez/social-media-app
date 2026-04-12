@@ -1,5 +1,5 @@
+import { SignInForm } from '../components/auth/sign-in-form'
 import { Card, CardBody } from '../components/common/card'
-import { SignInForm } from '../components/sign-in-form'
 
 export function Component() {
   return (

@@ -1,7 +1,7 @@
 import { useFragment } from 'react-relay'
 import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
-import { UserAvatar } from '../user-avatar'
+import { UserAvatar } from '../users/user-avatar'
 import { type commentFragment$key } from './__generated__/commentFragment.graphql'
 import { CommentContent } from './comment-content'
 

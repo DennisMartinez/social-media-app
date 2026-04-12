@@ -5,11 +5,11 @@ import { useMutation } from 'react-relay'
 import { useSearchParams } from 'react-router'
 import { graphql } from 'relay-runtime'
 import * as yup from 'yup'
+import { Alert, AlertBody, AlertContent } from '../common/alert'
+import { Button } from '../common/button'
+import { FormField } from '../common/form-field'
+import { Input } from '../common/input'
 import { type signInFormMutation } from './__generated__/signInFormMutation.graphql'
-import { Alert, AlertBody, AlertContent } from './common/alert'
-import { Button } from './common/button'
-import { FormField } from './common/form-field'
-import { Input } from './common/input'
 
 const schema = yup.object({
   email: yup

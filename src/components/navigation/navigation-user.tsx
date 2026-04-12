@@ -1,8 +1,16 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { SignOutButton } from '../auth/sign-out-button'
 import { Card, CardBody } from '../common/card'
-import { SignOutButton } from '../sign-out-button'
-import { UserAvatar } from '../user-avatar'
+import {
+  UserBadge,
+  UserBadgeAction,
+  UserBadgeIcon,
+  UserBadgeInfo,
+  UserBadgeSubtitle,
+  UserBadgeTitle
+} from '../common/user-badge'
+import { UserAvatar } from '../users/user-avatar'
 import { type navigationUserFragment$key } from './__generated__/navigationUserFragment.graphql'
 
 const NavigationUserFragment = graphql`
@@ -24,16 +32,18 @@ export function NavigationUser({ user }: NavigationUserProps) {
   return (
     <Card>
       <CardBody>
-        <div className="mt-auto flex w-full gap-4">
-          <UserAvatar user={data} />
-          <div>
-            <p className="text-sm font-medium text-gray-900">{data.name}</p>
-            <p className="text-sm text-gray-500">{data.email}</p>
-          </div>
-          <div className="ml-auto">
+        <UserBadge>
+          <UserBadgeIcon>
+            <UserAvatar user={data} />
+          </UserBadgeIcon>
+          <UserBadgeInfo>
+            <UserBadgeTitle>{data.name}</UserBadgeTitle>
+            <UserBadgeSubtitle>{data.email}</UserBadgeSubtitle>
+          </UserBadgeInfo>
+          <UserBadgeAction>
             <SignOutButton />
-          </div>
-        </div>
+          </UserBadgeAction>
+        </UserBadge>
       </CardBody>
     </Card>
   )

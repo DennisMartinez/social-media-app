@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c88b5d481e189feca1a2929493cf50c6>>
+ * @generated SignedSource<<46dac4495490d766bd9afe009dbb4f0b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,14 +11,8 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type postFragment$data = {
-  readonly createdAt: any;
   readonly id: string;
-  readonly user: {
-    readonly id: string;
-    readonly name: string;
-    readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
-  };
-  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "postContentFragment" | "postMenuFragment" | "postStatsFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentListFragment" | "createCommentFormCommentableFragment" | "destroyPostFragment" | "postContentFragment" | "postMenuFragment" | "postStatsFragment" | "postUserFragment">;
   readonly " $fragmentType": "postFragment";
 };
 export type postFragment$key = {
@@ -26,51 +20,23 @@ export type postFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
 };
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "postFragment",
   "selections": [
-    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "createdAt",
+      "name": "id",
       "storageKey": null
     },
     {
-      "alias": null,
       "args": null,
-      "concreteType": "User",
-      "kind": "LinkedField",
-      "name": "user",
-      "plural": false,
-      "selections": [
-        (v0/*: any*/),
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
-        },
-        {
-          "args": null,
-          "kind": "FragmentSpread",
-          "name": "userAvatarFragment"
-        }
-      ],
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "postUserFragment"
     },
     {
       "args": null,
@@ -106,8 +72,7 @@ return {
   "type": "Post",
   "abstractKey": null
 };
-})();
 
-(node as any).hash = "5458fbce7fca80cd9e83866d30fcd805";
+(node as any).hash = "cbcf2a077a3502313919d7b2d0ab8cbc";
 
 export default node;

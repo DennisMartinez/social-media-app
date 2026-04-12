@@ -1,8 +1,8 @@
 import { type ComponentProps } from 'react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Avatar } from '../common/avatar'
 import { type userAvatarFragment$key } from './__generated__/userAvatarFragment.graphql'
-import { Avatar } from './common/avatar'
 
 const UserAvatarFragment = graphql`
   fragment userAvatarFragment on User {

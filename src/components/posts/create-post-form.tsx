@@ -6,7 +6,7 @@ import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
 import { Input } from '../common/input'
-import { UserAvatar } from '../user-avatar'
+import { UserAvatar } from '../users/user-avatar'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
