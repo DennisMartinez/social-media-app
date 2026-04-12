@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bd4c8c5446f88ddd9064286cf5a5ea59>>
+ * @generated SignedSource<<39f2260b8677d9954a7088326f2e1681>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -69,7 +69,14 @@ v4 = {
   "name": "id",
   "storageKey": null
 },
-v5 = [
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "followingCount",
+  "storageKey": null
+},
+v6 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -130,16 +137,10 @@ return {
           {
             "kind": "InlineFragment",
             "selections": [
+              (v5/*: any*/),
               {
                 "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "followingCount",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": (v5/*: any*/),
+                "args": (v6/*: any*/),
                 "concreteType": "UserConnection",
                 "kind": "LinkedField",
                 "name": "following",
@@ -194,6 +195,14 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
+                            "name": "followerCount",
+                            "storageKey": null
+                          },
+                          (v5/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
                             "name": "avatarUrl",
                             "storageKey": null
                           },
@@ -241,7 +250,7 @@ return {
               },
               {
                 "alias": null,
-                "args": (v5/*: any*/),
+                "args": (v6/*: any*/),
                 "filters": null,
                 "handle": "connection",
                 "key": "User_following",
@@ -258,12 +267,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c45a36bc291e3dd507248f190562e8be",
+    "cacheID": "0ad49d2cf76220915a2b5a8fc20713ce",
     "id": null,
     "metadata": {},
     "name": "followingsCardPaginationQuery",
     "operationKind": "query",
-    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  followingCount\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  followingCount\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

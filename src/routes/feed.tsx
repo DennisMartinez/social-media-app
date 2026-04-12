@@ -15,8 +15,11 @@ const FeedQuery = graphql`
       ...feedListViewerFragment
       ...createPostFormFragment
       ...recommendedFollowsFragment
+      ...recommendedFollowsViewerFragment
       ...followersCardFragment
       ...followingsCardFragment
+      ...followersCardViewerFragment
+      ...followingsCardViewerFragment
     }
     ...navigationFragment
   }
@@ -33,9 +36,9 @@ export function Component() {
             <Navigation query={data} />
           </div>
           <div className="flex shrink-0 flex-col gap-4 xl:hidden">
-            <RecommendedFollows user={data.viewer} />
-            <FollowersCard user={data.viewer} />
-            <FollowingsCard user={data.viewer} />
+            <RecommendedFollows viewer={data.viewer} user={data.viewer} />
+            <FollowersCard viewer={data.viewer} user={data.viewer} />
+            <FollowingsCard viewer={data.viewer} user={data.viewer} />
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-4">
@@ -43,9 +46,9 @@ export function Component() {
           <FeedList viewer={data.viewer} user={data.viewer} />
         </div>
         <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">
-          <RecommendedFollows user={data.viewer} />
-          <FollowersCard user={data.viewer} />
-          <FollowingsCard user={data.viewer} />
+          <RecommendedFollows viewer={data.viewer} user={data.viewer} />
+          <FollowersCard viewer={data.viewer} user={data.viewer} />
+          <FollowingsCard viewer={data.viewer} user={data.viewer} />
         </div>
       </div>
     </div>

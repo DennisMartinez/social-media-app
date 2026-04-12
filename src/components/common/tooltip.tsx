@@ -43,7 +43,7 @@ interface TooltipContentProps extends BaseTooltip.Popup.Props {
 export function TooltipContent({
   align,
   side,
-  sideOffset,
+  sideOffset = 5,
   alignOffset,
   children,
   ...props

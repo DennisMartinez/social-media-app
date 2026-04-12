@@ -11,24 +11,33 @@ import {
 } from '../common/user-badge'
 import { UserAvatar } from '../users/user-avatar'
 import { type followeeFragment$key } from './__generated__/followeeFragment.graphql'
+import { type followeeViewerFragment$key } from './__generated__/followeeViewerFragment.graphql'
 import { FollowButton } from './follow-button'
+
+const FolloweeViewerFragment = graphql`
+  fragment followeeViewerFragment on User {
+    ...followButtonFollowerFragment
+  }
+`
 
 const FolloweeFragment = graphql`
   fragment followeeFragment on User {
     id
     name
     email
-    ...followButtonFragment
+    ...followButtonFolloweeFragment
     ...userAvatarFragment
   }
 `
 
 interface FolloweeProps {
+  viewer: followeeViewerFragment$key
   followee: followeeFragment$key
 }
 
-export function Followee({ followee }: FolloweeProps) {
+export function Followee({ viewer, followee }: FolloweeProps) {
   const data = useFragment(FolloweeFragment, followee)
+  const viewerData = useFragment(FolloweeViewerFragment, viewer)
 
   return (
     <UserBadge>
@@ -44,7 +53,7 @@ export function Followee({ followee }: FolloweeProps) {
         <UserBadgeSubtitle>{data.email}</UserBadgeSubtitle>
       </UserBadgeInfo>
       <UserBadgeAction>
-        <FollowButton followee={data} />
+        <FollowButton follower={viewerData} followee={data} />
       </UserBadgeAction>
     </UserBadge>
   )

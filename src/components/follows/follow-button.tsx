@@ -1,15 +1,23 @@
-import type { ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { useFollow, useUnfollow } from '../../hooks/use-follows'
 import { Button } from '../common/button'
-import { type followButtonFragment$key } from './__generated__/followButtonFragment.graphql'
+import { type followButtonFolloweeFragment$key } from './__generated__/followButtonFolloweeFragment.graphql'
+import { type followButtonFollowerFragment$key } from './__generated__/followButtonFollowerFragment.graphql'
 
-const FollowButtonFragment = graphql`
-  fragment followButtonFragment on User {
+const FollowButtonFollowerFragment = graphql`
+  fragment followButtonFollowerFragment on User {
+    ...useFollowsFollowerFragment
+  }
+`
+
+const FollowButtonFolloweeFragment = graphql`
+  fragment followButtonFolloweeFragment on User {
     id
     viewerIsFollowing
     viewerCanFollow
+    ...useFollowsFolloweeFragment
   }
 `
 
@@ -17,19 +25,25 @@ interface FollowButtonProps extends Omit<
   ComponentProps<typeof Button>,
   'children'
 > {
-  followee: followButtonFragment$key
+  follower: followButtonFollowerFragment$key
+  followee: followButtonFolloweeFragment$key
 }
 
 export function FollowButton({
+  follower,
   followee,
   onClick,
   ...props
 }: FollowButtonProps) {
-  const data = useFragment(FollowButtonFragment, followee)
-  const [follow] = useFollow()
-  const [unfollow] = useUnfollow()
+  const followerData = useFragment(FollowButtonFollowerFragment, follower)
+  const followeeData = useFragment(FollowButtonFolloweeFragment, followee)
+  const [follow] = useFollow({ follower: followerData, followee: followeeData })
+  const [unfollow] = useUnfollow({
+    follower: followerData,
+    followee: followeeData
+  })
 
-  if (!data.viewerCanFollow) {
+  if (!followeeData.viewerCanFollow) {
     return null
   }
 
@@ -37,19 +51,19 @@ export function FollowButton({
     <Button
       {...props}
       size="xs"
-      variant={data.viewerIsFollowing ? 'outline' : 'primary'}
+      variant={followeeData.viewerIsFollowing ? 'outline' : 'primary'}
       {...props}
       onClick={(e) => {
-        if (data.viewerIsFollowing) {
-          unfollow({ userId: data.id })
+        if (followeeData.viewerIsFollowing) {
+          unfollow({ userId: followeeData.id })
           onClick?.(e)
           return
         }
 
-        follow({ userId: data.id })
+        follow({ userId: followeeData.id })
         onClick?.(e)
       }}>
-      {data.viewerIsFollowing ? 'Unfollow' : 'Follow'}
+      {followeeData.viewerIsFollowing ? 'Unfollow' : 'Follow'}
     </Button>
   )
 }

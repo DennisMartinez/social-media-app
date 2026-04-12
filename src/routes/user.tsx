@@ -3,7 +3,6 @@ import { useParams } from 'react-router'
 import { graphql } from 'relay-runtime'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
-import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation/navigation'
 import { PostList } from '../components/posts/post-list'
 import { ProfileHeader } from '../components/profiles/profile-header'
@@ -13,12 +12,14 @@ const UserQuery = graphql`
   query userQuery($id: ID!) {
     viewer {
       ...postListViewerFragment
+      ...profileHeaderViewerFragment
+      ...followersCardViewerFragment
+      ...followingsCardViewerFragment
     }
     node(id: $id) {
       ... on User {
         ...profileHeaderFragment
         ...postListFragment
-        ...recommendedFollowsFragment
         ...followersCardFragment
         ...followingsCardFragment
       }
@@ -43,20 +44,19 @@ export function Component() {
             <Navigation query={data} />
           </div>
           <div className="flex shrink-0 flex-col gap-4 xl:hidden">
-            <RecommendedFollows user={data.node} />
-            <FollowersCard user={data.node} />
-            <FollowingsCard user={data.node} />
+            <FollowersCard viewer={data.viewer} user={data.node} />
+            <FollowingsCard viewer={data.viewer} user={data.node} />
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-8">
-          <ProfileHeader user={data.node} />
+          <ProfileHeader viewer={data.viewer} user={data.node} />
           <div className="flex w-full flex-col gap-8 md:flex-row">
             <div className="flex w-full min-w-0 flex-col gap-4">
               <PostList viewer={data.viewer} user={data.node} />
             </div>
             <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">
-              <FollowersCard user={data.node} />
-              <FollowingsCard user={data.node} />
+              <FollowersCard viewer={data.viewer} user={data.node} />
+              <FollowingsCard viewer={data.viewer} user={data.node} />
             </div>
           </div>
         </div>

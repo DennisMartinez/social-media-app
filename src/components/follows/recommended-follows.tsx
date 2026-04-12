@@ -1,9 +1,16 @@
-import { usePaginationFragment } from 'react-relay'
+import { useFragment, usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Button } from '../common/button'
 import { Card, CardBody, CardHeader, CardTitle } from '../common/card'
 import { type recommendedFollowsFragment$key } from './__generated__/recommendedFollowsFragment.graphql'
+import { type recommendedFollowsViewerFragment$key } from './__generated__/recommendedFollowsViewerFragment.graphql'
 import { Followee } from './followee'
+
+const RecommendedFollowsViewerFragment = graphql`
+  fragment recommendedFollowsViewerFragment on User {
+    ...followeeViewerFragment
+  }
+`
 
 const RecommendedFollowsFragment = graphql`
   fragment recommendedFollowsFragment on User
@@ -25,10 +32,12 @@ const RecommendedFollowsFragment = graphql`
 `
 
 interface RecommendedFollowsProps {
+  viewer: recommendedFollowsViewerFragment$key
   user: recommendedFollowsFragment$key
 }
 
-export function RecommendedFollows({ user }: RecommendedFollowsProps) {
+export function RecommendedFollows({ viewer, user }: RecommendedFollowsProps) {
+  const viewerData = useFragment(RecommendedFollowsViewerFragment, viewer)
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
     RecommendedFollowsFragment,
     user
@@ -48,7 +57,13 @@ export function RecommendedFollows({ user }: RecommendedFollowsProps) {
           )}
           {data.recommendedFollows?.edges?.map((edge) => {
             if (!edge?.node) return null
-            return <Followee key={edge.node.id} followee={edge.node} />
+            return (
+              <Followee
+                key={edge.node.id}
+                viewer={viewerData}
+                followee={edge.node}
+              />
+            )
           })}
           {hasNext && (
             <Button

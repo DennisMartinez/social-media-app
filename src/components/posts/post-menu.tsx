@@ -13,6 +13,13 @@ import { useFollow, useUnfollow } from '../../hooks/use-follows'
 import { useLike, useUnlike } from '../../hooks/use-likes'
 import { type postMenuDestroyMutation } from './__generated__/postMenuDestroyMutation.graphql'
 import { type postMenuFragment$key } from './__generated__/postMenuFragment.graphql'
+import { type postMenuViewerFragment$key } from './__generated__/postMenuViewerFragment.graphql'
+
+const PostMenuViewerFragment = graphql`
+  fragment postMenuViewerFragment on User {
+    ...useFollowsFollowerFragment
+  }
+`
 
 const PostMenuFragment = graphql`
   fragment postMenuFragment on Post {
@@ -23,6 +30,7 @@ const PostMenuFragment = graphql`
       id
       viewerIsFollowing
       viewerCanFollow
+      ...useFollowsFolloweeFragment
     }
     ...useLikesLikeableFragment
   }
@@ -39,17 +47,24 @@ const PostMenuDestroyMutation = graphql`
 `
 
 interface PostMenuProps {
+  viewer: postMenuViewerFragment$key
   post: postMenuFragment$key
 }
 
-export function PostMenu({ post }: PostMenuProps) {
+export function PostMenu({ viewer, post }: PostMenuProps) {
   const data = useFragment(PostMenuFragment, post)
+  const viewerData = useFragment(PostMenuViewerFragment, viewer)
   const [destroyPost, isDestroyingPost] = useMutation<postMenuDestroyMutation>(
     PostMenuDestroyMutation
   )
-  const [follow, isPendingFollow] = useFollow()
-  const [unfollow, isPendingUnfollow] = useUnfollow()
-
+  const [follow, isPendingFollow] = useFollow({
+    follower: viewerData,
+    followee: data.user
+  })
+  const [unfollow, isPendingUnfollow] = useUnfollow({
+    follower: viewerData,
+    followee: data.user
+  })
   const [like, isPendingLike] = useLike(data)
   const [unlike, isPendingUnlike] = useUnlike(data)
 

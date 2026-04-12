@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8920b367dea1c38feb552aa89b5aff15>>
+ * @generated SignedSource<<7cbb41668f049ea1e9d0564d2cb746fc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -187,6 +187,20 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
+                            "name": "followerCount",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "followingCount",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
                             "name": "avatarUrl",
                             "storageKey": null
                           },
@@ -251,12 +265,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1b90095300ad57f2805f1212c18995ab",
+    "cacheID": "f97bed8be3afffbd8ef0220ab4ad2e5e",
     "id": null,
     "metadata": {},
     "name": "recommendedFollowsPaginationQuery",
     "operationKind": "query",
-    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...userAvatarFragment\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

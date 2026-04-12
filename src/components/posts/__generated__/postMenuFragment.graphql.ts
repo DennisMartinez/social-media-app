@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25cd5078423bb4d900f7ae4b6c5dbf16>>
+ * @generated SignedSource<<d26ffc8ac3a0d4c3ccad082c725bea01>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type postMenuFragment$data = {
     readonly id: string;
     readonly viewerCanFollow: boolean;
     readonly viewerIsFollowing: boolean;
+    readonly " $fragmentSpreads": FragmentRefs<"useFollowsFolloweeFragment">;
   };
   readonly viewerCanDestroy: boolean;
   readonly viewerHasLiked: boolean;
@@ -78,6 +79,11 @@ return {
           "kind": "ScalarField",
           "name": "viewerCanFollow",
           "storageKey": null
+        },
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "useFollowsFolloweeFragment"
         }
       ],
       "storageKey": null
@@ -93,6 +99,6 @@ return {
 };
 })();
 
-(node as any).hash = "cf9aca18ddca4848a7dc18735b1a7993";
+(node as any).hash = "f1519226be8f91bb4d0a9bc24abdf876";
 
 export default node;

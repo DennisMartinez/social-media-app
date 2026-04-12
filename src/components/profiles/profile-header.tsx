@@ -5,9 +5,16 @@ import { Card, CardBody } from '../common/card'
 import { FollowButton } from '../follows/follow-button'
 import { UserAvatar } from '../users/user-avatar'
 import { type profileHeaderFragment$key } from './__generated__/profileHeaderFragment.graphql'
+import { type profileHeaderViewerFragment$key } from './__generated__/profileHeaderViewerFragment.graphql'
 import { ProfileStats } from './profile-stats'
 
-const profileHeaderFragment = graphql`
+const ProfileHeaderViewerFragment = graphql`
+  fragment profileHeaderViewerFragment on User {
+    ...followButtonFollowerFragment
+  }
+`
+
+const ProfileHeaderFragment = graphql`
   fragment profileHeaderFragment on User {
     id
     name
@@ -15,16 +22,18 @@ const profileHeaderFragment = graphql`
     bio
     ...profileStatsFragment
     ...userAvatarFragment
-    ...followButtonFragment
+    ...followButtonFolloweeFragment
   }
 `
 
 interface ProfileHeaderProps {
+  viewer: profileHeaderViewerFragment$key
   user: profileHeaderFragment$key
 }
 
-export function ProfileHeader({ user }: ProfileHeaderProps) {
-  const data = useFragment(profileHeaderFragment, user)
+export function ProfileHeader({ viewer, user }: ProfileHeaderProps) {
+  const data = useFragment(ProfileHeaderFragment, user)
+  const viewerData = useFragment(ProfileHeaderViewerFragment, viewer)
 
   return (
     <Card className="p-6">
@@ -36,7 +45,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
             <h1 className="truncate text-2xl font-bold">{data.name}</h1>
             <div className="-order-1 flex items-center gap-6 lg:order-1">
               <ProfileStats user={data} />
-              <FollowButton followee={data} />
+              <FollowButton follower={viewerData} followee={data} />
             </div>
           </div>
           <Badge>

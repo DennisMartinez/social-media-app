@@ -16,6 +16,7 @@ const PostViewerFragment = graphql`
     name
     ...userAvatarFragment
     ...createCommentFormViewerFragment
+    ...postMenuViewerFragment
   }
 `
 
@@ -46,7 +47,7 @@ export function Post({ viewer, post }: PostProps) {
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <PostUser user={data} />
-          <PostMenu post={data} />
+          <PostMenu viewer={viewerData} post={data} />
         </div>
       </CardHeader>
       <CardBody>

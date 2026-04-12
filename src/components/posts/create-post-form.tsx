@@ -68,8 +68,6 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
           .filter((id) => env.getStore().getSource().get(id))
 
-        console.log(data.avatarUrl)
-
         reset()
         createPost({
           variables: {

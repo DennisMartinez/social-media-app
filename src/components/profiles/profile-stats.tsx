@@ -3,7 +3,7 @@ import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { formatNumber, pluralize } from '../../utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../common/tooltip'
-import type { profileStatsFragment$key } from './__generated__/profileStatsFragment.graphql'
+import { type profileStatsFragment$key } from './__generated__/profileStatsFragment.graphql'
 
 const ProfileStatsFragment = graphql`
   fragment profileStatsFragment on User {
@@ -22,40 +22,38 @@ export function ProfileStats({ user }: ProfileStatsProps) {
 
   return (
     <div className="flex gap-6">
-      <Tooltip>
+      <Tooltip delay={0}>
         <TooltipTrigger>
-          <div className="flex items-center gap-1 text-gray-500">
+          <div className="flex items-center gap-1 text-sm text-gray-500">
             <ScrollText className="size-4" />
             {formatNumber(data.postCount)}
           </div>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent sideOffset={8}>
           {formatNumber(data.postCount)}{' '}
           {pluralize(data.postCount, 'Post', 'Posts')}
         </TooltipContent>
       </Tooltip>
-
-      <Tooltip>
+      <Tooltip delay={0}>
         <TooltipTrigger>
-          <div className="flex items-center gap-1 text-gray-500">
+          <div className="flex items-center gap-1 text-sm text-gray-500">
             <MessageCircle className="size-4" />
             {formatNumber(data.commentCount)}
           </div>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent sideOffset={8}>
           {formatNumber(data.commentCount)}{' '}
           {pluralize(data.commentCount, 'Comment', 'Comments')}
         </TooltipContent>
       </Tooltip>
-
-      <Tooltip>
+      <Tooltip delay={0}>
         <TooltipTrigger>
-          <div className="flex items-center gap-1 text-gray-500">
+          <div className="flex items-center gap-1 text-sm text-gray-500">
             <ThumbsUpIcon className="size-4" />
             {formatNumber(data.likeCount)}
           </div>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent sideOffset={8}>
           {formatNumber(data.likeCount)}{' '}
           {pluralize(data.likeCount, 'Like', 'Likes')}
         </TooltipContent>

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a62705828d827b0cf04ae7335c89f66c>>
+ * @generated SignedSource<<c94d8c3e38401bfecd8971a5c7e1b16c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type profileQuery$variables = Record<PropertyKey, never>;
 export type profileQuery$data = {
   readonly viewer: {
-    readonly " $fragmentSpreads": FragmentRefs<"createPostFormFragment" | "followersCardFragment" | "followingsCardFragment" | "postListFragment" | "postListViewerFragment" | "profileHeaderFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"createPostFormFragment" | "followersCardFragment" | "followersCardViewerFragment" | "followingsCardFragment" | "followingsCardViewerFragment" | "postListFragment" | "postListViewerFragment" | "profileHeaderFragment" | "profileHeaderViewerFragment">;
   };
   readonly " $fragmentSpreads": FragmentRefs<"navigationFragment">;
 };
@@ -65,49 +65,63 @@ v5 = {
   "name": "viewerCanFollow",
   "storageKey": null
 },
-v6 = [
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "followerCount",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "followingCount",
+  "storageKey": null
+},
+v8 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 5
   }
 ],
-v7 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
   "storageKey": null
 },
-v8 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "content",
   "storageKey": null
 },
-v9 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v10 = [
+v12 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 1
   }
 ],
-v11 = {
+v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "cursor",
   "storageKey": null
 },
-v12 = {
+v14 = {
   "alias": null,
   "args": null,
   "concreteType": "PageInfo",
@@ -132,14 +146,14 @@ v12 = {
   ],
   "storageKey": null
 },
-v13 = [
+v15 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 3
   }
 ],
-v14 = [
+v16 = [
   {
     "alias": null,
     "args": null,
@@ -161,16 +175,18 @@ v14 = [
           (v2/*: any*/),
           (v4/*: any*/),
           (v5/*: any*/),
+          (v6/*: any*/),
+          (v7/*: any*/),
           (v3/*: any*/),
-          (v9/*: any*/)
+          (v11/*: any*/)
         ],
         "storageKey": null
       },
-      (v11/*: any*/)
+      (v13/*: any*/)
     ],
     "storageKey": null
   },
-  (v12/*: any*/)
+  (v14/*: any*/)
 ];
 return {
   "fragment": {
@@ -191,6 +207,11 @@ return {
             "args": null,
             "kind": "FragmentSpread",
             "name": "profileHeaderFragment"
+          },
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "profileHeaderViewerFragment"
           },
           {
             "args": null,
@@ -216,6 +237,16 @@ return {
             "args": null,
             "kind": "FragmentSpread",
             "name": "followingsCardFragment"
+          },
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "followersCardViewerFragment"
+          },
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "followingsCardViewerFragment"
           }
         ],
         "storageKey": null
@@ -277,9 +308,11 @@ return {
           (v3/*: any*/),
           (v4/*: any*/),
           (v5/*: any*/),
+          (v6/*: any*/),
+          (v7/*: any*/),
           {
             "alias": null,
-            "args": (v6/*: any*/),
+            "args": (v8/*: any*/),
             "concreteType": "PostConnection",
             "kind": "LinkedField",
             "name": "posts",
@@ -302,7 +335,7 @@ return {
                     "plural": false,
                     "selections": [
                       (v0/*: any*/),
-                      (v7/*: any*/),
+                      (v9/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -315,11 +348,13 @@ return {
                           (v1/*: any*/),
                           (v3/*: any*/),
                           (v4/*: any*/),
-                          (v5/*: any*/)
+                          (v5/*: any*/),
+                          (v6/*: any*/),
+                          (v7/*: any*/)
                         ],
                         "storageKey": null
                       },
-                      (v8/*: any*/),
+                      (v10/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -348,7 +383,7 @@ return {
                         "name": "viewerCanDestroy",
                         "storageKey": null
                       },
-                      (v9/*: any*/),
+                      (v11/*: any*/),
                       {
                         "kind": "InlineFragment",
                         "selections": [
@@ -357,7 +392,7 @@ return {
                             "selections": [
                               {
                                 "alias": null,
-                                "args": (v10/*: any*/),
+                                "args": (v12/*: any*/),
                                 "concreteType": "CommentConnection",
                                 "kind": "LinkedField",
                                 "name": "comments",
@@ -380,7 +415,7 @@ return {
                                         "plural": false,
                                         "selections": [
                                           (v0/*: any*/),
-                                          (v7/*: any*/),
+                                          (v9/*: any*/),
                                           {
                                             "alias": null,
                                             "args": null,
@@ -395,22 +430,22 @@ return {
                                             ],
                                             "storageKey": null
                                           },
-                                          (v8/*: any*/),
-                                          (v9/*: any*/)
+                                          (v10/*: any*/),
+                                          (v11/*: any*/)
                                         ],
                                         "storageKey": null
                                       },
-                                      (v11/*: any*/)
+                                      (v13/*: any*/)
                                     ],
                                     "storageKey": null
                                   },
-                                  (v12/*: any*/)
+                                  (v14/*: any*/)
                                 ],
                                 "storageKey": "comments(first:1)"
                               },
                               {
                                 "alias": null,
-                                "args": (v10/*: any*/),
+                                "args": (v12/*: any*/),
                                 "filters": null,
                                 "handle": "connection",
                                 "key": "Post_comments",
@@ -440,17 +475,17 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v11/*: any*/)
+                  (v13/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v12/*: any*/)
+              (v14/*: any*/)
             ],
             "storageKey": "posts(first:5)"
           },
           {
             "alias": null,
-            "args": (v6/*: any*/),
+            "args": (v8/*: any*/),
             "filters": null,
             "handle": "connection",
             "key": "User_posts",
@@ -459,24 +494,17 @@ return {
           },
           {
             "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "followerCount",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": (v13/*: any*/),
+            "args": (v15/*: any*/),
             "concreteType": "UserConnection",
             "kind": "LinkedField",
             "name": "followers",
             "plural": false,
-            "selections": (v14/*: any*/),
+            "selections": (v16/*: any*/),
             "storageKey": "followers(first:3)"
           },
           {
             "alias": null,
-            "args": (v13/*: any*/),
+            "args": (v15/*: any*/),
             "filters": null,
             "handle": "connection",
             "key": "User_followers",
@@ -485,24 +513,17 @@ return {
           },
           {
             "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "followingCount",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": (v13/*: any*/),
+            "args": (v15/*: any*/),
             "concreteType": "UserConnection",
             "kind": "LinkedField",
             "name": "following",
             "plural": false,
-            "selections": (v14/*: any*/),
+            "selections": (v16/*: any*/),
             "storageKey": "following(first:3)"
           },
           {
             "alias": null,
-            "args": (v13/*: any*/),
+            "args": (v15/*: any*/),
             "filters": null,
             "handle": "connection",
             "key": "User_following",
@@ -515,16 +536,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "116de5e1afaef41d78abbb79a367f9b2",
+    "cacheID": "9f614f4ea30cbdcb92daf70d34270174",
     "id": null,
     "metadata": {},
     "name": "profileQuery",
     "operationKind": "query",
-    "text": "query profileQuery {\n  viewer {\n    ...profileHeaderFragment\n    ...postListFragment\n    ...postListViewerFragment\n    ...createPostFormFragment\n    ...followersCardFragment\n    ...followingsCardFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormViewerFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment createPostFormFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followersCardFragment on User {\n  followerCount\n  followers(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment followingsCardFragment on User {\n  followingCount\n  following(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...userAvatarFragment\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  ...postUserFragment\n  ...postContentFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListViewerFragment on User {\n  ...postViewerFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postUserFragment on Post {\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n}\n\nfragment postViewerFragment on User {\n  name\n  ...userAvatarFragment\n  ...createCommentFormViewerFragment\n}\n\nfragment profileHeaderFragment on User {\n  id\n  name\n  email\n  bio\n  ...profileStatsFragment\n  ...userAvatarFragment\n  ...followButtonFragment\n}\n\nfragment profileStatsFragment on User {\n  postCount\n  likeCount\n  commentCount\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query profileQuery {\n  viewer {\n    ...profileHeaderFragment\n    ...profileHeaderViewerFragment\n    ...postListFragment\n    ...postListViewerFragment\n    ...createPostFormFragment\n    ...followersCardFragment\n    ...followingsCardFragment\n    ...followersCardViewerFragment\n    ...followingsCardViewerFragment\n    id\n  }\n  ...navigationFragment\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment createCommentFormViewerFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment createPostFormFragment on User {\n  id\n  name\n  avatarUrl\n  ...userAvatarFragment\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followButtonFollowerFragment on User {\n  ...useFollowsFollowerFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...userAvatarFragment\n}\n\nfragment followeeViewerFragment on User {\n  ...followButtonFollowerFragment\n}\n\nfragment followersCardFragment on User {\n  followerCount\n  followers(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment followersCardViewerFragment on User {\n  ...followeeViewerFragment\n}\n\nfragment followingsCardFragment on User {\n  followingCount\n  following(first: 3) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment followingsCardViewerFragment on User {\n  ...followeeViewerFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...userAvatarFragment\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  ...postUserFragment\n  ...postContentFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postListFragment on User {\n  posts(first: 5) {\n    edges {\n      node {\n        id\n        ...postFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment postListViewerFragment on User {\n  ...postViewerFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n    ...useFollowsFolloweeFragment\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postMenuViewerFragment on User {\n  ...useFollowsFollowerFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postUserFragment on Post {\n  createdAt\n  user {\n    id\n    name\n    ...userAvatarFragment\n  }\n}\n\nfragment postViewerFragment on User {\n  name\n  ...userAvatarFragment\n  ...createCommentFormViewerFragment\n  ...postMenuViewerFragment\n}\n\nfragment profileHeaderFragment on User {\n  id\n  name\n  email\n  bio\n  ...profileStatsFragment\n  ...userAvatarFragment\n  ...followButtonFolloweeFragment\n}\n\nfragment profileHeaderViewerFragment on User {\n  ...followButtonFollowerFragment\n}\n\nfragment profileStatsFragment on User {\n  postCount\n  likeCount\n  commentCount\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment useFollowsFollowerFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "93339f62f714e1ffb36f2eac7d4321c5";
+(node as any).hash = "d9a31bf825eab9597451861b2219c199";
 
 export default node;

@@ -11,11 +11,14 @@ const ProfileQuery = graphql`
   query profileQuery {
     viewer {
       ...profileHeaderFragment
+      ...profileHeaderViewerFragment
       ...postListFragment
       ...postListViewerFragment
       ...createPostFormFragment
       ...followersCardFragment
       ...followingsCardFragment
+      ...followersCardViewerFragment
+      ...followingsCardViewerFragment
     }
     ...navigationFragment
   }
@@ -32,19 +35,19 @@ export function Component() {
             <Navigation query={data} />
           </div>
           <div className="flex shrink-0 flex-col gap-4 xl:hidden">
-            <FollowersCard user={data.viewer} />
-            <FollowingsCard user={data.viewer} />
+            <FollowersCard viewer={data.viewer} user={data.viewer} />
+            <FollowingsCard viewer={data.viewer} user={data.viewer} />
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-8">
-          <ProfileHeader user={data.viewer} />
+          <ProfileHeader viewer={data.viewer} user={data.viewer} />
           <div className="flex w-full flex-col gap-8 md:flex-row">
             <div className="flex w-full min-w-0 flex-col gap-4">
               <PostList viewer={data.viewer} user={data.viewer} />
             </div>
             <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">
-              <FollowersCard user={data.viewer} />
-              <FollowingsCard user={data.viewer} />
+              <FollowersCard viewer={data.viewer} user={data.viewer} />
+              <FollowingsCard viewer={data.viewer} user={data.viewer} />
             </div>
           </div>
         </div>
