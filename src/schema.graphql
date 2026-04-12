@@ -613,6 +613,9 @@ type User implements Node {
   """The URL of the user's avatar image."""
   avatarUrl: String
 
+  """The number of comments made by the user."""
+  commentCount: Int!
+
   """The comments made by the user."""
   comments(
     """Returns the elements in the list that come after the specified cursor."""
@@ -696,6 +699,9 @@ type User implements Node {
   """ID of the object."""
   id: ID!
 
+  """The number of likes made by the user."""
+  likeCount: Int!
+
   """The likes made by the user."""
   likes(
     """Returns the elements in the list that come after the specified cursor."""
@@ -715,6 +721,9 @@ type User implements Node {
 
   """The name of the user."""
   name: String!
+
+  """The number of posts created by the user."""
+  postCount: Int!
 
   """The posts created by the user."""
   posts(

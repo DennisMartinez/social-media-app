@@ -27,7 +27,7 @@ export function Component() {
 
   return (
     <div className="p-8">
-      <div className="mx-auto flex max-w-7xl grow flex-col gap-8 md:flex-row">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 md:flex-row">
         <div className="flex w-full shrink-0 flex-col gap-4 md:w-72">
           <div className="top-8 xl:sticky">
             <Navigation query={data} />

@@ -12,6 +12,13 @@ export function pluralize(count: number, singular: string, plural: string) {
   return pluralForm === 'one' ? singular : plural
 }
 
+export function formatNumber(num: number) {
+  return new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short'
+  }).format(num)
+}
+
 export function formatDate(date: Date | string | number) {
   const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000)
   const rtf = new Intl.RelativeTimeFormat('en-US', { numeric: 'auto' })

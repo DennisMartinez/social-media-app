@@ -19,6 +19,8 @@ export function useFollow() {
           followedUser {
             id
             viewerIsFollowing
+            followerCount
+            followingCount
           }
         }
       }
@@ -41,7 +43,9 @@ export function useFollow() {
             errors: [],
             followedUser: {
               id: input.userId,
-              viewerIsFollowing: true
+              viewerIsFollowing: true,
+              followerCount: 0,
+              followingCount: 0
             }
           }
         }
@@ -62,6 +66,8 @@ export function useUnfollow() {
           unfollowedUser {
             id
             viewerIsFollowing
+            followerCount
+            followingCount
           }
         }
       }
@@ -84,7 +90,9 @@ export function useUnfollow() {
             errors: [],
             unfollowedUser: {
               id: input.userId,
-              viewerIsFollowing: false
+              viewerIsFollowing: false,
+              followerCount: 0,
+              followingCount: 0
             }
           }
         }

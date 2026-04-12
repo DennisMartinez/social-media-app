@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1ef3f5154d9e8452c4d940ed5fa08de3>>
+ * @generated SignedSource<<bd4c8c5446f88ddd9064286cf5a5ea59>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -132,6 +132,13 @@ return {
             "selections": [
               {
                 "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "followingCount",
+                "storageKey": null
+              },
+              {
+                "alias": null,
                 "args": (v5/*: any*/),
                 "concreteType": "UserConnection",
                 "kind": "LinkedField",
@@ -251,16 +258,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bbf364ea22de57e0c4d89e87bdf0c6a0",
+    "cacheID": "c45a36bc291e3dd507248f190562e8be",
     "id": null,
     "metadata": {},
     "name": "followingsCardPaginationQuery",
     "operationKind": "query",
-    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query followingsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...followingsCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFragment\n  ...userAvatarFragment\n}\n\nfragment followingsCardFragment_19XkED on User {\n  followingCount\n  following(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();
 
-(node as any).hash = "86a1d63266ac060d341b498a5e49ce97";
+(node as any).hash = "3d5cc8776b8521daba532f3bc532c5ae";
 
 export default node;

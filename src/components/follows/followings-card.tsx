@@ -1,5 +1,6 @@
 import { usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { formatNumber } from '../../utils'
 import { Button } from '../common/button'
 import { Card, CardBody, CardHeader, CardTitle } from '../common/card'
 import { type followingsCardFragment$key } from './__generated__/followingsCardFragment.graphql'
@@ -12,6 +13,7 @@ const FollowingsCardFragment = graphql`
     cursor: { type: "String" }
     first: { type: "Int", defaultValue: 3 }
   ) {
+    followingCount
     following(after: $cursor, first: $first)
       @connection(key: "User_following") {
       edges {
@@ -37,7 +39,12 @@ export function FollowingsCard({ user }: FollowingsCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Following</CardTitle>
+        <CardTitle>
+          Following{' '}
+          <span className="text-gray-500">
+            ({formatNumber(data.followingCount)})
+          </span>
+        </CardTitle>
       </CardHeader>
       <CardBody>
         <div className="flex flex-col gap-4">

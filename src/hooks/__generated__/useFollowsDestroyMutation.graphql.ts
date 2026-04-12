@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1c4847c5982685d7d8ec19e5113d0e99>>
+ * @generated SignedSource<<88a0439c80824370b228e383ec6d7dc1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,6 +20,8 @@ export type useFollowsDestroyMutation$data = {
   readonly unfollowUser: {
     readonly errors: ReadonlyArray<string>;
     readonly unfollowedUser: {
+      readonly followerCount: number;
+      readonly followingCount: number;
       readonly id: string;
       readonly viewerIsFollowing: boolean;
     };
@@ -81,6 +83,20 @@ v1 = [
             "kind": "ScalarField",
             "name": "viewerIsFollowing",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "followerCount",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "followingCount",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -107,16 +123,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "52d3fe1de16a1b67a61a2b46dfda0813",
+    "cacheID": "9f76f44e0595a3fbed0618fab4328435",
     "id": null,
     "metadata": {},
     "name": "useFollowsDestroyMutation",
     "operationKind": "mutation",
-    "text": "mutation useFollowsDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      viewerIsFollowing\n    }\n  }\n}\n"
+    "text": "mutation useFollowsDestroyMutation(\n  $input: UnfollowUserInput!\n) {\n  unfollowUser(input: $input) {\n    errors\n    unfollowedUser {\n      id\n      viewerIsFollowing\n      followerCount\n      followingCount\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "a076323a1a34e30fdba8e382f8b8b7f9";
+(node as any).hash = "896a7e721ec485a28f158707e304534d";
 
 export default node;

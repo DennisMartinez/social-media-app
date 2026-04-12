@@ -27,7 +27,7 @@ import { cn } from '../../utils'
  * </Card>
  */
 
-const cardVariants = cva('flex flex-col gap-4', {
+const cardVariants = cva('flex flex-col gap-4 overflow-hidden', {
   variants: {
     variant: {
       default: 'bg-white'

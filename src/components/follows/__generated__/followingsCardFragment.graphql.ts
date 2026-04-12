@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1f5b98be8db10d4fc00f2f36caa7e01e>>
+ * @generated SignedSource<<d29e598d2c61a436d509f3076986af8f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,7 @@ export type followingsCardFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
+  readonly followingCount: number;
   readonly id: string;
   readonly " $fragmentType": "followingsCardFragment";
 };
@@ -84,6 +85,13 @@ return {
   },
   "name": "followingsCardFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "followingCount",
+      "storageKey": null
+    },
     {
       "alias": "following",
       "args": null,
@@ -169,6 +177,6 @@ return {
 };
 })();
 
-(node as any).hash = "86a1d63266ac060d341b498a5e49ce97";
+(node as any).hash = "3d5cc8776b8521daba532f3bc532c5ae";
 
 export default node;
