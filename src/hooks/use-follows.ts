@@ -72,8 +72,8 @@ export function useFollow({ follower, followee }: UseFollowProps) {
             errors: [],
             follower: {
               id: followerData.id,
-              followerCount: followerData.followerCount + 1,
-              followingCount: followerData.followingCount
+              followerCount: followerData.followerCount,
+              followingCount: followerData.followingCount + 1
             },
             followee: {
               id: followeeData.id,
@@ -143,8 +143,8 @@ export function useUnfollow({ follower, followee }: UseUnfollowProps) {
             errors: [],
             follower: {
               id: followerData.id,
-              followerCount: followerData.followerCount - 1,
-              followingCount: followerData.followingCount
+              followerCount: followerData.followerCount,
+              followingCount: followerData.followingCount - 1
             },
             followee: {
               id: followeeData.id,
