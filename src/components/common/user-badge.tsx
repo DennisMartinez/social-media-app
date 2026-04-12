@@ -20,7 +20,10 @@ import { cn } from '../../utils'
 
 export function UserBadge({ className, ...props }: ComponentProps<'div'>) {
   return (
-    <div {...props} className={cn('flex w-full min-w-0 gap-4', className)} />
+    <div
+      {...props}
+      className={cn('flex w-full min-w-0 items-center gap-4', className)}
+    />
   )
 }
 
@@ -36,7 +39,7 @@ export function UserBadgeTitle({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       {...props}
-      className={cn('truncate text-sm font-medium text-gray-900', className)}
+      className={cn('truncate font-medium text-gray-900', className)}
     />
   )
 }

@@ -14,7 +14,7 @@ export function pluralize(count: number, singular: string, plural: string) {
 
 export function formatDate(date: Date | string | number) {
   const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000)
-  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
+  const rtf = new Intl.RelativeTimeFormat('en-US', { numeric: 'auto' })
   const intervals: { label: Intl.RelativeTimeFormatUnit; seconds: number }[] = [
     { label: 'hour', seconds: 3600 },
     { label: 'minute', seconds: 60 },

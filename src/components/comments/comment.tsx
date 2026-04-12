@@ -1,6 +1,15 @@
 import { useFragment } from 'react-relay'
 import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
+import { formatDate } from '../../utils'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../common/tooltip'
+import {
+  UserBadge,
+  UserBadgeIcon,
+  UserBadgeInfo,
+  UserBadgeSubtitle,
+  UserBadgeTitle
+} from '../common/user-badge'
 import { UserAvatar } from '../users/user-avatar'
 import { type commentFragment$key } from './__generated__/commentFragment.graphql'
 import { CommentContent } from './comment-content'
@@ -27,21 +36,30 @@ export function Comment({ comment }: CommentProps) {
   const data = useFragment(CommentFragment, comment)
 
   return (
-    <div className="flex items-start gap-4">
-      <Link to={`/users/${data.user.id}`} className="mt-2">
-        <UserAvatar user={data.user} size="sm" />
-      </Link>
-      <div className="flex min-w-0 flex-col gap-2">
-        <div>
-          <Link
-            to={`/users/${data.user.id}`}
-            className="text-sm font-medium text-gray-900">
-            {data.user.name}
+    <div className="flex flex-col gap-2">
+      <UserBadge>
+        <UserBadgeIcon>
+          <Link to={`/users/${data.user.id}`}>
+            <UserAvatar user={data.user} size="md" />
           </Link>
-          <small className="block text-xs text-gray-500">
-            {new Date(data.createdAt).toLocaleString()}
-          </small>
-        </div>
+        </UserBadgeIcon>
+        <UserBadgeInfo>
+          <UserBadgeTitle className="text-sm">
+            <Link to={`/users/${data.user.id}`}>{data.user.name}</Link>
+          </UserBadgeTitle>
+          <UserBadgeSubtitle>
+            <Tooltip>
+              <TooltipTrigger className="text-xs">
+                {formatDate(data.createdAt)}
+              </TooltipTrigger>
+              <TooltipContent>
+                {new Date(data.createdAt).toLocaleString()}
+              </TooltipContent>
+            </Tooltip>
+          </UserBadgeSubtitle>
+        </UserBadgeInfo>
+      </UserBadge>
+      <div className="ml-14">
         <CommentContent comment={data} />
       </div>
     </div>
