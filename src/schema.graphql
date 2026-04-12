@@ -613,6 +613,9 @@ type User implements Node {
   """The URL of the user's avatar image."""
   avatarUrl: String
 
+  """A short biography of the user."""
+  bio: String
+
   """The number of comments made by the user."""
   commentCount: Int!
 

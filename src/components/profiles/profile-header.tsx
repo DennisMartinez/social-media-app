@@ -12,6 +12,7 @@ const profileHeaderFragment = graphql`
     id
     name
     email
+    bio
     ...profileStatsFragment
     ...userAvatarFragment
     ...followButtonFragment
@@ -43,7 +44,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
             {data.email}
           </Badge>
           <div className="text-center wrap-break-word text-gray-700 lg:text-left">
-            This user has no bio yet.
+            {data.bio || 'This user has no bio yet.'}
           </div>
         </div>
       </CardBody>
