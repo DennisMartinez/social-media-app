@@ -1,6 +1,6 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import type { postContentFragment$key } from './__generated__/postContentFragment.graphql'
+import { type postContentFragment$key } from './__generated__/postContentFragment.graphql'
 
 const PostContentFragment = graphql`
   fragment postContentFragment on Post {

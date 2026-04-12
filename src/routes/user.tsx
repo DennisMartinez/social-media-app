@@ -4,7 +4,7 @@ import { graphql } from 'relay-runtime'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
-import { Navigation } from '../components/navigation'
+import { Navigation } from '../components/navigation/navigation'
 import { PostList } from '../components/posts/post-list'
 import { type userQuery } from './__generated__/userQuery.graphql'
 

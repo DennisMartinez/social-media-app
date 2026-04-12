@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<23f0b65f2fc3b19849ff91ed98098677>>
+ * @generated SignedSource<<ea11787a139f7909a20755a854ac46e9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -83,12 +83,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "527c6b538765b0d11c319c451aff3e0e",
+    "cacheID": "ed050a759644b9c93ac7e8a5e381c884",
     "id": null,
     "metadata": {},
     "name": "groupsQuery",
     "operationKind": "query",
-    "text": "query groupsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    id\n    name\n    email\n    ...userAvatarFragment\n  }\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query groupsQuery {\n  ...navigationFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...userAvatarFragment\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 

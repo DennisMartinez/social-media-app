@@ -1,6 +1,6 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
-import { Navigation } from '../components/navigation'
+import { Navigation } from '../components/navigation/navigation'
 import { type groupsQuery } from './__generated__/groupsQuery.graphql'
 
 const GroupsQuery = graphql`

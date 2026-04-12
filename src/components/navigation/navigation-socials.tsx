@@ -1,54 +1,16 @@
-import { GlobeIcon, Newspaper, UserIcon, UsersIcon } from 'lucide-react'
-import { type PropsWithChildren } from 'react'
-import { useFragment } from 'react-relay'
-import { NavLink } from 'react-router'
-import { graphql } from 'relay-runtime'
-import { cn } from '../utils'
-import { type navigationFragment$key } from './__generated__/navigationFragment.graphql'
-import { SignOutButton } from './sign-out-button'
-import { UserAvatar } from './user-avatar'
+import { GlobeIcon } from 'lucide-react'
+import { Card, CardBody, CardHeader, CardTitle } from '../common/card'
+import { NavigationItem } from './navigation-item'
 
-const NavigationFragment = graphql`
-  fragment navigationFragment on Query {
-    viewer {
-      id
-      name
-      email
-      ...userAvatarFragment
-    }
-  }
-`
-
-interface NavigationProps {
-  query: navigationFragment$key
-}
-
-export function Navigation({ query }: NavigationProps) {
-  const data = useFragment(NavigationFragment, query)
-
+export function NavigationSocials() {
   return (
-    <nav className="flex flex-col gap-8 rounded-xl bg-white p-4">
-      <div className="flex flex-col gap-4">
-        <h2 className="text-sm font-medium">Main</h2>
+    <Card>
+      <CardHeader>
+        <CardTitle>Socials</CardTitle>
+      </CardHeader>
+      <CardBody>
         <ul className="flex flex-col gap-4">
-          <NavItem to="/">
-            <Newspaper />
-            Feed
-          </NavItem>
-          <NavItem to="/profile">
-            <UserIcon />
-            Profile
-          </NavItem>
-          <NavItem to="/groups">
-            <UsersIcon />
-            Groups
-          </NavItem>
-        </ul>
-      </div>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-sm font-medium">Socials</h2>
-        <ul className="flex flex-col gap-4">
-          <NavItem to="https://github.com/DennisMartinez">
+          <NavigationItem to="https://github.com/DennisMartinez">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -0.5 25 25"
@@ -59,8 +21,8 @@ export function Navigation({ query }: NavigationProps) {
               />
             </svg>
             GitHub
-          </NavItem>
-          <NavItem to="https://www.linkedin.com/in/dennis-martinez-3048573bb/">
+          </NavigationItem>
+          <NavigationItem to="https://www.linkedin.com/in/dennis-martinez-3048573bb/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -72,50 +34,13 @@ export function Navigation({ query }: NavigationProps) {
               />
             </svg>
             LinkedIn
-          </NavItem>
-          <NavItem to="https://www.dennismartinez.io">
+          </NavigationItem>
+          <NavigationItem to="https://www.dennismartinez.io">
             <GlobeIcon />
             Website
-          </NavItem>
+          </NavigationItem>
         </ul>
-      </div>
-      <div className="mt-auto flex w-full gap-4">
-        <UserAvatar user={data.viewer} />
-        <div>
-          <p className="text-sm font-medium text-gray-900">
-            {data.viewer.name}
-          </p>
-          <p className="text-sm text-gray-500">{data.viewer.email}</p>
-        </div>
-        <div className="ml-auto">
-          <SignOutButton />
-        </div>
-      </div>
-    </nav>
-  )
-}
-
-interface NavItemProps {
-  to: string
-}
-
-function NavItem({ to, children }: PropsWithChildren<NavItemProps>) {
-  return (
-    <li>
-      <NavLink
-        to={to}
-        className={({ isActive }) =>
-          cn(
-            'flex items-center gap-4 text-sm font-semibold tracking-wide [&_svg]:size-5',
-            {
-              'text-gray-900 hover:text-gray-900 [&_svg]:text-gray-600':
-                !isActive,
-              'text-blue-500': isActive
-            }
-          )
-        }>
-        {children}
-      </NavLink>
-    </li>
+      </CardBody>
+    </Card>
   )
 }
