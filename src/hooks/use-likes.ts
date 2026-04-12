@@ -25,6 +25,9 @@ const UseLikesLikeableFragment = graphql`
       viewerLike {
         id
       }
+      user {
+        likeCount
+      }
     }
   }
 `

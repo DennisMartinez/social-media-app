@@ -6,7 +6,6 @@ import { FollowButton } from '../follows/follow-button'
 import { UserAvatar } from '../users/user-avatar'
 import { type profileHeaderFragment$key } from './__generated__/profileHeaderFragment.graphql'
 import { type profileHeaderViewerFragment$key } from './__generated__/profileHeaderViewerFragment.graphql'
-import { ProfileStats } from './profile-stats'
 
 const ProfileHeaderViewerFragment = graphql`
   fragment profileHeaderViewerFragment on User {
@@ -20,7 +19,6 @@ const ProfileHeaderFragment = graphql`
     name
     email
     bio
-    ...profileStatsFragment
     ...userAvatarFragment
     ...followButtonFolloweeFragment
   }
@@ -43,10 +41,7 @@ export function ProfileHeader({ viewer, user }: ProfileHeaderProps) {
         <div className="flex w-full min-w-0 flex-col items-center gap-4 lg:mt-10 lg:items-start">
           <div className="flex w-full flex-col items-center justify-between gap-4 lg:flex-row">
             <h1 className="truncate text-2xl font-bold">{data.name}</h1>
-            <div className="-order-1 flex items-center gap-6 lg:order-1">
-              <ProfileStats user={data} />
-              <FollowButton follower={viewerData} followee={data} />
-            </div>
+            <FollowButton follower={viewerData} followee={data} />
           </div>
           <Badge>
             <MailIcon />
