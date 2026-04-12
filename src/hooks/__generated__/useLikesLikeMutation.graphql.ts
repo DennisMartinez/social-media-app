@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<345f9b86bee7d3e86b26450cf6e7ab43>>
+ * @generated SignedSource<<d84f8055bda390e691c194f9c607451c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -205,25 +205,6 @@ return {
                                   (v3/*: any*/)
                                 ],
                                 "storageKey": null
-                              },
-                              {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "User",
-                                "kind": "LinkedField",
-                                "name": "user",
-                                "plural": false,
-                                "selections": [
-                                  {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "likeCount",
-                                    "storageKey": null
-                                  },
-                                  (v3/*: any*/)
-                                ],
-                                "storageKey": null
                               }
                             ],
                             "type": "Post",
@@ -248,12 +229,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "50a74bccc8a259fff016a376414ba8da",
+    "cacheID": "40a6ce1bc792420954c9008d56c1d067",
     "id": null,
     "metadata": {},
     "name": "useLikesLikeMutation",
     "operationKind": "mutation",
-    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesLikeableFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n    user {\n      likeCount\n      id\n    }\n  }\n}\n"
+    "text": "mutation useLikesLikeMutation(\n  $input: CreateLikeInput!\n) {\n  createLike(input: $input) {\n    errors\n    likeEdge {\n      node {\n        id\n        likeable {\n          __typename\n          ...useLikesLikeableFragment\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n      }\n    }\n  }\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n"
   }
 };
 })();

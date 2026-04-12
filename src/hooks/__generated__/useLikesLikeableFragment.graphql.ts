@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fa8e64a1a574edefe8ed59a26b5f1193>>
+ * @generated SignedSource<<1082c66b793c58d27443393bbf865c8f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,9 +14,6 @@ export type useLikesLikeableFragment$data = {
   readonly __typename: string;
   readonly id: string;
   readonly likesCount?: number;
-  readonly user?: {
-    readonly likeCount: number;
-  };
   readonly viewerHasLiked?: boolean;
   readonly viewerLike?: {
     readonly id: string;
@@ -78,24 +75,6 @@ return {
             (v0/*: any*/)
           ],
           "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "concreteType": "User",
-          "kind": "LinkedField",
-          "name": "user",
-          "plural": false,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "likeCount",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
         }
       ],
       "type": "Post",
@@ -107,6 +86,6 @@ return {
 };
 })();
 
-(node as any).hash = "2c726372054ac8677b1340b55f19bcf6";
+(node as any).hash = "d50d78e39cb51519ec06cf0873399c47";
 
 export default node;
