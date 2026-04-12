@@ -24,7 +24,6 @@ const PostFragment = graphql`
     id
     ...postUserFragment
     ...postContentFragment
-    ...destroyPostFragment
     ...createCommentFormCommentableFragment
     ...commentListFragment
     ...postStatsFragment

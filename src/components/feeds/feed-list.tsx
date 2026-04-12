@@ -2,9 +2,9 @@ import { LoaderCircleIcon } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { useFragment, usePaginationFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { Post } from '../posts/post'
 import { type feedListFragment$key } from './__generated__/feedListFragment.graphql'
 import { type feedListViewerFragment$key } from './__generated__/feedListViewerFragment.graphql'
-import { Post } from './post'
 
 const FeedListViewerFragment = graphql`
   fragment feedListViewerFragment on User {

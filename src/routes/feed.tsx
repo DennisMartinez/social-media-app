@@ -1,11 +1,11 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { FeedList } from '../components/feeds/feed-list'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation/navigation'
 import { CreatePostForm } from '../components/posts/create-post-form'
-import { FeedList } from '../components/posts/feed-list'
 import { type feedQuery } from './__generated__/feedQuery.graphql'
 
 const FeedQuery = graphql`
