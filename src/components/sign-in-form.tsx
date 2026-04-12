@@ -80,7 +80,7 @@ export function SignInForm(props: ComponentProps<'form'>) {
       <FormField label="Password" required error={errors.password?.message}>
         <Input type="password" {...register('password')} />
       </FormField>
-      <Button disabled={isSigningIn}>Sign In</Button>
+      <Button loading={isSigningIn}>Sign In</Button>
       {error && (
         <Alert variant="danger">
           <AlertBody>

@@ -12,7 +12,7 @@ import { cn } from '../../utils'
  */
 
 const inputVariants = cva(
-  'block w-full rounded-full outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2',
+  'block w-full resize-none rounded-full outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2',
   {
     variants: {
       variant: {

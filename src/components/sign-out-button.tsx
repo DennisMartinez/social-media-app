@@ -23,7 +23,7 @@ export function SignOutButton() {
       variant="ghost"
       aria-label="Sign Out"
       className="size-10"
-      disabled={isSigningOut}
+      loading={isSigningOut}
       onClick={() => {
         signOut({
           variables: { input: {} },
@@ -33,7 +33,7 @@ export function SignOutButton() {
           onError: () => {}
         })
       }}>
-      <LogOutIcon />
+      {!isSigningOut && <LogOutIcon />}
     </Button>
   )
 }
