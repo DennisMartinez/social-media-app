@@ -58,7 +58,6 @@ aliases:
   shell: app exec --interactive --reuse "bash"
 
 # Use a different ssh user than root
-#
 ssh:
   user: deploy
   port: 2211
