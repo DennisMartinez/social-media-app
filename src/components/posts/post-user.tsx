@@ -1,5 +1,6 @@
 import { graphql, useFragment } from 'react-relay'
 import { Link } from 'react-router'
+import { formatDate } from '../../utils'
 import {
   UserBadge,
   UserBadgeIcon,
@@ -39,9 +40,7 @@ export function PostUser({ user }: PostUserProps) {
         <UserBadgeTitle>
           <Link to={`/users/${data.user.id}`}>{data.user.name}</Link>
         </UserBadgeTitle>
-        <UserBadgeSubtitle>
-          {new Date(data.createdAt).toLocaleString()}
-        </UserBadgeSubtitle>
+        <UserBadgeSubtitle>{formatDate(data.createdAt)}</UserBadgeSubtitle>
       </UserBadgeInfo>
     </UserBadge>
   )
