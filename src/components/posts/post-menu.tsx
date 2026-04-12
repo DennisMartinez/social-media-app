@@ -86,12 +86,12 @@ export function PostMenu({ viewer, post }: PostMenuProps) {
           }}>
           {data.viewerHasLiked ? (
             <>
-              <ThumbsDownIcon className="size-4" />
+              <ThumbsDownIcon />
               Unlike Post
             </>
           ) : (
             <>
-              <ThumbsUpIcon className="size-4" />
+              <ThumbsUpIcon />
               Like Post
             </>
           )}
@@ -108,12 +108,12 @@ export function PostMenu({ viewer, post }: PostMenuProps) {
             }}>
             {data.user.viewerIsFollowing ? (
               <>
-                <UserMinusIcon className="size-4" />
+                <UserMinusIcon />
                 Unfollow User
               </>
             ) : (
               <>
-                <UserPlusIcon className="size-4" />
+                <UserPlusIcon />
                 Follow User
               </>
             )}
@@ -138,7 +138,7 @@ export function PostMenu({ viewer, post }: PostMenuProps) {
                 }
               })
             }}>
-            <TrashIcon className="size-4" />
+            <TrashIcon />
             Delete Post
           </DropdownMenuItem>
         )}

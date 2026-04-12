@@ -1,5 +1,6 @@
 import { Menu } from '@base-ui/react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { Loader2Icon } from 'lucide-react'
 import { cn } from '../../utils'
 
 /**
@@ -24,7 +25,7 @@ export function DropdownTrigger({ className, ...props }: Menu.Trigger.Props) {
     <Menu.Trigger
       {...props}
       className={cn(
-        'shrink-0 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50',
+        'shrink-0 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:size-5',
         className
       )}
     />
@@ -60,7 +61,7 @@ export function DropdownMenu({ className, ...props }: DropdownMenuProps) {
 }
 
 const dropdownMenuItemVariants = cva(
-  'flex cursor-default items-center gap-2 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50',
+  'flex cursor-default items-center gap-2 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:size-4',
   {
     variants: {
       variant: {
@@ -79,18 +80,27 @@ const dropdownMenuItemVariants = cva(
 )
 
 interface DropdownMenuItemProps
-  extends Menu.Item.Props, VariantProps<typeof dropdownMenuItemVariants> {}
+  extends Menu.Item.Props, VariantProps<typeof dropdownMenuItemVariants> {
+  loading?: boolean
+}
 
 export function DropdownMenuItem({
   variant,
   size,
+  loading,
   className,
+  children,
   ...props
 }: DropdownMenuItemProps) {
+  const _disabled = props.disabled || loading
+
   return (
     <Menu.Item
       {...props}
-      className={cn(dropdownMenuItemVariants({ variant, size, className }))}
-    />
+      disabled={_disabled}
+      className={cn(dropdownMenuItemVariants({ variant, size, className }))}>
+      {loading && <Loader2Icon className="animate-spin" />}
+      {children}
+    </Menu.Item>
   )
 }

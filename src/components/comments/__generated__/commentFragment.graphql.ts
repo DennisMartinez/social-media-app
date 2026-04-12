@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<81f377c3faac43f86b32e1f35fad966c>>
+ * @generated SignedSource<<7b90e47017d578156a8fafa144c6d4b7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,7 +19,7 @@ export type commentFragment$data = {
     readonly name: string;
     readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"commentContentFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"commentContentFragment" | "commentMenuFragment">;
   readonly " $fragmentType": "commentFragment";
 };
 export type commentFragment$key = {
@@ -83,6 +83,11 @@ return {
     {
       "args": null,
       "kind": "FragmentSpread",
+      "name": "commentMenuFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
       "name": "commentContentFragment"
     }
   ],
@@ -91,6 +96,6 @@ return {
 };
 })();
 
-(node as any).hash = "951912caaae7107fa134801549133780";
+(node as any).hash = "c2aabe54b6582691e4ca04fb6be8eb89";
 
 export default node;

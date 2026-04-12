@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<32ee6295089da988b5998d0c2d9a90bb>>
+ * @generated SignedSource<<f7e164d799b4cb02a42311c54d97ee62>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -195,6 +195,13 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
+                            "name": "viewerCanDestroy",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
                             "name": "content",
                             "storageKey": null
                           },
@@ -260,12 +267,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c287c4d7ff2fa3631c4f69de785a83a8",
+    "cacheID": "bf0a366aa96712a449475363e42f7081",
     "id": null,
     "metadata": {},
     "name": "postCommentListPaginationQuery",
     "operationKind": "query",
-    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 1\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentContentFragment\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query postCommentListPaginationQuery(\n  $cursor: String\n  $first: Int = 1\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...commentListFragment_19XkED\n    id\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentMenuFragment\n  ...commentContentFragment\n}\n\nfragment commentListFragment_19XkED on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(after: $cursor, first: $first) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment commentMenuFragment on Comment {\n  id\n  viewerCanDestroy\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 })();

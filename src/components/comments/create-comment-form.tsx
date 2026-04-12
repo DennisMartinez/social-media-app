@@ -113,6 +113,7 @@ export function CreateCommentForm({
                   id: new Date().toISOString(),
                   content: formData.content,
                   createdAt: new Date().toISOString(),
+                  viewerCanDestroy: true,
                   commentable:
                     commentableData.__typename === 'Post'
                       ? {

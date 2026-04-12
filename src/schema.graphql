@@ -28,6 +28,9 @@ type Comment implements Node {
 
   """The user who created the comment."""
   user: User!
+
+  """Whether the current viewer can destroy this comment."""
+  viewerCanDestroy: Boolean!
 }
 
 """Objects that can be commented on."""

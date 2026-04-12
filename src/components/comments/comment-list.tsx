@@ -30,10 +30,9 @@ interface CommentListProps {
 }
 
 export function CommentList({ commentable }: CommentListProps) {
-  const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
-    CommentListFragment,
-    commentable
-  )
+  const { data, hasNext, loadNext, isLoadingNext, refetch } =
+    usePaginationFragment(CommentListFragment, commentable)
+  const loadedCount = data.comments?.edges?.length ?? 0
 
   return (
     <div className="flex flex-col gap-4">
@@ -45,7 +44,15 @@ export function CommentList({ commentable }: CommentListProps) {
         )}
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
-          return <Comment key={edge.node.id} comment={edge.node} />
+          return (
+            <Comment
+              key={edge.node.id}
+              comment={edge.node}
+              onDestroy={() =>
+                refetch({ first: loadedCount }, { fetchPolicy: 'network-only' })
+              }
+            />
+          )
         })}
       </div>
       {hasNext && (

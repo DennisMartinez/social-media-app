@@ -5,6 +5,7 @@ import { formatDate } from '../../utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../common/tooltip'
 import {
   UserBadge,
+  UserBadgeAction,
   UserBadgeIcon,
   UserBadgeInfo,
   UserBadgeSubtitle,
@@ -13,6 +14,7 @@ import {
 import { UserAvatar } from '../users/user-avatar'
 import { type commentFragment$key } from './__generated__/commentFragment.graphql'
 import { CommentContent } from './comment-content'
+import { CommentMenu } from './comment-menu'
 
 const CommentFragment = graphql`
   fragment commentFragment on Comment {
@@ -24,15 +26,17 @@ const CommentFragment = graphql`
       avatarUrl
       ...userAvatarFragment
     }
+    ...commentMenuFragment
     ...commentContentFragment
   }
 `
 
 interface CommentProps {
   comment: commentFragment$key
+  onDestroy?: () => void
 }
 
-export function Comment({ comment }: CommentProps) {
+export function Comment({ comment, onDestroy }: CommentProps) {
   const data = useFragment(CommentFragment, comment)
 
   return (
@@ -58,6 +62,9 @@ export function Comment({ comment }: CommentProps) {
             </Tooltip>
           </UserBadgeSubtitle>
         </UserBadgeInfo>
+        <UserBadgeAction>
+          <CommentMenu comment={data} onDestroy={onDestroy} />
+        </UserBadgeAction>
       </UserBadge>
       <div className="ml-14">
         <CommentContent comment={data} />
