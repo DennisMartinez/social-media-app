@@ -1,5 +1,5 @@
 # Name of your application. Used to uniquely configure containers.
-service: my-app
+service: social-media-app
 
 # Name of the container image.
 image: dennismartinez/social-media-app
