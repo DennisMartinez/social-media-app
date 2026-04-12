@@ -7,7 +7,7 @@ image: dennismartinez/social-media-app
 # Deploy to these servers.
 servers:
   web:
-    - deploy.dennismartinez.io
+    - 87.99.144.247
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -60,9 +60,8 @@ aliases:
 # Use a different ssh user than root
 #
 ssh:
-  user: dennis
+  user: deploy
   port: 2211
-  log_level: debug
 
 # Use a persistent storage volume.
 #
