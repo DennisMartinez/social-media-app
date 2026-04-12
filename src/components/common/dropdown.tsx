@@ -19,8 +19,16 @@ export function Dropdown(props: Menu.Root.Props) {
   return <Menu.Root {...props} />
 }
 
-export function DropdownTrigger(props: Menu.Trigger.Props) {
-  return <Menu.Trigger {...props} />
+export function DropdownTrigger({ className, ...props }: Menu.Trigger.Props) {
+  return (
+    <Menu.Trigger
+      {...props}
+      className={cn(
+        'shrink-0 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50',
+        className
+      )}
+    />
+  )
 }
 
 interface DropdownMenuProps extends Menu.Popup.Props {
@@ -52,7 +60,7 @@ export function DropdownMenu({ className, ...props }: DropdownMenuProps) {
 }
 
 const dropdownMenuItemVariants = cva(
-  'flex cursor-default items-center gap-2 data-disabled:cursor-not-allowed data-disabled:opacity-50',
+  'flex cursor-default items-center gap-2 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -62,6 +70,10 @@ const dropdownMenuItemVariants = cva(
       size: {
         md: 'px-4 py-2 text-sm'
       }
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md'
     }
   }
 )
@@ -78,7 +90,7 @@ export function DropdownMenuItem({
   return (
     <Menu.Item
       {...props}
-      className={dropdownMenuItemVariants({ variant, size, className })}
+      className={cn(dropdownMenuItemVariants({ variant, size, className }))}
     />
   )
 }
