@@ -7,7 +7,7 @@ image: dennismartinez/social-media-app
 # Deploy to these servers.
 servers:
   web:
-    - social-media.dennismartinez.io
+    - deploy.dennismartinez.io
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -20,6 +20,8 @@ servers:
 proxy:
   ssl: true
   host: social-media.dennismartinez.io
+  healthcheck:
+    path: /
   # Proxy connects to your container on port 80 by default.
   # app_port: 3000
 
@@ -52,13 +54,15 @@ builder:
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
 #
-# aliases:
-#   shell: app exec --interactive --reuse "bash"
+aliases:
+  shell: app exec --interactive --reuse "bash"
 
 # Use a different ssh user than root
 #
-# ssh:
-#   user: app
+ssh:
+  user: dennis
+  port: 2211
+  log_level: debug
 
 # Use a persistent storage volume.
 #
