@@ -45,7 +45,7 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
 
   return (
     <Button
-      type="button"
+      variant={data.viewerIsMember ? 'outline' : 'primary'}
       size="xs"
       className="w-full"
       onClick={() => {
@@ -55,6 +55,17 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
               input: {
                 groupId: data.id
               }
+            },
+            optimisticResponse: {
+              leaveGroup: {
+                errors: [],
+                group: {
+                  id: data.id,
+                  viewerCanJoin: true,
+                  viewerCanLeave: false,
+                  viewerIsMember: false
+                }
+              }
             }
           })
         } else if (data.viewerCanJoin) {
@@ -62,6 +73,17 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
             variables: {
               input: {
                 groupId: data.id
+              }
+            },
+            optimisticResponse: {
+              joinGroup: {
+                errors: [],
+                group: {
+                  id: data.id,
+                  viewerCanJoin: false,
+                  viewerCanLeave: true,
+                  viewerIsMember: true
+                }
               }
             }
           })

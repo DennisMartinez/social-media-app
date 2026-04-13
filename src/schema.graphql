@@ -242,7 +242,7 @@ type Group implements Node {
   """The date and time when the group was created."""
   createdAt: ISO8601DateTime!
 
-  """The unique identifier of the group."""
+  """ID of the object."""
   id: ID!
 
   """The number of members in the group."""
