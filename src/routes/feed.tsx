@@ -26,7 +26,11 @@ const FeedQuery = graphql`
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<feedQuery>(FeedQuery, {})
+  const data = useLazyLoadQuery<feedQuery>(
+    FeedQuery,
+    {},
+    { fetchPolicy: 'store-and-network' }
+  )
 
   return (
     <div className="p-8">

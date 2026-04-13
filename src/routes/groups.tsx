@@ -12,7 +12,11 @@ const GroupsQuery = graphql`
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<groupsQuery>(GroupsQuery, {})
+  const data = useLazyLoadQuery<groupsQuery>(
+    GroupsQuery,
+    {},
+    { fetchPolicy: 'store-and-network' }
+  )
 
   return (
     <div className="p-8">

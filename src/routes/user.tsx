@@ -30,7 +30,11 @@ const UserQuery = graphql`
 
 export function Component() {
   const params = useParams()
-  const data = useLazyLoadQuery<userQuery>(UserQuery, { id: String(params.id) })
+  const data = useLazyLoadQuery<userQuery>(
+    UserQuery,
+    { id: String(params.id) },
+    { fetchPolicy: 'store-and-network' }
+  )
 
   if (!data.node) {
     return <div>User not found</div>
