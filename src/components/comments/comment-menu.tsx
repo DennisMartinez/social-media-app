@@ -52,7 +52,7 @@ export function CommentMenu({ comment, onDestroy }: CommentMenuProps) {
           <EllipsisIcon />
         )}
       </DropdownTrigger>
-      <DropdownMenu>
+      <DropdownMenu align="end">
         <DropdownMenuItem
           variant="danger"
           loading={isDestroyingComment}

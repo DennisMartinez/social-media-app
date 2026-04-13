@@ -13,7 +13,7 @@ import { cn } from '../../utils'
  */
 
 const buttonVariants = cva(
-  'flex items-center justify-center rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'flex items-center justify-center rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0',
   {
     variants: {
       variant: {

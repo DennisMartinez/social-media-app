@@ -143,15 +143,19 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                 onGroupSelect={setSelectedGroup}
               />
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex min-w-0 items-center gap-4">
               <div className="text-xs text-gray-400">
                 {content.length}/{MAX_LIMIT}
               </div>
               <Button
                 variant={content ? 'primary' : 'outline'}
                 size="xs"
-                disabled={!content}>
-                Create Post{selectedGroup ? ` in ${selectedGroup.name}` : ''}
+                disabled={!content}
+                className="truncate">
+                <span className="max-w-37.5 truncate">
+                  Create Post
+                  {selectedGroup ? ` in ${selectedGroup.name}` : ''}
+                </span>
               </Button>
             </div>
           </div>

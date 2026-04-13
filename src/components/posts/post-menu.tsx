@@ -74,7 +74,7 @@ export function PostMenu({ viewer, post }: PostMenuProps) {
         className="flex size-8 items-center justify-center rounded-full text-gray-500 not-data-disabled:hover:bg-gray-100 data-popup-open:bg-gray-100">
         <EllipsisIcon />
       </DropdownTrigger>
-      <DropdownMenu>
+      <DropdownMenu align="end">
         <DropdownMenuItem
           onClick={() => {
             if (data.viewerHasLiked) {

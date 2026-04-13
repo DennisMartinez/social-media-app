@@ -50,13 +50,15 @@ export function UserGroupsDropdown({
     <Dropdown>
       <DropdownTrigger
         render={
-          <Button variant="outline" size="xs">
-            {selectedItem ? selectedItem.name : 'Select group'}
+          <Button variant="outline" size="xs" className="max-w-37.5">
+            <span className="truncate">
+              {selectedItem ? selectedItem.name : 'Select group'}
+            </span>
             <ChevronDownIcon className="translate-y-px" />
           </Button>
         }
       />
-      <DropdownMenu>
+      <DropdownMenu align="start">
         <DropdownMenuItem
           onClick={() => {
             setSelectedItem(null)

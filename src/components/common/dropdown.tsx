@@ -40,6 +40,10 @@ interface DropdownMenuProps extends Menu.Popup.Props {
 }
 
 export function DropdownMenu({
+  sideOffset = 8,
+  align,
+  side,
+  alignOffset,
   className,
   children,
   ...props
@@ -48,10 +52,10 @@ export function DropdownMenu({
     <Menu.Portal>
       <Menu.Positioner
         className="outline-hidden"
-        sideOffset={props.sideOffset ?? 8}
-        align={props.align ?? 'end'}
-        side={props.side}
-        alignOffset={props.alignOffset}>
+        sideOffset={sideOffset}
+        align={align}
+        side={side}
+        alignOffset={alignOffset}>
         <Menu.Popup
           {...props}
           className={cn(
