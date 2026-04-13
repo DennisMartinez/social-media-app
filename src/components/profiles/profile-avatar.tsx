@@ -27,7 +27,9 @@ export function ProfileAvatar({ node, ...props }: ProfileAvatar) {
   const isUser = data.__typename === 'User'
   const isGroup = data.__typename === 'Group'
 
-  if (!isUser && !isGroup) return null
+  if (!isUser && !isGroup) {
+    return null
+  }
 
   return <Avatar {...props} name={data.name} url={data.avatarUrl} />
 }

@@ -57,6 +57,7 @@ export function RecommendedFollows({ viewer, user }: RecommendedFollowsProps) {
           )}
           {data.recommendedFollows?.edges?.map((edge) => {
             if (!edge?.node) return null
+
             return (
               <Followee
                 key={edge.node.id}

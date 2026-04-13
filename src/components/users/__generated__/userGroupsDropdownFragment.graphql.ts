@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4271e8eb3a0a457727920f60ad3a882d>>
+ * @generated SignedSource<<77061d90b591b269b6ef2660e2987fde>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type userGroupsDropdownFragment$data = {
+  readonly groupCount: number;
   readonly groups: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -32,6 +33,13 @@ const node: ReaderFragment = {
   "metadata": null,
   "name": "userGroupsDropdownFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "groupCount",
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": null,
@@ -84,6 +92,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "b813ff0ec0ae33e76056c2f6c28af523";
+(node as any).hash = "44a38a1fd71d6cba3678a52a1a5b70d8";
 
 export default node;

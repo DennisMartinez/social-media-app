@@ -44,6 +44,7 @@ export function CommentList({ commentable }: CommentListProps) {
         )}
         {data.comments?.edges?.map((edge) => {
           if (!edge?.node) return null
+
           return (
             <Comment
               key={edge.node.id}

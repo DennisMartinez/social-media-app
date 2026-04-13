@@ -64,6 +64,7 @@ export function FollowersCard({ viewer, user }: FollowersCardProps) {
           )}
           {data.followers?.edges?.map((edge) => {
             if (!edge?.node) return null
+
             return (
               <Followee
                 key={edge.node.id}

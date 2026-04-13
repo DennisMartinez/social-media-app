@@ -63,6 +63,7 @@ export function GroupMembersCard({ viewer, user }: GroupMembersCardProps) {
           )}
           {data.members?.edges?.map((edge) => {
             if (!edge?.node) return null
+
             return (
               <Followee
                 key={edge.node.id}

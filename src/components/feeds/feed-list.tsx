@@ -63,6 +63,7 @@ export function FeedList({ viewer, user }: FeedListProps) {
       <div className="flex w-full flex-col gap-4">
         {data.feed?.edges?.map((edge) => {
           if (!edge?.node) return null
+
           return (
             <Post key={edge.node.id} viewer={viewerData} post={edge.node} />
           )

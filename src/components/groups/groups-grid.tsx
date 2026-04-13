@@ -55,6 +55,7 @@ export function GroupsGrid({ query }: GroupsGridProps) {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data.groups?.edges?.map((edge) => {
           if (!edge?.node) return null
+
           return <GroupCard key={edge.node.id} group={edge.node} />
         })}
       </div>

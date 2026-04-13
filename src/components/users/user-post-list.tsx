@@ -71,6 +71,7 @@ export function UserPostList({ viewer, user }: UserPostListProps) {
         )}
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
+
           return (
             <Post key={edge.node.id} viewer={viewerData} post={edge.node} />
           )

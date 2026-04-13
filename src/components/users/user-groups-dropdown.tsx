@@ -13,6 +13,7 @@ import { type userGroupsDropdownFragment$key } from './__generated__/userGroupsD
 
 const UserGroupsDropdownFragment = graphql`
   fragment userGroupsDropdownFragment on User {
+    groupCount
     groups {
       edges {
         node {
@@ -40,6 +41,10 @@ export function UserGroupsDropdown({
 }: UserGroupsDropdownProps) {
   const data = useFragment(UserGroupsDropdownFragment, user)
   const [selectedItem, setSelectedItem] = useState<Group | null>(null)
+
+  if (!data.groupCount) {
+    return null
+  }
 
   return (
     <Dropdown>
