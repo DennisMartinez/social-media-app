@@ -15,6 +15,10 @@ import { type postUserFragment$key } from './__generated__/postUserFragment.grap
 const PostUserFragment = graphql`
   fragment postUserFragment on Post {
     createdAt
+    group {
+      id
+      name
+    }
     user {
       id
       name
@@ -40,6 +44,14 @@ export function PostUser({ user }: PostUserProps) {
       <UserBadgeInfo>
         <UserBadgeTitle>
           <Link to={`/users/${data.user.id}`}>{data.user.name}</Link>
+          {data.group && (
+            <span className="ml-1 text-xs text-gray-400">
+              in{' '}
+              <Link to={`/groups/${data.group.id}`} className="underline">
+                {data.group.name}
+              </Link>
+            </span>
+          )}
         </UserBadgeTitle>
         <UserBadgeSubtitle>
           <Tooltip>

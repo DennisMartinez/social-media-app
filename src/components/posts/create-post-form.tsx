@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useFragment, useMutation, useRelayEnvironment } from 'react-relay'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -7,6 +8,7 @@ import * as yup from 'yup'
 import { Button } from '../common/button'
 import { Input } from '../common/input'
 import { UserAvatar } from '../users/user-avatar'
+import { UserGroupsDropdown } from '../users/user-groups-dropdown'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
@@ -16,6 +18,7 @@ const CreatePostFormFragment = graphql`
     name
     avatarUrl
     ...userAvatarFragment
+    ...userGroupsDropdownFragment
   }
 `
 
@@ -48,8 +51,9 @@ interface CreatePostFormProps {
 }
 
 export function CreatePostForm({ user }: CreatePostFormProps) {
-  const data = useFragment(CreatePostFormFragment, user)
   const env = useRelayEnvironment()
+  const data = useFragment(CreatePostFormFragment, user)
+  const [groupId, setGroupId] = useState<string | null>(null)
   const [createPost] = useMutation<createPostFormMutation>(
     CreatePostFormMutation
   )
@@ -73,40 +77,41 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           variables: {
             connections,
             input: {
-              content: formData.content
+              content: formData.content,
+              groupId
             }
           },
-          optimisticResponse: {
-            createPost: {
-              postEdge: {
-                node: {
-                  __typename: 'Post',
-                  id: new Date().toISOString(),
-                  content: formData.content,
-                  createdAt: new Date().toISOString(),
-                  viewerHasLiked: false,
-                  viewerCanDestroy: false,
-                  commentsCount: 0,
-                  likesCount: 0,
-                  comments: {
-                    edges: [],
-                    pageInfo: {
-                      endCursor: null,
-                      hasNextPage: false
-                    }
-                  },
-                  user: {
-                    id: data.id,
-                    avatarUrl: data.avatarUrl,
-                    name: data.name,
-                    viewerIsFollowing: false,
-                    viewerCanFollow: false
-                  },
-                  viewerLike: null
-                }
-              }
-            }
-          },
+          // optimisticResponse: {
+          //   createPost: {
+          //     postEdge: {
+          //       node: {
+          //         __typename: 'Post',
+          //         id: new Date().toISOString(),
+          //         content: formData.content,
+          //         createdAt: new Date().toISOString(),
+          //         viewerHasLiked: false,
+          //         viewerCanDestroy: false,
+          //         commentsCount: 0,
+          //         likesCount: 0,
+          //         comments: {
+          //           edges: [],
+          //           pageInfo: {
+          //             endCursor: null,
+          //             hasNextPage: false
+          //           }
+          //         },
+          //         user: {
+          //           id: data.id,
+          //           avatarUrl: data.avatarUrl,
+          //           name: data.name,
+          //           viewerIsFollowing: false,
+          //           viewerCanFollow: false
+          //         },
+          //         viewerLike: null
+          //       }
+          //     }
+          //   }
+          // },
           onError: () => {
             setValue('content', formData.content)
           }
@@ -121,20 +126,24 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
             placeholder="What's on your mind?"
             maxLength={MAX_LIMIT}
             className="rounded-xl pb-10 outline-transparent focus:outline-blue-500"
+            minRows={3}
             data-gramm="false"
             data-gramm_editor="false"
             data-enable-grammarly="false"
           />
-          <div className="absolute right-2 bottom-2 flex items-center gap-2">
-            <div className="text-xs text-gray-400">
-              {content.length}/{MAX_LIMIT}
+          <div className="absolute bottom-0 left-0 flex w-full items-center justify-between gap-4 px-2 pb-2">
+            <UserGroupsDropdown user={data} onGroupSelect={setGroupId} />
+            <div className="flex items-center gap-4">
+              <div className="text-xs text-gray-400">
+                {content.length}/{MAX_LIMIT}
+              </div>
+              <Button
+                variant={content ? 'primary' : 'outline'}
+                size="xs"
+                disabled={!content}>
+                Create Post
+              </Button>
             </div>
-            <Button
-              variant={content ? 'primary' : 'outline'}
-              size="xs"
-              disabled={!content}>
-              Create Post
-            </Button>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ import { cn } from '../../utils'
  */
 
 const buttonVariants = cva(
-  'flex items-center justify-center gap-2 rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'flex items-center justify-center rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -26,11 +26,11 @@ const buttonVariants = cva(
         outline: 'border-gray-300 text-gray-500 not-disabled:hover:bg-gray-100'
       },
       size: {
-        xs: 'px-2 py-1 text-xs font-semibold [&_svg]:size-4',
-        sm: 'px-2 py-1 text-sm font-semibold [&_svg]:size-4',
-        md: 'px-2.5 py-1.5 text-sm font-semibold [&_svg]:size-4',
-        lg: 'px-3 py-2 text-sm font-semibold [&_svg]:size-4',
-        xl: 'px-3.5 py-2.5 text-sm font-semibold [&_svg]:size-4'
+        xs: 'gap-1 px-2 py-1 text-xs font-semibold [&_svg]:size-4',
+        sm: 'gap-2 px-2 py-1 text-sm font-semibold [&_svg]:size-4',
+        md: 'gap-2 px-2.5 py-1.5 text-sm font-semibold [&_svg]:size-4',
+        lg: 'gap-2 px-3 py-2 text-sm font-semibold [&_svg]:size-4',
+        xl: 'gap-2 px-3.5 py-2.5 text-sm font-semibold [&_svg]:size-4'
       }
     },
     defaultVariants: {

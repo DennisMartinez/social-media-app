@@ -25,7 +25,7 @@ export function DropdownTrigger({ className, ...props }: Menu.Trigger.Props) {
     <Menu.Trigger
       {...props}
       className={cn(
-        'shrink-0 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:size-5',
+        'shrink-0 not-data-disabled:cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50',
         className
       )}
     />
@@ -39,7 +39,11 @@ interface DropdownMenuProps extends Menu.Popup.Props {
   alignOffset?: Menu.Positioner.Props['alignOffset']
 }
 
-export function DropdownMenu({ className, ...props }: DropdownMenuProps) {
+export function DropdownMenu({
+  className,
+  children,
+  ...props
+}: DropdownMenuProps) {
   return (
     <Menu.Portal>
       <Menu.Positioner
@@ -53,8 +57,9 @@ export function DropdownMenu({ className, ...props }: DropdownMenuProps) {
           className={cn(
             'overflow-hidden rounded-lg bg-white shadow',
             className
-          )}
-        />
+          )}>
+          <div className="max-h-60 overflow-auto">{children}</div>
+        </Menu.Popup>
       </Menu.Positioner>
     </Menu.Portal>
   )

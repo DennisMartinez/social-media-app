@@ -25,7 +25,11 @@ const ProfileQuery = graphql`
 `
 
 export function Component() {
-  const data = useLazyLoadQuery<profileQuery>(ProfileQuery, {})
+  const data = useLazyLoadQuery<profileQuery>(
+    ProfileQuery,
+    {},
+    { fetchPolicy: 'store-and-network' }
+  )
 
   return (
     <div className="p-8">

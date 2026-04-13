@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d0853e470fb2c228c3a315fe383821f7>>
+ * @generated SignedSource<<452d8da44349b2cac3d6af328ffe3bdf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type createPostFormFragment$data = {
   readonly avatarUrl: string | null | undefined;
   readonly id: string;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment" | "userGroupsDropdownFragment">;
   readonly " $fragmentType": "createPostFormFragment";
 };
 export type createPostFormFragment$key = {
@@ -53,12 +53,17 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "FragmentSpread",
       "name": "userAvatarFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "userGroupsDropdownFragment"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "93ea8abb2e96d21b48524dc002d59f39";
+(node as any).hash = "78f856eff5da62861d55d8bc0e14ddbf";
 
 export default node;
