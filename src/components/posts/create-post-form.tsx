@@ -137,7 +137,12 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
             data-enable-grammarly="false"
           />
           <div className="absolute bottom-0 left-0 flex w-full items-center justify-between gap-4 px-2 pb-2">
-            <UserGroupsDropdown user={data} onGroupSelect={setSelectedGroup} />
+            <div>
+              <UserGroupsDropdown
+                user={data}
+                onGroupSelect={setSelectedGroup}
+              />
+            </div>
             <div className="flex items-center gap-4">
               <div className="text-xs text-gray-400">
                 {content.length}/{MAX_LIMIT}
