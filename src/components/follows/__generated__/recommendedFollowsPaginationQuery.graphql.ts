@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7cbb41668f049ea1e9d0564d2cb746fc>>
+ * @generated SignedSource<<857cf522b5e9df382671da8d136602a1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -76,6 +76,15 @@ v5 = [
     "variableName": "cursor"
   },
   (v2/*: any*/)
+],
+v6 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "avatarUrl",
+    "storageKey": null
+  }
 ];
 return {
   "fragment": {
@@ -197,14 +206,26 @@ return {
                             "name": "followingCount",
                             "storageKey": null
                           },
+                          (v3/*: any*/),
                           {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "avatarUrl",
-                            "storageKey": null
-                          },
-                          (v3/*: any*/)
+                            "kind": "InlineFragment",
+                            "selections": [
+                              {
+                                "kind": "InlineFragment",
+                                "selections": (v6/*: any*/),
+                                "type": "User",
+                                "abstractKey": null
+                              },
+                              {
+                                "kind": "InlineFragment",
+                                "selections": (v6/*: any*/),
+                                "type": "Group",
+                                "abstractKey": null
+                              }
+                            ],
+                            "type": "Node",
+                            "abstractKey": "__isNode"
+                          }
                         ],
                         "storageKey": null
                       },
@@ -265,12 +286,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f97bed8be3afffbd8ef0220ab4ad2e5e",
+    "cacheID": "c80574597b91ddcb169e3193ee4d2fc7",
     "id": null,
     "metadata": {},
     "name": "recommendedFollowsPaginationQuery",
     "operationKind": "query",
-    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...userAvatarFragment\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query recommendedFollowsPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...recommendedFollowsFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...profileAvatarFragment\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n\nfragment recommendedFollowsFragment_19XkED on User {\n  recommendedFollows(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n"
   }
 };
 })();

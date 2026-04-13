@@ -1,4 +1,5 @@
 import { graphql, useFragment } from 'react-relay'
+import { Link } from 'react-router'
 import { randomColor } from '../../utils'
 import { Card, CardBody } from '../common/card'
 import { type groupCardFragment$key } from './__generated__/groupCardFragment.graphql'
@@ -32,7 +33,11 @@ export function GroupCard({ group }: GroupCardProps) {
       <CardBody className="flex grow flex-col gap-4">
         <GroupAvatar group={data} size="xl" className="ring-2 ring-white" />
         <div className="flex grow flex-col gap-2">
-          <div className="line-clamp-2 font-medium">{data.name}</div>
+          <div className="line-clamp-2 font-medium">
+            <Link to={`/groups/${data.id}`} className="hover:underline">
+              {data.name}
+            </Link>
+          </div>
           <div className="line-clamp-3 text-gray-600">
             {data.bio || 'No description provided.'}
           </div>

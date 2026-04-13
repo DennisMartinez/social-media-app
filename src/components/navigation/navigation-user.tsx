@@ -10,7 +10,7 @@ import {
   UserBadgeSubtitle,
   UserBadgeTitle
 } from '../common/user-badge'
-import { UserAvatar } from '../users/user-avatar'
+import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type navigationUserFragment$key } from './__generated__/navigationUserFragment.graphql'
 
 const NavigationUserFragment = graphql`
@@ -18,7 +18,7 @@ const NavigationUserFragment = graphql`
     id
     name
     email
-    ...userAvatarFragment
+    ...profileAvatarFragment
   }
 `
 
@@ -34,7 +34,7 @@ export function NavigationUser({ user }: NavigationUserProps) {
       <CardBody>
         <UserBadge>
           <UserBadgeIcon>
-            <UserAvatar user={data} />
+            <ProfileAvatar node={data} />
           </UserBadgeIcon>
           <UserBadgeInfo>
             <UserBadgeTitle>{data.name}</UserBadgeTitle>

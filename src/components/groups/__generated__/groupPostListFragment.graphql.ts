@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<41132b4f6042979939f660f192b3aa37>>
+ * @generated SignedSource<<af013eb0f0e2918a4e5bee9d00acbb5a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,9 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type feedListFragment$data = {
-  readonly feed: {
+export type groupPostListFragment$data = {
+  readonly id: string;
+  readonly posts: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -19,19 +20,18 @@ export type feedListFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
-  readonly id: string;
-  readonly " $fragmentType": "feedListFragment";
+  readonly " $fragmentType": "groupPostListFragment";
 };
-export type feedListFragment$key = {
-  readonly " $data"?: feedListFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"feedListFragment">;
+export type groupPostListFragment$key = {
+  readonly " $data"?: groupPostListFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"groupPostListFragment">;
 };
 
-import feedListPaginationQuery_graphql from './feedListPaginationQuery.graphql';
+import groupPostListPaginationQuery_graphql from './groupPostListPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
-  "feed"
+  "posts"
 ],
 v1 = {
   "alias": null,
@@ -75,21 +75,21 @@ return {
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": feedListPaginationQuery_graphql,
+      "operation": groupPostListPaginationQuery_graphql,
       "identifierInfo": {
         "identifierField": "id",
         "identifierQueryVariableName": "id"
       }
     }
   },
-  "name": "feedListFragment",
+  "name": "groupPostListFragment",
   "selections": [
     {
-      "alias": "feed",
+      "alias": "posts",
       "args": null,
       "concreteType": "PostConnection",
       "kind": "LinkedField",
-      "name": "__User_feed_connection",
+      "name": "__GroupPostList_posts_connection",
       "plural": false,
       "selections": [
         {
@@ -164,11 +164,11 @@ return {
     },
     (v1/*: any*/)
   ],
-  "type": "User",
+  "type": "Group",
   "abstractKey": null
 };
 })();
 
-(node as any).hash = "0c8d70541f8f30c644d8838cf5eb4ef4";
+(node as any).hash = "61a0158b80fcea840374c26ca5b06e73";
 
 export default node;

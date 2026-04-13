@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c40f047e09b566f6393465f8e42b62a7>>
+ * @generated SignedSource<<4fe07262a49ffa34d86aa6e6e01937d5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type followeeFragment$data = {
   readonly email: string;
   readonly id: string;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "userAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "profileAvatarFragment">;
   readonly " $fragmentType": "followeeFragment";
 };
 export type followeeFragment$key = {
@@ -57,13 +57,13 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "userAvatarFragment"
+      "name": "profileAvatarFragment"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "29c6f62c6679dd55d8386c0024c04260";
+(node as any).hash = "e3c3f801e558b6cb32159ba20ae2e874";
 
 export default node;

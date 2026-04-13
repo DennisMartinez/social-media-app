@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<027314bd724aaf226e9bc7804fe8473a>>
+ * @generated SignedSource<<d185cda042c96ac309cca43588f2f356>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,7 +18,7 @@ export type commentListFragment$data = {
         readonly " $fragmentSpreads": FragmentRefs<"commentFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
-  };
+  } | null | undefined;
   readonly id: string;
   readonly " $fragmentType": "commentListFragment";
 };

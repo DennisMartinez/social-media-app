@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<41132b4f6042979939f660f192b3aa37>>
+ * @generated SignedSource<<277ad7907de7d5a2c34a4b29192c3121>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,9 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type feedListFragment$data = {
-  readonly feed: {
+export type userPostListFragment$data = {
+  readonly id: string;
+  readonly posts: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -19,19 +20,18 @@ export type feedListFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
-  readonly id: string;
-  readonly " $fragmentType": "feedListFragment";
+  readonly " $fragmentType": "userPostListFragment";
 };
-export type feedListFragment$key = {
-  readonly " $data"?: feedListFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"feedListFragment">;
+export type userPostListFragment$key = {
+  readonly " $data"?: userPostListFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"userPostListFragment">;
 };
 
-import feedListPaginationQuery_graphql from './feedListPaginationQuery.graphql';
+import userPostListPaginationQuery_graphql from './userPostListPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
-  "feed"
+  "posts"
 ],
 v1 = {
   "alias": null,
@@ -75,21 +75,21 @@ return {
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": feedListPaginationQuery_graphql,
+      "operation": userPostListPaginationQuery_graphql,
       "identifierInfo": {
         "identifierField": "id",
         "identifierQueryVariableName": "id"
       }
     }
   },
-  "name": "feedListFragment",
+  "name": "userPostListFragment",
   "selections": [
     {
-      "alias": "feed",
+      "alias": "posts",
       "args": null,
       "concreteType": "PostConnection",
       "kind": "LinkedField",
-      "name": "__User_feed_connection",
+      "name": "__UserPostList_posts_connection",
       "plural": false,
       "selections": [
         {
@@ -169,6 +169,6 @@ return {
 };
 })();
 
-(node as any).hash = "0c8d70541f8f30c644d8838cf5eb4ef4";
+(node as any).hash = "bf9f3e95b81b4248e429adfa9dd70162";
 
 export default node;

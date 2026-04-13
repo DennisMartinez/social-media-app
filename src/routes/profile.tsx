@@ -3,8 +3,8 @@ import { graphql } from 'relay-runtime'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
 import { Navigation } from '../components/navigation/navigation'
-import { PostList } from '../components/posts/post-list'
 import { ProfileHeader } from '../components/profiles/profile-header'
+import { UserPostList } from '../components/users/user-post-list'
 import { type profileQuery } from './__generated__/profileQuery.graphql'
 
 const ProfileQuery = graphql`
@@ -12,8 +12,8 @@ const ProfileQuery = graphql`
     viewer {
       ...profileHeaderFragment
       ...profileHeaderViewerFragment
-      ...postListFragment
-      ...postListViewerFragment
+      ...userPostListFragment
+      ...userPostListViewerFragment
       ...createPostFormFragment
       ...followersCardFragment
       ...followingsCardFragment
@@ -44,10 +44,10 @@ export function Component() {
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-8">
-          <ProfileHeader viewer={data.viewer} user={data.viewer} />
+          <ProfileHeader viewer={data.viewer} node={data.viewer} />
           <div className="flex w-full flex-col gap-8 md:flex-row">
             <div className="flex w-full min-w-0 flex-col gap-4">
-              <PostList viewer={data.viewer} user={data.viewer} />
+              <UserPostList viewer={data.viewer} user={data.viewer} />
             </div>
             <div className="hidden w-72 shrink-0 flex-col gap-4 xl:flex">
               <FollowersCard viewer={data.viewer} user={data.viewer} />

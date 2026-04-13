@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<af0ff3a58b0822d257c5e7f255c6d842>>
+ * @generated SignedSource<<70b2074c455584072534983e86344454>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,11 +11,15 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type profileHeaderFragment$data = {
-  readonly bio: string | null | undefined;
-  readonly email: string;
+  readonly __typename: string;
+  readonly bio?: string | null | undefined;
+  readonly email?: string;
   readonly id: string;
-  readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "userAvatarFragment">;
+  readonly name?: string;
+  readonly owner?: {
+    readonly name: string;
+  };
+  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "profileAvatarFragment">;
   readonly " $fragmentType": "profileHeaderFragment";
 };
 export type profileHeaderFragment$key = {
@@ -23,7 +27,27 @@ export type profileHeaderFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"profileHeaderFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "bio",
+  "storageKey": null
+},
+v2 = {
+  "args": null,
+  "kind": "FragmentSpread",
+  "name": "profileAvatarFragment"
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -33,45 +57,66 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
+      "name": "__typename",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
       "name": "id",
       "storageKey": null
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
+      "kind": "InlineFragment",
+      "selections": [
+        (v0/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "email",
+          "storageKey": null
+        },
+        (v1/*: any*/),
+        (v2/*: any*/),
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "followButtonFolloweeFragment"
+        }
+      ],
+      "type": "User",
+      "abstractKey": null
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "email",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "bio",
-      "storageKey": null
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "userAvatarFragment"
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "followButtonFolloweeFragment"
+      "kind": "InlineFragment",
+      "selections": [
+        (v0/*: any*/),
+        (v1/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "kind": "LinkedField",
+          "name": "owner",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/)
+          ],
+          "storageKey": null
+        },
+        (v2/*: any*/)
+      ],
+      "type": "Group",
+      "abstractKey": null
     }
   ],
-  "type": "User",
-  "abstractKey": null
+  "type": "Node",
+  "abstractKey": "__isNode"
 };
+})();
 
-(node as any).hash = "79ee97a4fabad7921017ede919c0647a";
+(node as any).hash = "cfe5d5cb5cc1236e1383a5dbf3787187";
 
 export default node;

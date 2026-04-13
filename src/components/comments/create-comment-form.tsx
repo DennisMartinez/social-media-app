@@ -6,7 +6,7 @@ import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
 import { Input } from '../common/input'
-import { UserAvatar } from '../users/user-avatar'
+import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type createCommentFormCommentableFragment$key } from './__generated__/createCommentFormCommentableFragment.graphql'
 import { type createCommentFormMutation } from './__generated__/createCommentFormMutation.graphql'
 import { type createCommentFormViewerFragment$key } from './__generated__/createCommentFormViewerFragment.graphql'
@@ -16,7 +16,7 @@ const CreateCommentFormViewerFragment = graphql`
     id
     name
     avatarUrl
-    ...userAvatarFragment
+    ...profileAvatarFragment
   }
 `
 
@@ -140,7 +140,7 @@ export function CreateCommentForm({
         })
       })}>
       <div className="flex w-full gap-4">
-        <UserAvatar user={viewerData} />
+        <ProfileAvatar node={viewerData} />
         <div className="relative w-full">
           <Input
             {...register('content')}

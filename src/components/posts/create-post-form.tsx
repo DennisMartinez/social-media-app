@@ -7,7 +7,7 @@ import { ConnectionHandler, graphql } from 'relay-runtime'
 import * as yup from 'yup'
 import { Button } from '../common/button'
 import { Input } from '../common/input'
-import { UserAvatar } from '../users/user-avatar'
+import { ProfileAvatar } from '../profiles/profile-avatar'
 import { UserGroupsDropdown, type Group } from '../users/user-groups-dropdown'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
@@ -19,7 +19,7 @@ const CreatePostFormFragment = graphql`
     avatarUrl
     followerCount
     followingCount
-    ...userAvatarFragment
+    ...profileAvatarFragment
     ...userGroupsDropdownFragment
   }
 `
@@ -123,7 +123,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
         })
       })}>
       <div className="flex w-full gap-4">
-        <UserAvatar user={data} size="sm" />
+        <ProfileAvatar node={data} size="sm" />
         <div className="relative w-full">
           <Input
             {...register('content')}

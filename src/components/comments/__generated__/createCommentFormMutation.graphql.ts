@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<963dd79ae4c268b1e1989035717e7d4f>>
+ * @generated SignedSource<<8d769467df3eb06869e41652d72efb8e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -244,6 +244,14 @@ return {
                         "kind": "ScalarField",
                         "name": "avatarUrl",
                         "storageKey": null
+                      },
+                      {
+                        "kind": "InlineFragment",
+                        "selections": [
+                          (v3/*: any*/)
+                        ],
+                        "type": "Node",
+                        "abstractKey": "__isNode"
                       }
                     ],
                     "storageKey": null
@@ -290,12 +298,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "015a0930561281d25835566f62e23074",
+    "cacheID": "eac4dcb2a3b7bb52b825f8a172e45952",
     "id": null,
     "metadata": {},
     "name": "createCommentFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        commentable {\n          __typename\n          ... on Post {\n            id\n            commentsCount\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        ...commentFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...userAvatarFragment\n  }\n  ...commentMenuFragment\n  ...commentContentFragment\n}\n\nfragment commentMenuFragment on Comment {\n  id\n  viewerCanDestroy\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "mutation createCommentFormMutation(\n  $input: CreateCommentInput!\n) {\n  createComment(input: $input) {\n    errors\n    commentEdge {\n      node {\n        commentable {\n          __typename\n          ... on Post {\n            id\n            commentsCount\n          }\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        ...commentFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...profileAvatarFragment\n  }\n  ...commentMenuFragment\n  ...commentContentFragment\n}\n\nfragment commentMenuFragment on Comment {\n  id\n  viewerCanDestroy\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n"
   }
 };
 })();

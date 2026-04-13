@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<196658f11e26cb79bbf522a376bb9b9a>>
+ * @generated SignedSource<<fa2863f440bd73d58ef6ebff6827da7d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type navigationUserFragment$data = {
   readonly email: string;
   readonly id: string;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"profileAvatarFragment">;
   readonly " $fragmentType": "navigationUserFragment";
 };
 export type navigationUserFragment$key = {
@@ -52,13 +52,13 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "userAvatarFragment"
+      "name": "profileAvatarFragment"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "ce22b0e2634080c04790c85af93bfdfb";
+(node as any).hash = "69f59429671ddf41f14cd4bd00234c99";
 
 export default node;

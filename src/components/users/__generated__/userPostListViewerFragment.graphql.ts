@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5cd3c6727e627c5e44f5188ad1a92be7>>
+ * @generated SignedSource<<b130ea821ab44fa92e9946a43f9d8a4c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,20 +10,20 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type postListViewerFragment$data = {
+export type userPostListViewerFragment$data = {
   readonly " $fragmentSpreads": FragmentRefs<"postViewerFragment">;
-  readonly " $fragmentType": "postListViewerFragment";
+  readonly " $fragmentType": "userPostListViewerFragment";
 };
-export type postListViewerFragment$key = {
-  readonly " $data"?: postListViewerFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"postListViewerFragment">;
+export type userPostListViewerFragment$key = {
+  readonly " $data"?: userPostListViewerFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"userPostListViewerFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "postListViewerFragment",
+  "name": "userPostListViewerFragment",
   "selections": [
     {
       "args": null,
@@ -35,6 +35,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "ef1fca7d1aceb3dd0c8be3a92b70f53c";
+(node as any).hash = "bdd50fc0b27b3e43f9ed5aa5161ba44c";
 
 export default node;

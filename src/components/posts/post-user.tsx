@@ -9,7 +9,7 @@ import {
   UserBadgeSubtitle,
   UserBadgeTitle
 } from '../common/user-badge'
-import { UserAvatar } from '../users/user-avatar'
+import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type postUserFragment$key } from './__generated__/postUserFragment.graphql'
 
 const PostUserFragment = graphql`
@@ -22,7 +22,7 @@ const PostUserFragment = graphql`
     user {
       id
       name
-      ...userAvatarFragment
+      ...profileAvatarFragment
     }
   }
 `
@@ -38,7 +38,7 @@ export function PostUser({ user }: PostUserProps) {
     <UserBadge>
       <UserBadgeIcon>
         <Link to={`/users/${data.user.id}`}>
-          <UserAvatar user={data.user} />
+          <ProfileAvatar node={data.user} />
         </Link>
       </UserBadgeIcon>
       <UserBadgeInfo>

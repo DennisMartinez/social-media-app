@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b0a92598148141c998024f7fdbbac8ab>>
+ * @generated SignedSource<<5b774d287fc107af9380d31f1d368175>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,7 +19,7 @@ export type postUserFragment$data = {
   readonly user: {
     readonly id: string;
     readonly name: string;
-    readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"profileAvatarFragment">;
   };
   readonly " $fragmentType": "postUserFragment";
 };
@@ -82,7 +82,7 @@ return {
         {
           "args": null,
           "kind": "FragmentSpread",
-          "name": "userAvatarFragment"
+          "name": "profileAvatarFragment"
         }
       ],
       "storageKey": null
@@ -93,6 +93,6 @@ return {
 };
 })();
 
-(node as any).hash = "c04c2f2107a1c0c60435b56cecdf8f3d";
+(node as any).hash = "a54f4af7f9d5d683a1575ff0b9616a82";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<939cd66d8de583cc8b0ba1741148554c>>
+ * @generated SignedSource<<8a8d746e2585c1f7224171110a52b380>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,7 +18,7 @@ export type groupsGridFragment$data = {
         readonly " $fragmentSpreads": FragmentRefs<"groupCardFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
-  };
+  } | null | undefined;
   readonly " $fragmentType": "groupsGridFragment";
 };
 export type groupsGridFragment$key = {

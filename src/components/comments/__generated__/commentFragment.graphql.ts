@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7b90e47017d578156a8fafa144c6d4b7>>
+ * @generated SignedSource<<db67321c1ee67276ca5f1a53a7c7bcd1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type commentFragment$data = {
     readonly avatarUrl: string | null | undefined;
     readonly id: string;
     readonly name: string;
-    readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"profileAvatarFragment">;
   };
   readonly " $fragmentSpreads": FragmentRefs<"commentContentFragment" | "commentMenuFragment">;
   readonly " $fragmentType": "commentFragment";
@@ -75,7 +75,7 @@ return {
         {
           "args": null,
           "kind": "FragmentSpread",
-          "name": "userAvatarFragment"
+          "name": "profileAvatarFragment"
         }
       ],
       "storageKey": null
@@ -96,6 +96,6 @@ return {
 };
 })();
 
-(node as any).hash = "c2aabe54b6582691e4ca04fb6be8eb89";
+(node as any).hash = "8759391d1e36e92acec169f90c3d25c9";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<df38df708160be26a0d6f05782d93018>>
+ * @generated SignedSource<<2ecaf1e740b69e92b9690c3b9d515b4b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type createCommentFormViewerFragment$data = {
   readonly avatarUrl: string | null | undefined;
   readonly id: string;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"profileAvatarFragment">;
   readonly " $fragmentType": "createCommentFormViewerFragment";
 };
 export type createCommentFormViewerFragment$key = {
@@ -52,13 +52,13 @@ const node: ReaderFragment = {
     {
       "args": null,
       "kind": "FragmentSpread",
-      "name": "userAvatarFragment"
+      "name": "profileAvatarFragment"
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "f7dc3695a598b6e5ce6301a335d4423d";
+(node as any).hash = "8cad33df4d1341136fd1601365d26db8";
 
 export default node;

@@ -11,7 +11,7 @@ import {
   UserBadgeSubtitle,
   UserBadgeTitle
 } from '../common/user-badge'
-import { UserAvatar } from '../users/user-avatar'
+import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type commentFragment$key } from './__generated__/commentFragment.graphql'
 import { CommentContent } from './comment-content'
 import { CommentMenu } from './comment-menu'
@@ -24,7 +24,7 @@ const CommentFragment = graphql`
       id
       name
       avatarUrl
-      ...userAvatarFragment
+      ...profileAvatarFragment
     }
     ...commentMenuFragment
     ...commentContentFragment
@@ -44,7 +44,7 @@ export function Comment({ comment, onDestroy }: CommentProps) {
       <UserBadge>
         <UserBadgeIcon>
           <Link to={`/users/${data.user.id}`}>
-            <UserAvatar user={data.user} size="md" />
+            <ProfileAvatar node={data.user} size="md" />
           </Link>
         </UserBadgeIcon>
         <UserBadgeInfo>

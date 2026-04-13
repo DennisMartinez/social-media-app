@@ -14,7 +14,6 @@ import { PostUser } from './post-user'
 const PostViewerFragment = graphql`
   fragment postViewerFragment on User {
     name
-    ...userAvatarFragment
     ...createCommentFormViewerFragment
     ...postMenuViewerFragment
   }

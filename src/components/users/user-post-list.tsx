@@ -1,25 +1,26 @@
 import { LoaderCircleIcon } from 'lucide-react'
 import { useEffect, useRef } from 'react'
-import { useFragment, usePaginationFragment } from 'react-relay'
-import { graphql } from 'relay-runtime'
-import { type postListFragment$key } from './__generated__/postListFragment.graphql'
-import { type postListViewerFragment$key } from './__generated__/postListViewerFragment.graphql'
-import { Post } from './post'
+import { graphql, useFragment, usePaginationFragment } from 'react-relay'
+import { Card, CardBody } from '../common/card'
+import { Post } from '../posts/post'
+import { type userPostListFragment$key } from './__generated__/userPostListFragment.graphql'
+import { type userPostListViewerFragment$key } from './__generated__/userPostListViewerFragment.graphql'
 
-const PostListViewerFragment = graphql`
-  fragment postListViewerFragment on User {
+const UserPostListViewerFragment = graphql`
+  fragment userPostListViewerFragment on User {
     ...postViewerFragment
   }
 `
 
-const PostListFragment = graphql`
-  fragment postListFragment on User
-  @refetchable(queryName: "postListPaginationQuery")
+const UserPostListFragment = graphql`
+  fragment userPostListFragment on User
+  @refetchable(queryName: "userPostListPaginationQuery")
   @argumentDefinitions(
     cursor: { type: "String" }
     first: { type: "Int", defaultValue: 5 }
   ) {
-    posts(after: $cursor, first: $first) @connection(key: "User_posts") {
+    posts(after: $cursor, first: $first)
+      @connection(key: "UserPostList_posts") {
       edges {
         node {
           id
@@ -30,15 +31,15 @@ const PostListFragment = graphql`
   }
 `
 
-interface PostListProps {
-  viewer: postListViewerFragment$key
-  user: postListFragment$key
+interface UserPostListProps {
+  viewer: userPostListViewerFragment$key
+  user: userPostListFragment$key
 }
 
-export function PostList({ viewer, user }: PostListProps) {
-  const viewerData = useFragment(PostListViewerFragment, viewer)
+export function UserPostList({ viewer, user }: UserPostListProps) {
+  const viewerData = useFragment(UserPostListViewerFragment, viewer)
   const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
-    PostListFragment,
+    UserPostListFragment,
     user
   )
 
@@ -61,6 +62,13 @@ export function PostList({ viewer, user }: PostListProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex w-full flex-col gap-4">
+        {!data.posts?.edges?.length && (
+          <Card>
+            <CardBody className="wrap-break-word text-gray-900">
+              No posts for this user.
+            </CardBody>
+          </Card>
+        )}
         {data.posts?.edges?.map((edge) => {
           if (!edge?.node) return null
           return (

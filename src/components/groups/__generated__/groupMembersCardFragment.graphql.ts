@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7541ebb72993db5ed3571261b9016109>>
+ * @generated SignedSource<<e783c28c19d2786b07586491dfb11b2e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,28 +10,29 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type postListFragment$data = {
+export type groupMembersCardFragment$data = {
   readonly id: string;
-  readonly posts: {
+  readonly memberCount: number;
+  readonly members: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
-        readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"followeeFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
-  readonly " $fragmentType": "postListFragment";
+  readonly " $fragmentType": "groupMembersCardFragment";
 };
-export type postListFragment$key = {
-  readonly " $data"?: postListFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"postListFragment">;
+export type groupMembersCardFragment$key = {
+  readonly " $data"?: groupMembersCardFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"groupMembersCardFragment">;
 };
 
-import postListPaginationQuery_graphql from './postListPaginationQuery.graphql';
+import groupMembersCardPaginationQuery_graphql from './groupMembersCardPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
-  "posts"
+  "members"
 ],
 v1 = {
   "alias": null,
@@ -48,7 +49,7 @@ return {
       "name": "cursor"
     },
     {
-      "defaultValue": 5,
+      "defaultValue": 3,
       "kind": "LocalArgument",
       "name": "first"
     }
@@ -75,27 +76,34 @@ return {
       "fragmentPathInResult": [
         "node"
       ],
-      "operation": postListPaginationQuery_graphql,
+      "operation": groupMembersCardPaginationQuery_graphql,
       "identifierInfo": {
         "identifierField": "id",
         "identifierQueryVariableName": "id"
       }
     }
   },
-  "name": "postListFragment",
+  "name": "groupMembersCardFragment",
   "selections": [
     {
-      "alias": "posts",
+      "alias": null,
       "args": null,
-      "concreteType": "PostConnection",
+      "kind": "ScalarField",
+      "name": "memberCount",
+      "storageKey": null
+    },
+    {
+      "alias": "members",
+      "args": null,
+      "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "__User_posts_connection",
+      "name": "__User_members_connection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "PostEdge",
+          "concreteType": "UserEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -103,7 +111,7 @@ return {
             {
               "alias": null,
               "args": null,
-              "concreteType": "Post",
+              "concreteType": "User",
               "kind": "LinkedField",
               "name": "node",
               "plural": false,
@@ -112,7 +120,7 @@ return {
                 {
                   "args": null,
                   "kind": "FragmentSpread",
-                  "name": "postFragment"
+                  "name": "followeeFragment"
                 },
                 {
                   "alias": null,
@@ -164,11 +172,11 @@ return {
     },
     (v1/*: any*/)
   ],
-  "type": "User",
+  "type": "Group",
   "abstractKey": null
 };
 })();
 
-(node as any).hash = "e27de5bcdaddee89058e854938b00d12";
+(node as any).hash = "0989b7463ba9c96d0253bcfedeedc011";
 
 export default node;

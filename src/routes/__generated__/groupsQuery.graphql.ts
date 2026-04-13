@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<92e0906f0f60e4919c1ba24a55dae6b1>>
+ * @generated SignedSource<<f5c0df181bf60f39a79cc489654a4520>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -38,10 +38,20 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "avatarUrl",
   "storageKey": null
 },
-v3 = [
+v4 = [
+  (v3/*: any*/)
+],
+v5 = [
   {
     "kind": "Literal",
     "name": "first",
@@ -92,13 +102,32 @@ return {
             "name": "email",
             "storageKey": null
           },
-          (v2/*: any*/)
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "InlineFragment",
+                "selections": (v4/*: any*/),
+                "type": "User",
+                "abstractKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "selections": (v4/*: any*/),
+                "type": "Group",
+                "abstractKey": null
+              }
+            ],
+            "type": "Node",
+            "abstractKey": "__isNode"
+          }
         ],
         "storageKey": null
       },
       {
         "alias": null,
-        "args": (v3/*: any*/),
+        "args": (v5/*: any*/),
         "concreteType": "GroupConnection",
         "kind": "LinkedField",
         "name": "groups",
@@ -136,7 +165,7 @@ return {
                     "name": "createdAt",
                     "storageKey": null
                   },
-                  (v2/*: any*/),
+                  (v3/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -158,13 +187,7 @@ return {
                     "name": "viewerIsMember",
                     "storageKey": null
                   },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
-                    "storageKey": null
-                  }
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -208,7 +231,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v3/*: any*/),
+        "args": (v5/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "GroupsGrid_groups",
@@ -218,12 +241,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "40f7cb77866c60f7421c64b14d0faac0",
+    "cacheID": "4ced4438ced3f9dfe515ef4a9c467490",
     "id": null,
     "metadata": {},
     "name": "groupsQuery",
     "operationKind": "query",
-    "text": "query groupsQuery {\n  ...navigationFragment\n  ...groupsGridFragment\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment on Query {\n  groups(first: 12) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...userAvatarFragment\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query groupsQuery {\n  ...navigationFragment\n  ...groupsGridFragment\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment on Query {\n  groups(first: 12) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...profileAvatarFragment\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n"
   }
 };
 })();

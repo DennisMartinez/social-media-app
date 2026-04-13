@@ -266,10 +266,13 @@ type Group implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): UserConnection!
+  ): UserConnection
 
   """The name of the group."""
   name: String!
+
+  """The user who created the group."""
+  owner: User!
 
   """The number of posts in the group."""
   postCount: Int!
@@ -289,7 +292,7 @@ type Group implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): PostConnection!
+  ): PostConnection
 
   """The date and time when the group was last updated."""
   updatedAt: ISO8601DateTime!
@@ -551,7 +554,7 @@ type Post implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): CommentConnection!
+  ): CommentConnection
 
   """The number of comments on this post."""
   commentsCount: Int!
@@ -583,7 +586,7 @@ type Post implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): LikeConnection!
+  ): LikeConnection
 
   """The number of likes on this post."""
   likesCount: Int!
@@ -647,7 +650,7 @@ type Query {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): GroupConnection!
+  ): GroupConnection
 
   """Fetches an object given its ID."""
   node(
@@ -834,7 +837,7 @@ type User implements Node {
 
     """Returns the last _n_ elements from the list."""
     last: Int
-  ): PostConnection!
+  ): PostConnection
 
   """The number of followers this user has."""
   followerCount: Int!
