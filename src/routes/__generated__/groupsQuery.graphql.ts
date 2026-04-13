@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b5c64d5665a2c338053881a8df1913c9>>
+ * @generated SignedSource<<15187d9e4ada8eeaae1f3582e5437d2c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -100,6 +100,13 @@ return {
             "args": null,
             "kind": "ScalarField",
             "name": "email",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "groupCount",
             "storageKey": null
           },
           {
@@ -248,12 +255,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b41a30ae4f24c59bd9907008e9c0145f",
+    "cacheID": "4ad8a2d5ff52a6bf291b6cf9ed33ac65",
     "id": null,
     "metadata": {},
     "name": "groupsQuery",
     "operationKind": "query",
-    "text": "query groupsQuery {\n  ...navigationFragment\n  ...groupsGridFragment\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment on Query {\n  groups(first: 12) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment navigationAccountFragment on User {\n  id\n  name\n  email\n  ...profileAvatarFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationMainFragment\n    ...navigationAccountFragment\n    id\n  }\n}\n\nfragment navigationMainFragment on User {\n  id\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n"
+    "text": "query groupsQuery {\n  ...navigationFragment\n  ...groupsGridFragment\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupCardViewerFragment on User {\n  ...groupMembershipButtonViewerFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupMembershipButtonViewerFragment on User {\n  id\n  groupCount\n}\n\nfragment groupsGridFragment on Query {\n  viewer {\n    ...groupCardViewerFragment\n    id\n  }\n  groups(first: 12) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment navigationAccountFragment on User {\n  id\n  name\n  email\n  ...profileAvatarFragment\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationMainFragment\n    ...navigationAccountFragment\n    id\n  }\n}\n\nfragment navigationMainFragment on User {\n  id\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n"
   }
 };
 })();

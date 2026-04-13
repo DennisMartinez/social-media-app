@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8483faa7509ffebedb03ea8c2238c0b8>>
+ * @generated SignedSource<<8e16774444de73030892df6adc83cba1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -40,7 +40,14 @@ v1 = {
   "name": "first",
   "variableName": "first"
 },
-v2 = [
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -79,7 +86,26 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "viewer",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "groupCount",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": (v3/*: any*/),
         "concreteType": "GroupConnection",
         "kind": "LinkedField",
         "name": "groups",
@@ -101,13 +127,7 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                  },
+                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -214,7 +234,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v3/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "GroupsGrid_groups",
@@ -224,16 +244,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "abaeeb36c95eb44da715ed14f7d2e01c",
+    "cacheID": "07f0f99c4a62e851c85cc41a081ee702",
     "id": null,
     "metadata": {},
     "name": "groupsGridPaginationQuery",
     "operationKind": "query",
-    "text": "query groupsGridPaginationQuery(\n  $cursor: String\n  $first: Int = 12\n) {\n  ...groupsGridFragment_19XkED\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment_19XkED on Query {\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query groupsGridPaginationQuery(\n  $cursor: String\n  $first: Int = 12\n) {\n  ...groupsGridFragment_19XkED\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupCardViewerFragment on User {\n  ...groupMembershipButtonViewerFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupMembershipButtonViewerFragment on User {\n  id\n  groupCount\n}\n\nfragment groupsGridFragment_19XkED on Query {\n  viewer {\n    ...groupCardViewerFragment\n    id\n  }\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ad8a0f156e49032a66db910a7e75794c";
+(node as any).hash = "11a0f26d3a78d7b5b90c10430f4cfa93";
 
 export default node;

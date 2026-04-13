@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8a8d746e2585c1f7224171110a52b380>>
+ * @generated SignedSource<<66a30f354d2866f327630349594531ac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,9 @@ export type groupsGridFragment$data = {
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
+  readonly viewer: {
+    readonly " $fragmentSpreads": FragmentRefs<"groupCardViewerFragment">;
+  };
   readonly " $fragmentType": "groupsGridFragment";
 };
 export type groupsGridFragment$key = {
@@ -70,6 +73,22 @@ return {
   },
   "name": "groupsGridFragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "User",
+      "kind": "LinkedField",
+      "name": "viewer",
+      "plural": false,
+      "selections": [
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "groupCardViewerFragment"
+        }
+      ],
+      "storageKey": null
+    },
     {
       "alias": "groups",
       "args": null,
@@ -160,6 +179,6 @@ return {
 };
 })();
 
-(node as any).hash = "ad8a0f156e49032a66db910a7e75794c";
+(node as any).hash = "11a0f26d3a78d7b5b90c10430f4cfa93";
 
 export default node;

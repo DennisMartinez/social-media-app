@@ -3,8 +3,15 @@ import { Link } from 'react-router'
 import { randomColor } from '../../utils'
 import { Card, CardBody } from '../common/card'
 import { type groupCardFragment$key } from './__generated__/groupCardFragment.graphql'
+import { type groupCardViewerFragment$key } from './__generated__/groupCardViewerFragment.graphql'
 import { GroupAvatar } from './group-avatar'
 import { GroupMembershipButton } from './group-membership-button'
+
+const GroupCardViewerFragment = graphql`
+  fragment groupCardViewerFragment on User {
+    ...groupMembershipButtonViewerFragment
+  }
+`
 
 const GroupCardFragment = graphql`
   fragment groupCardFragment on Group {
@@ -18,11 +25,13 @@ const GroupCardFragment = graphql`
 `
 
 interface GroupCardProps {
+  viewer: groupCardViewerFragment$key
   group: groupCardFragment$key
 }
 
-export function GroupCard({ group }: GroupCardProps) {
+export function GroupCard({ viewer, group }: GroupCardProps) {
   const data = useFragment(GroupCardFragment, group)
+  const viewerData = useFragment(GroupCardViewerFragment, viewer)
 
   return (
     <Card className="relative">
@@ -42,7 +51,7 @@ export function GroupCard({ group }: GroupCardProps) {
             {data.bio || 'No description provided.'}
           </div>
           <div className="mt-auto">
-            <GroupMembershipButton group={data} />
+            <GroupMembershipButton viewer={viewerData} group={data} />
           </div>
         </div>
       </CardBody>

@@ -12,6 +12,9 @@ const GroupsGridFragment = graphql`
     cursor: { type: "String" }
     first: { type: "Int", defaultValue: 12 }
   ) {
+    viewer {
+      ...groupCardViewerFragment
+    }
     groups(after: $cursor, first: $first)
       @connection(key: "GroupsGrid_groups") {
       edges {
@@ -56,7 +59,13 @@ export function GroupsGrid({ query }: GroupsGridProps) {
         {data.groups?.edges?.map((edge) => {
           if (!edge?.node) return null
 
-          return <GroupCard key={edge.node.id} group={edge.node} />
+          return (
+            <GroupCard
+              key={edge.node.id}
+              viewer={data.viewer}
+              group={edge.node}
+            />
+          )
         })}
       </div>
       {isLoadingNext && (
