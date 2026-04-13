@@ -9,6 +9,7 @@ import { GroupPostList } from '../components/groups/group-post-list'
 import { Navigation } from '../components/navigation/navigation'
 import { CreatePostForm } from '../components/posts/create-post-form'
 import { ProfileHeader } from '../components/profiles/profile-header'
+import { UserGroupsCard } from '../components/users/user-groups-card'
 import { UserPostList } from '../components/users/user-post-list'
 import { type nodeQuery } from './__generated__/nodeQuery.graphql'
 import { Component as NotFound } from './not-found'
@@ -20,6 +21,7 @@ const NodeQuery = graphql`
       ...groupPostListViewerFragment
       ...groupMembersCardViewerFragment
       ...userPostListViewerFragment
+      ...userGroupsCardViewerFragment
       ...profileHeaderViewerFragment
       ...followersCardViewerFragment
       ...followingsCardViewerFragment
@@ -32,6 +34,7 @@ const NodeQuery = graphql`
         ...userPostListFragment
         ...followersCardFragment
         ...followingsCardFragment
+        ...userGroupsCardFragment
       }
       ... on Group {
         viewerIsMember
@@ -71,10 +74,11 @@ export function Component() {
               <>
                 <FollowersCard viewer={data.viewer} user={data.node} />
                 <FollowingsCard viewer={data.viewer} user={data.node} />
+                <UserGroupsCard viewer={data.viewer} user={data.node} />
               </>
             )}
             {isGroup && (
-              <GroupMembersCard viewer={data.viewer} user={data.node} />
+              <GroupMembersCard viewer={data.viewer} group={data.node} />
             )}
           </div>
         </div>
@@ -99,10 +103,11 @@ export function Component() {
                 <>
                   <FollowersCard viewer={data.viewer} user={data.node} />
                   <FollowingsCard viewer={data.viewer} user={data.node} />
+                  <UserGroupsCard viewer={data.viewer} user={data.node} />
                 </>
               )}
               {isGroup && (
-                <GroupMembersCard viewer={data.viewer} user={data.node} />
+                <GroupMembersCard viewer={data.viewer} group={data.node} />
               )}
             </div>
           </div>

@@ -7,6 +7,7 @@ import { FollowingsCard } from '../components/follows/followings-card'
 import { RecommendedFollows } from '../components/follows/recommended-follows'
 import { Navigation } from '../components/navigation/navigation'
 import { CreatePostForm } from '../components/posts/create-post-form'
+import { UserGroupsCard } from '../components/users/user-groups-card'
 import { type feedQuery } from './__generated__/feedQuery.graphql'
 
 const FeedQuery = graphql`
@@ -21,6 +22,8 @@ const FeedQuery = graphql`
       ...followingsCardFragment
       ...followersCardViewerFragment
       ...followingsCardViewerFragment
+      ...userGroupsCardFragment
+      ...userGroupsCardViewerFragment
     }
     ...navigationFragment
   }
@@ -45,6 +48,7 @@ export function Component() {
             <RecommendedFollows viewer={data.viewer} user={data.viewer} />
             <FollowersCard viewer={data.viewer} user={data.viewer} />
             <FollowingsCard viewer={data.viewer} user={data.viewer} />
+            <UserGroupsCard viewer={data.viewer} user={data.viewer} />
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-4">
@@ -55,6 +59,7 @@ export function Component() {
           <RecommendedFollows viewer={data.viewer} user={data.viewer} />
           <FollowersCard viewer={data.viewer} user={data.viewer} />
           <FollowingsCard viewer={data.viewer} user={data.viewer} />
+          <UserGroupsCard viewer={data.viewer} user={data.viewer} />
         </div>
       </div>
     </div>

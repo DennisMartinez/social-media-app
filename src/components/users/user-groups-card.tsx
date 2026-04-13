@@ -3,72 +3,72 @@ import { graphql } from 'relay-runtime'
 import { formatNumber } from '../../utils'
 import { Button } from '../common/button'
 import { Card, CardBody, CardHeader, CardTitle } from '../common/card'
-import { Followee } from '../follows/followee'
-import { type groupMembersCardFragment$key } from './__generated__/groupMembersCardFragment.graphql'
-import { type groupMembersCardViewerFragment$key } from './__generated__/groupMembersCardViewerFragment.graphql'
+import { GroupBadge } from '../groups/group-badge'
+import { type userGroupsCardFragment$key } from './__generated__/userGroupsCardFragment.graphql'
+import { type userGroupsCardViewerFragment$key } from './__generated__/userGroupsCardViewerFragment.graphql'
 
-const GroupMembersCardViewerFragment = graphql`
-  fragment groupMembersCardViewerFragment on User {
-    ...followeeViewerFragment
+const UserGroupsCardViewerFragment = graphql`
+  fragment userGroupsCardViewerFragment on User {
+    ...groupBadgeViewerFragment
   }
 `
 
-const GroupMembersCardFragment = graphql`
-  fragment groupMembersCardFragment on Group
-  @refetchable(queryName: "groupMembersCardPaginationQuery")
+const UserGroupsCardFragment = graphql`
+  fragment userGroupsCardFragment on User
+  @refetchable(queryName: "userGroupsCardPaginationQuery")
   @argumentDefinitions(
     cursor: { type: "String" }
     first: { type: "Int", defaultValue: 3 }
   ) {
-    memberCount
-    members(after: $cursor, first: $first) @connection(key: "Group_members") {
+    groupCount
+    groups(after: $cursor, first: $first) @connection(key: "User_groups") {
       edges {
         node {
           id
-          ...followeeFragment
+          ...groupBadgeFragment
         }
       }
     }
   }
 `
 
-interface GroupMembersCardProps {
-  viewer: groupMembersCardViewerFragment$key
-  group: groupMembersCardFragment$key
+interface UserGroupsCardProps {
+  viewer: userGroupsCardViewerFragment$key
+  user: userGroupsCardFragment$key
 }
 
-export function GroupMembersCard({ viewer, group }: GroupMembersCardProps) {
-  const viewerData = useFragment(GroupMembersCardViewerFragment, viewer)
+export function UserGroupsCard({ viewer, user }: UserGroupsCardProps) {
+  const viewerData = useFragment(UserGroupsCardViewerFragment, viewer)
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
-    GroupMembersCardFragment,
-    group
+    UserGroupsCardFragment,
+    user
   )
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          Members{' '}
+          Groups{' '}
           <span className="text-gray-500">
-            ({formatNumber(data.memberCount)})
+            ({formatNumber(data.groupCount)})
           </span>
         </CardTitle>
       </CardHeader>
       <CardBody>
         <div className="flex flex-col gap-4">
-          {!data.members?.edges?.length && (
+          {!data.groups?.edges?.length && (
             <div className="text-sm text-gray-500">
-              This group has no members yet.
+              This user is not a member of any groups yet.
             </div>
           )}
-          {data.members?.edges?.map((edge) => {
+          {data.groups?.edges?.map((edge) => {
             if (!edge?.node) return null
 
             return (
-              <Followee
+              <GroupBadge
                 key={edge.node.id}
                 viewer={viewerData}
-                followee={edge.node}
+                group={edge.node}
               />
             )
           })}

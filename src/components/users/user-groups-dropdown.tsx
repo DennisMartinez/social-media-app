@@ -12,9 +12,13 @@ import {
 import { type userGroupsDropdownFragment$key } from './__generated__/userGroupsDropdownFragment.graphql'
 
 const UserGroupsDropdownFragment = graphql`
-  fragment userGroupsDropdownFragment on User {
+  fragment userGroupsDropdownFragment on User
+  @argumentDefinitions(
+    cursor: { type: "String" }
+    first: { type: "Int", defaultValue: 3 }
+  ) {
     groupCount
-    groups {
+    groups(after: $cursor, first: $first) @connection(key: "User_groups") {
       edges {
         node {
           id

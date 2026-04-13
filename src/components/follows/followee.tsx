@@ -2,13 +2,13 @@ import { useFragment } from 'react-relay'
 import { Link } from 'react-router'
 import { graphql } from 'relay-runtime'
 import {
-  UserBadge,
-  UserBadgeAction,
-  UserBadgeIcon,
-  UserBadgeInfo,
-  UserBadgeSubtitle,
-  UserBadgeTitle
-} from '../common/user-badge'
+  ProfileBadge,
+  ProfileBadgeAction,
+  ProfileBadgeIcon,
+  ProfileBadgeInfo,
+  ProfileBadgeSubtitle,
+  ProfileBadgeTitle
+} from '../common/profile-badge'
 import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type followeeFragment$key } from './__generated__/followeeFragment.graphql'
 import { type followeeViewerFragment$key } from './__generated__/followeeViewerFragment.graphql'
@@ -40,21 +40,21 @@ export function Followee({ viewer, followee }: FolloweeProps) {
   const viewerData = useFragment(FolloweeViewerFragment, viewer)
 
   return (
-    <UserBadge>
-      <UserBadgeIcon>
+    <ProfileBadge>
+      <ProfileBadgeIcon>
         <Link to={`/users/${data.id}`}>
           <ProfileAvatar node={data} />
         </Link>
-      </UserBadgeIcon>
-      <UserBadgeInfo>
-        <UserBadgeTitle>
+      </ProfileBadgeIcon>
+      <ProfileBadgeInfo>
+        <ProfileBadgeTitle>
           <Link to={`/users/${data.id}`}>{data.name}</Link>
-        </UserBadgeTitle>
-        <UserBadgeSubtitle>{data.email}</UserBadgeSubtitle>
-      </UserBadgeInfo>
-      <UserBadgeAction>
+        </ProfileBadgeTitle>
+        <ProfileBadgeSubtitle>{data.email}</ProfileBadgeSubtitle>
+      </ProfileBadgeInfo>
+      <ProfileBadgeAction>
         <FollowButton follower={viewerData} followee={data} />
-      </UserBadgeAction>
-    </UserBadge>
+      </ProfileBadgeAction>
+    </ProfileBadge>
   )
 }

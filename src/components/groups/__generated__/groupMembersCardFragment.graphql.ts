@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e783c28c19d2786b07586491dfb11b2e>>
+ * @generated SignedSource<<c81801f5e500d5664c4f2c3c3c561fb1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -97,7 +97,7 @@ return {
       "args": null,
       "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "__User_members_connection",
+      "name": "__Group_members_connection",
       "plural": false,
       "selections": [
         {
@@ -177,6 +177,6 @@ return {
 };
 })();
 
-(node as any).hash = "0989b7463ba9c96d0253bcfedeedc011";
+(node as any).hash = "47bcb6077cb97746e03bf315cceb247f";
 
 export default node;

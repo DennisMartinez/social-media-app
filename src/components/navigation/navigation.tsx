@@ -1,14 +1,15 @@
 import { useFragment } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { type navigationFragment$key } from './__generated__/navigationFragment.graphql'
+import { NavigationAccount } from './navigation-account'
 import { NavigationMain } from './navigation-main'
 import { NavigationSocials } from './navigation-socials'
-import { NavigationUser } from './navigation-user'
 
 const NavigationFragment = graphql`
   fragment navigationFragment on Query {
     viewer {
-      ...navigationUserFragment
+      ...navigationMainFragment
+      ...navigationAccountFragment
     }
   }
 `
@@ -22,9 +23,9 @@ export function Navigation({ query }: NavigationProps) {
 
   return (
     <div className="flex h-full flex-col gap-4">
-      <NavigationMain />
+      <NavigationMain viewer={data.viewer} />
       <NavigationSocials />
-      <NavigationUser user={data.viewer} />
+      <NavigationAccount viewer={data.viewer} />
     </div>
   )
 }

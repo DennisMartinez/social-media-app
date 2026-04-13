@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f1c1da5af5f94edc407decd4130cf77e>>
+ * @generated SignedSource<<0addeacfd41b84b0350620cefbac2e0f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,19 +10,19 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type groupMembersCardPaginationQuery$variables = {
+export type userGroupsCardPaginationQuery$variables = {
   cursor?: string | null | undefined;
   first?: number | null | undefined;
   id: string;
 };
-export type groupMembersCardPaginationQuery$data = {
+export type userGroupsCardPaginationQuery$data = {
   readonly node: {
-    readonly " $fragmentSpreads": FragmentRefs<"groupMembersCardFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"userGroupsCardFragment">;
   } | null | undefined;
 };
-export type groupMembersCardPaginationQuery = {
-  response: groupMembersCardPaginationQuery$data;
-  variables: groupMembersCardPaginationQuery$variables;
+export type userGroupsCardPaginationQuery = {
+  response: userGroupsCardPaginationQuery$data;
+  variables: userGroupsCardPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -91,7 +91,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "groupMembersCardPaginationQuery",
+    "name": "userGroupsCardPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -111,7 +111,7 @@ return {
               (v2/*: any*/)
             ],
             "kind": "FragmentSpread",
-            "name": "groupMembersCardFragment"
+            "name": "userGroupsCardFragment"
           }
         ],
         "storageKey": null
@@ -124,7 +124,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "groupMembersCardPaginationQuery",
+    "name": "userGroupsCardPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -143,21 +143,21 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "memberCount",
+                "name": "groupCount",
                 "storageKey": null
               },
               {
                 "alias": null,
                 "args": (v5/*: any*/),
-                "concreteType": "UserConnection",
+                "concreteType": "GroupConnection",
                 "kind": "LinkedField",
-                "name": "members",
+                "name": "groups",
                 "plural": false,
                 "selections": [
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "UserEdge",
+                    "concreteType": "GroupEdge",
                     "kind": "LinkedField",
                     "name": "edges",
                     "plural": true,
@@ -165,7 +165,7 @@ return {
                       {
                         "alias": null,
                         "args": null,
-                        "concreteType": "User",
+                        "concreteType": "Group",
                         "kind": "LinkedField",
                         "name": "node",
                         "plural": false,
@@ -182,35 +182,35 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "email",
+                            "name": "bio",
                             "storageKey": null
                           },
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "viewerIsFollowing",
+                            "name": "memberCount",
                             "storageKey": null
                           },
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "viewerCanFollow",
+                            "name": "viewerCanJoin",
                             "storageKey": null
                           },
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "followerCount",
+                            "name": "viewerCanLeave",
                             "storageKey": null
                           },
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "followingCount",
+                            "name": "viewerIsMember",
                             "storageKey": null
                           },
                           (v3/*: any*/),
@@ -279,12 +279,12 @@ return {
                 "args": (v5/*: any*/),
                 "filters": null,
                 "handle": "connection",
-                "key": "Group_members",
+                "key": "User_groups",
                 "kind": "LinkedHandle",
-                "name": "members"
+                "name": "groups"
               }
             ],
-            "type": "Group",
+            "type": "User",
             "abstractKey": null
           }
         ],
@@ -293,16 +293,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d2dc8236959541c61731ed8226a81b8f",
+    "cacheID": "b8fc4e2560245c2e105ee57de6128e09",
     "id": null,
     "metadata": {},
-    "name": "groupMembersCardPaginationQuery",
+    "name": "userGroupsCardPaginationQuery",
     "operationKind": "query",
-    "text": "query groupMembersCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...groupMembersCardFragment_19XkED\n    id\n  }\n}\n\nfragment followButtonFolloweeFragment on User {\n  id\n  viewerIsFollowing\n  viewerCanFollow\n  ...useFollowsFolloweeFragment\n}\n\nfragment followeeFragment on User {\n  id\n  name\n  email\n  ...followButtonFolloweeFragment\n  ...profileAvatarFragment\n}\n\nfragment groupMembersCardFragment_19XkED on Group {\n  memberCount\n  members(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...followeeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n"
+    "text": "query userGroupsCardPaginationQuery(\n  $cursor: String\n  $first: Int = 3\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...userGroupsCardFragment_19XkED\n    id\n  }\n}\n\nfragment groupBadgeFragment on Group {\n  id\n  name\n  bio\n  ...profileAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n\nfragment userGroupsCardFragment_19XkED on User {\n  groupCount\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupBadgeFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();
 
-(node as any).hash = "47bcb6077cb97746e03bf315cceb247f";
+(node as any).hash = "314bef7a684a21389617967f2bd68658";
 
 export default node;

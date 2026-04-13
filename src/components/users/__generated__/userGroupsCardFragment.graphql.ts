@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<49dad1370c5d8a1b8fb9918a404199fc>>
+ * @generated SignedSource<<c729a9e8b3d8750dcf7005e2fd0d21a7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,24 +10,38 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type userGroupsDropdownFragment$data = {
+export type userGroupsCardFragment$data = {
   readonly groupCount: number;
   readonly groups: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
-        readonly name: string;
+        readonly " $fragmentSpreads": FragmentRefs<"groupBadgeFragment">;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   } | null | undefined;
-  readonly " $fragmentType": "userGroupsDropdownFragment";
+  readonly id: string;
+  readonly " $fragmentType": "userGroupsCardFragment";
 };
-export type userGroupsDropdownFragment$key = {
-  readonly " $data"?: userGroupsDropdownFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"userGroupsDropdownFragment">;
+export type userGroupsCardFragment$key = {
+  readonly " $data"?: userGroupsCardFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"userGroupsCardFragment">;
 };
 
-const node: ReaderFragment = {
+import userGroupsCardPaginationQuery_graphql from './userGroupsCardPaginationQuery.graphql';
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "groups"
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [
     {
       "defaultValue": null,
@@ -47,13 +61,29 @@ const node: ReaderFragment = {
         "count": "first",
         "cursor": "cursor",
         "direction": "forward",
-        "path": [
-          "groups"
-        ]
+        "path": (v0/*: any*/)
       }
-    ]
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [
+        "node"
+      ],
+      "operation": userGroupsCardPaginationQuery_graphql,
+      "identifierInfo": {
+        "identifierField": "id",
+        "identifierQueryVariableName": "id"
+      }
+    }
   },
-  "name": "userGroupsDropdownFragment",
+  "name": "userGroupsCardFragment",
   "selections": [
     {
       "alias": null,
@@ -86,19 +116,11 @@ const node: ReaderFragment = {
               "name": "node",
               "plural": false,
               "selections": [
+                (v1/*: any*/),
                 {
-                  "alias": null,
                   "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "name",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "groupBadgeFragment"
                 },
                 {
                   "alias": null,
@@ -147,12 +169,14 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    }
+    },
+    (v1/*: any*/)
   ],
   "type": "User",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "b47d4c57f841fec9dc9f4e0198bb42a7";
+(node as any).hash = "314bef7a684a21389617967f2bd68658";
 
 export default node;

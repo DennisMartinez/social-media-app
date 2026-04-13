@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c081c119310704da455cc2caad8bb58e>>
+ * @generated SignedSource<<b5d0a96a3c71b470a5042c7f43aa4ce0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,6 +22,9 @@ export type groupMembershipButtonLeaveMutation$data = {
     readonly errors: ReadonlyArray<string>;
     readonly group: {
       readonly " $fragmentSpreads": FragmentRefs<"groupMembershipButtonFragment">;
+    } | null | undefined;
+    readonly user: {
+      readonly " $fragmentSpreads": FragmentRefs<"groupMembershipButtonViewerFragment">;
     } | null | undefined;
   } | null | undefined;
 };
@@ -50,6 +53,13 @@ v2 = {
   "args": null,
   "kind": "ScalarField",
   "name": "errors",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -80,6 +90,22 @@ return {
                 "args": null,
                 "kind": "FragmentSpread",
                 "name": "groupMembershipButtonFragment"
+              }
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "user",
+            "plural": false,
+            "selections": [
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "groupMembershipButtonViewerFragment"
               }
             ],
             "storageKey": null
@@ -114,13 +140,7 @@ return {
             "name": "group",
             "plural": false,
             "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
+              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -151,6 +171,25 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "user",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "groupCount",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -158,16 +197,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "89811b1829649b8799ab5d3bc178e55c",
+    "cacheID": "3e87ebbceb05d4c7101525322435c942",
     "id": null,
     "metadata": {},
     "name": "groupMembershipButtonLeaveMutation",
     "operationKind": "mutation",
-    "text": "mutation groupMembershipButtonLeaveMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    errors\n    group {\n      ...groupMembershipButtonFragment\n      id\n    }\n  }\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n"
+    "text": "mutation groupMembershipButtonLeaveMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    errors\n    group {\n      ...groupMembershipButtonFragment\n      id\n    }\n    user {\n      ...groupMembershipButtonViewerFragment\n      id\n    }\n  }\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupMembershipButtonViewerFragment on User {\n  id\n  groupCount\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2c086c2bfad0bebb432ff323a37b4ce1";
+(node as any).hash = "ad496ec07ba8a84403716ae05b907262";
 
 export default node;

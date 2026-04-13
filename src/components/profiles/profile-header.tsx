@@ -12,6 +12,7 @@ import { ProfileAvatar } from './profile-avatar'
 const ProfileHeaderViewerFragment = graphql`
   fragment profileHeaderViewerFragment on User {
     ...followButtonFollowerFragment
+    ...groupMembershipButtonViewerFragment
   }
 `
 
@@ -67,7 +68,9 @@ export function ProfileHeader({ viewer, node }: ProfileHeaderProps) {
             </h1>
             <div className="mt-1 shrink-0">
               {isUser && <FollowButton follower={viewerData} followee={data} />}
-              {isGroup && <GroupMembershipButton group={data} />}
+              {isGroup && (
+                <GroupMembershipButton viewer={viewerData} group={data} />
+              )}
             </div>
           </div>
           <Badge>

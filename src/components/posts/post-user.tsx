@@ -1,14 +1,14 @@
 import { graphql, useFragment } from 'react-relay'
 import { Link } from 'react-router'
 import { formatDate } from '../../utils'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../common/tooltip'
 import {
-  UserBadge,
-  UserBadgeIcon,
-  UserBadgeInfo,
-  UserBadgeSubtitle,
-  UserBadgeTitle
-} from '../common/user-badge'
+  ProfileBadge,
+  ProfileBadgeIcon,
+  ProfileBadgeInfo,
+  ProfileBadgeSubtitle,
+  ProfileBadgeTitle
+} from '../common/profile-badge'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../common/tooltip'
 import { ProfileAvatar } from '../profiles/profile-avatar'
 import { type postUserFragment$key } from './__generated__/postUserFragment.graphql'
 
@@ -35,14 +35,14 @@ export function PostUser({ user }: PostUserProps) {
   const data = useFragment(PostUserFragment, user)
 
   return (
-    <UserBadge>
-      <UserBadgeIcon>
+    <ProfileBadge>
+      <ProfileBadgeIcon>
         <Link to={`/users/${data.user.id}`}>
           <ProfileAvatar node={data.user} />
         </Link>
-      </UserBadgeIcon>
-      <UserBadgeInfo>
-        <UserBadgeTitle>
+      </ProfileBadgeIcon>
+      <ProfileBadgeInfo>
+        <ProfileBadgeTitle>
           <Link to={`/users/${data.user.id}`}>{data.user.name}</Link>
           {data.group && (
             <span className="ml-1 text-xs text-gray-400">
@@ -52,16 +52,16 @@ export function PostUser({ user }: PostUserProps) {
               </Link>
             </span>
           )}
-        </UserBadgeTitle>
-        <UserBadgeSubtitle>
+        </ProfileBadgeTitle>
+        <ProfileBadgeSubtitle>
           <Tooltip>
             <TooltipTrigger>{formatDate(data.createdAt)}</TooltipTrigger>
             <TooltipContent>
               {new Date(data.createdAt).toLocaleString()}
             </TooltipContent>
           </Tooltip>
-        </UserBadgeSubtitle>
-      </UserBadgeInfo>
-    </UserBadge>
+        </ProfileBadgeSubtitle>
+      </ProfileBadgeInfo>
+    </ProfileBadge>
   )
 }

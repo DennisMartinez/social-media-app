@@ -2,6 +2,14 @@ import { useFragment, useMutation } from 'react-relay'
 import { graphql } from 'relay-runtime'
 import { Button } from '../common/button'
 import { type groupMembershipButtonFragment$key } from './__generated__/groupMembershipButtonFragment.graphql'
+import { type groupMembershipButtonViewerFragment$key } from './__generated__/groupMembershipButtonViewerFragment.graphql'
+
+const GroupMembershipButtonViewerFragment = graphql`
+  fragment groupMembershipButtonViewerFragment on User {
+    id
+    groupCount
+  }
+`
 
 const GroupMembershipButtonFragment = graphql`
   fragment groupMembershipButtonFragment on Group {
@@ -20,6 +28,9 @@ const GroupMembershipButtonJoinMutation = graphql`
       group {
         ...groupMembershipButtonFragment
       }
+      user {
+        ...groupMembershipButtonViewerFragment
+      }
     }
   }
 `
@@ -31,16 +42,24 @@ const GroupMembershipButtonLeaveMutation = graphql`
       group {
         ...groupMembershipButtonFragment
       }
+      user {
+        ...groupMembershipButtonViewerFragment
+      }
     }
   }
 `
 
 interface GroupMembershipButtonProps {
+  viewer: groupMembershipButtonViewerFragment$key
   group: groupMembershipButtonFragment$key
 }
 
-export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
+export function GroupMembershipButton({
+  viewer,
+  group
+}: GroupMembershipButtonProps) {
   const data = useFragment(GroupMembershipButtonFragment, group)
+  const viewerData = useFragment(GroupMembershipButtonViewerFragment, viewer)
   const [joinGroup] = useMutation(GroupMembershipButtonJoinMutation)
   const [leaveGroup] = useMutation(GroupMembershipButtonLeaveMutation)
 
@@ -66,6 +85,10 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
                   viewerCanJoin: true,
                   viewerCanLeave: false,
                   viewerIsMember: false
+                },
+                user: {
+                  id: viewerData.id,
+                  groupCount: viewerData.groupCount - 1
                 }
               }
             }
@@ -86,6 +109,10 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
                   viewerCanJoin: false,
                   viewerCanLeave: true,
                   viewerIsMember: true
+                },
+                user: {
+                  id: viewerData.id,
+                  groupCount: viewerData.groupCount + 1
                 }
               }
             }
