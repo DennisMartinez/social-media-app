@@ -61,11 +61,11 @@ export function ProfileHeader({ viewer, node }: ProfileHeaderProps) {
           className="size-32 shadow ring-4 ring-white"
         />
         <div className="flex w-full min-w-0 flex-col items-center gap-4 lg:mt-10 lg:items-start">
-          <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:items-start">
+          <div className="flex w-full flex-col items-center justify-between gap-4 lg:flex-row lg:items-start">
             <h1 className="text-center text-2xl font-bold lg:text-left">
               {data.name}
             </h1>
-            <div className="mt-1 w-auto shrink-0">
+            <div className="mt-1 shrink-0">
               {isUser && <FollowButton follower={viewerData} followee={data} />}
               {isGroup && <GroupMembershipButton group={data} />}
             </div>
