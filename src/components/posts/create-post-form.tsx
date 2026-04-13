@@ -10,7 +10,15 @@ import { Input } from '../common/input'
 import { ProfileAvatar } from '../profiles/profile-avatar'
 import { UserGroupsDropdown, type Group } from '../users/user-groups-dropdown'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
+import { type createPostFormGroupFragment$key } from './__generated__/createPostFormGroupFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
+
+const CreatePostFormGroupFragment = graphql`
+  fragment createPostFormGroupFragment on Group {
+    id
+    name
+  }
+`
 
 const CreatePostFormFragment = graphql`
   fragment createPostFormFragment on User {
@@ -30,6 +38,7 @@ const CreatePostFormMutation = graphql`
     $input: CreatePostInput!
   ) {
     createPost(input: $input) {
+      errors
       postEdge @prependEdge(connections: $connections) {
         node {
           ...postFragment
@@ -49,13 +58,17 @@ const schema = yup.object({
 const MAX_LIMIT = 500
 
 interface CreatePostFormProps {
+  group?: createPostFormGroupFragment$key
   user: createPostFormFragment$key
 }
 
-export function CreatePostForm({ user }: CreatePostFormProps) {
+export function CreatePostForm({ user, group }: CreatePostFormProps) {
   const env = useRelayEnvironment()
   const data = useFragment(CreatePostFormFragment, user)
-  const [selectedGroup, setSelectedGroup] = useState<Group | null>(null)
+  const groupData = useFragment(CreatePostFormGroupFragment, group)
+  const [selectedGroup, setSelectedGroup] = useState<Group | null>(
+    groupData ?? null
+  )
   const [createPost] = useMutation<createPostFormMutation>(
     CreatePostFormMutation
   )
@@ -70,14 +83,21 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
   return (
     <form
       onSubmit={handleSubmit((formData) => {
-        const connections = ['User_posts', 'User_feed']
+        const userConnections = ['UserPostList_posts', 'User_feed']
           .map((key) => ConnectionHandler.getConnectionID(data.id, key))
           .filter((id) => env.getStore().getSource().get(id))
+        const groupConnections = selectedGroup
+          ? ['GroupPostList_posts']
+              .map((key) =>
+                ConnectionHandler.getConnectionID(selectedGroup.id, key)
+              )
+              .filter((id) => env.getStore().getSource().get(id))
+          : []
 
         reset()
         createPost({
           variables: {
-            connections,
+            connections: [...userConnections, ...groupConnections],
             input: {
               content: formData.content,
               groupId: selectedGroup?.id
@@ -85,6 +105,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           },
           optimisticResponse: {
             createPost: {
+              errors: [],
               postEdge: {
                 node: {
                   __typename: 'Post',
@@ -103,6 +124,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                     }
                   },
                   user: {
+                    __typename: 'User',
                     id: data.id,
                     avatarUrl: data.avatarUrl,
                     name: data.name,
@@ -138,10 +160,16 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
           />
           <div className="absolute bottom-0 left-0 flex w-full items-center justify-between gap-4 px-2 pb-2">
             <div>
-              <UserGroupsDropdown
-                user={data}
-                onGroupSelect={setSelectedGroup}
-              />
+              {!groupData ? (
+                <UserGroupsDropdown
+                  user={data}
+                  onGroupSelect={setSelectedGroup}
+                />
+              ) : (
+                <div className="max-w-37.5 truncate text-xs text-gray-500">
+                  Posting in {groupData.name}
+                </div>
+              )}
             </div>
             <div className="flex min-w-0 items-center gap-4">
               <div className="text-xs text-gray-400">

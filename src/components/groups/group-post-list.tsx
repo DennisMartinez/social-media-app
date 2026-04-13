@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react'
 import { graphql, useFragment, usePaginationFragment } from 'react-relay'
 import { Card, CardBody } from '../common/card'
 import { Post } from '../posts/post'
-import type { groupPostListFragment$key } from './__generated__/groupPostListFragment.graphql'
-import type { groupPostListViewerFragment$key } from './__generated__/groupPostListViewerFragment.graphql'
+import { type groupPostListFragment$key } from './__generated__/groupPostListFragment.graphql'
+import { type groupPostListViewerFragment$key } from './__generated__/groupPostListViewerFragment.graphql'
 
 const GroupPostListViewerFragment = graphql`
   fragment groupPostListViewerFragment on User {

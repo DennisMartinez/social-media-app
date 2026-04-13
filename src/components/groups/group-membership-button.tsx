@@ -6,6 +6,7 @@ import { type groupMembershipButtonFragment$key } from './__generated__/groupMem
 const GroupMembershipButtonFragment = graphql`
   fragment groupMembershipButtonFragment on Group {
     id
+    memberCount
     viewerCanJoin
     viewerCanLeave
     viewerIsMember
@@ -61,6 +62,7 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
                 errors: [],
                 group: {
                   id: data.id,
+                  memberCount: data.memberCount - 1,
                   viewerCanJoin: true,
                   viewerCanLeave: false,
                   viewerIsMember: false
@@ -80,6 +82,7 @@ export function GroupMembershipButton({ group }: GroupMembershipButtonProps) {
                 errors: [],
                 group: {
                   id: data.id,
+                  memberCount: data.memberCount + 1,
                   viewerCanJoin: false,
                   viewerCanLeave: true,
                   viewerIsMember: true

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0b1f67fce03dd081ca284482b31c16cc>>
+ * @generated SignedSource<<8483faa7509ffebedb03ea8c2238c0b8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -140,6 +140,13 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "memberCount",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "viewerCanJoin",
                     "storageKey": null
                   },
@@ -217,12 +224,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "619203635b1d0e4aa2d3f7209cf307cb",
+    "cacheID": "abaeeb36c95eb44da715ed14f7d2e01c",
     "id": null,
     "metadata": {},
     "name": "groupsGridPaginationQuery",
     "operationKind": "query",
-    "text": "query groupsGridPaginationQuery(\n  $cursor: String\n  $first: Int = 12\n) {\n  ...groupsGridFragment_19XkED\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment_19XkED on Query {\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query groupsGridPaginationQuery(\n  $cursor: String\n  $first: Int = 12\n) {\n  ...groupsGridFragment_19XkED\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment_19XkED on Query {\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

@@ -4,6 +4,7 @@ import { randomColor } from '../../utils'
 import { Badge } from '../common/badge'
 import { Card, CardBody } from '../common/card'
 import { FollowButton } from '../follows/follow-button'
+import { GroupMembershipButton } from '../groups/group-membership-button'
 import { type profileHeaderFragment$key } from './__generated__/profileHeaderFragment.graphql'
 import { type profileHeaderViewerFragment$key } from './__generated__/profileHeaderViewerFragment.graphql'
 import { ProfileAvatar } from './profile-avatar'
@@ -32,6 +33,7 @@ const ProfileHeaderFragment = graphql`
         name
       }
       ...profileAvatarFragment
+      ...groupMembershipButtonFragment
     }
   }
 `
@@ -59,15 +61,15 @@ export function ProfileHeader({ viewer, node }: ProfileHeaderProps) {
           className="size-32 shadow ring-4 ring-white"
         />
         <div className="flex w-full min-w-0 flex-col items-center gap-4 lg:mt-10 lg:items-start">
-          <div className="flex w-full flex-col items-start justify-between gap-4 lg:flex-row">
-            <h1 className="text-2xl font-bold">{data.name}</h1>
-            {isUser && (
-              <div className="mt-1">
-                <FollowButton follower={viewerData} followee={data} />
-              </div>
-            )}
+          <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:items-start">
+            <h1 className="text-center text-2xl font-bold lg:text-left">
+              {data.name}
+            </h1>
+            <div className="mt-1 w-auto shrink-0">
+              {isUser && <FollowButton follower={viewerData} followee={data} />}
+              {isGroup && <GroupMembershipButton group={data} />}
+            </div>
           </div>
-
           <Badge>
             {isUser && (
               <>

@@ -39,7 +39,7 @@ const alertVariants = cva('', {
         'bg-green-50 **:data-alert-content:text-green-700 **:data-alert-icon:text-green-400 **:data-alert-title:text-green-800'
     },
     size: {
-      md: 'rounded-md p-4'
+      md: 'rounded-lg p-4'
     }
   },
   defaultVariants: {

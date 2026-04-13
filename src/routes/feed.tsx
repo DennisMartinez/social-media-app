@@ -1,5 +1,6 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { DemoAlert } from '../components/demo/demo-alert'
 import { FeedList } from '../components/feeds/feed-list'
 import { FollowersCard } from '../components/follows/followers-card'
 import { FollowingsCard } from '../components/follows/followings-card'
@@ -36,8 +37,9 @@ export function Component() {
     <div className="p-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 md:flex-row">
         <div className="flex w-full shrink-0 flex-col gap-4 md:w-72">
-          <div className="top-8 xl:sticky">
+          <div className="top-8 flex flex-col gap-4 xl:sticky">
             <Navigation query={data} />
+            <DemoAlert />
           </div>
           <div className="flex shrink-0 flex-col gap-4 xl:hidden">
             <RecommendedFollows viewer={data.viewer} user={data.viewer} />

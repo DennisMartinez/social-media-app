@@ -1,5 +1,6 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { DemoAlert } from '../components/demo/demo-alert'
 import { GroupsGrid } from '../components/groups/groups-grid'
 import { Navigation } from '../components/navigation/navigation'
 import { type groupsQuery } from './__generated__/groupsQuery.graphql'
@@ -22,8 +23,9 @@ export function Component() {
     <div className="p-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 md:flex-row">
         <div className="flex w-full shrink-0 flex-col gap-4 md:w-72">
-          <div className="top-8 xl:sticky">
+          <div className="top-8 flex flex-col gap-4 xl:sticky">
             <Navigation query={data} />
+            <DemoAlert />
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-4">

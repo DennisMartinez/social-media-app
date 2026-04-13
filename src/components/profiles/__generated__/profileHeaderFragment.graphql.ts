@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<70b2074c455584072534983e86344454>>
+ * @generated SignedSource<<225882718fb5be6d4fa328c4b9cb4ba5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,7 +19,7 @@ export type profileHeaderFragment$data = {
   readonly owner?: {
     readonly name: string;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "profileAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"followButtonFolloweeFragment" | "groupMembershipButtonFragment" | "profileAvatarFragment">;
   readonly " $fragmentType": "profileHeaderFragment";
 };
 export type profileHeaderFragment$key = {
@@ -106,7 +106,12 @@ return {
           ],
           "storageKey": null
         },
-        (v2/*: any*/)
+        (v2/*: any*/),
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "groupMembershipButtonFragment"
+        }
       ],
       "type": "Group",
       "abstractKey": null
@@ -117,6 +122,6 @@ return {
 };
 })();
 
-(node as any).hash = "cfe5d5cb5cc1236e1383a5dbf3787187";
+(node as any).hash = "a6399c21a6172cb9967d3d4083bfb5e4";
 
 export default node;

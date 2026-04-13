@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<05f6c881ad43677282f1c44f1515137c>>
+ * @generated SignedSource<<c081c119310704da455cc2caad8bb58e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -125,6 +125,13 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
+                "name": "memberCount",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
                 "name": "viewerCanJoin",
                 "storageKey": null
               },
@@ -151,12 +158,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1c5aa87c629e8d2ceab2dbc393250708",
+    "cacheID": "89811b1829649b8799ab5d3bc178e55c",
     "id": null,
     "metadata": {},
     "name": "groupMembershipButtonLeaveMutation",
     "operationKind": "mutation",
-    "text": "mutation groupMembershipButtonLeaveMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    errors\n    group {\n      ...groupMembershipButtonFragment\n      id\n    }\n  }\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n"
+    "text": "mutation groupMembershipButtonLeaveMutation(\n  $input: LeaveGroupInput!\n) {\n  leaveGroup(input: $input) {\n    errors\n    group {\n      ...groupMembershipButtonFragment\n      id\n    }\n  }\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  memberCount\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n"
   }
 };
 })();

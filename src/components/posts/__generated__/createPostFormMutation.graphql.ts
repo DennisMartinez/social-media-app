@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cfc94d3d4e84eb9429d2da66b876745b>>
+ * @generated SignedSource<<e56d3c8b71b883a67485648f6bb25622>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,7 @@ export type createPostFormMutation$variables = {
 };
 export type createPostFormMutation$data = {
   readonly createPost: {
+    readonly errors: ReadonlyArray<string>;
     readonly postEdge: {
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"postFragment">;
@@ -57,55 +58,62 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "errors",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "createdAt",
+  "name": "id",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "createdAt",
   "storageKey": null
 },
 v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "__typename",
+  "name": "name",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "avatarUrl",
   "storageKey": null
 },
-v7 = [
-  (v6/*: any*/)
+v8 = [
+  (v7/*: any*/)
 ],
-v8 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "content",
   "storageKey": null
 },
-v9 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "viewerCanDestroy",
   "storageKey": null
 },
-v10 = [
+v11 = [
   {
     "kind": "Literal",
     "name": "first",
@@ -127,6 +135,7 @@ return {
         "name": "createPost",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -175,6 +184,7 @@ return {
         "name": "createPost",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -191,8 +201,8 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
                   (v3/*: any*/),
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -201,8 +211,8 @@ return {
                     "name": "group",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
-                      (v4/*: any*/)
+                      (v3/*: any*/),
+                      (v5/*: any*/)
                     ],
                     "storageKey": null
                   },
@@ -214,8 +224,8 @@ return {
                     "name": "user",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
-                      (v4/*: any*/),
+                      (v3/*: any*/),
+                      (v5/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -247,16 +257,16 @@ return {
                       {
                         "kind": "InlineFragment",
                         "selections": [
-                          (v5/*: any*/),
+                          (v6/*: any*/),
                           {
                             "kind": "InlineFragment",
-                            "selections": (v7/*: any*/),
+                            "selections": (v8/*: any*/),
                             "type": "User",
                             "abstractKey": null
                           },
                           {
                             "kind": "InlineFragment",
-                            "selections": (v7/*: any*/),
+                            "selections": (v8/*: any*/),
                             "type": "Group",
                             "abstractKey": null
                           }
@@ -267,7 +277,7 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v8/*: any*/),
+                  (v9/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -289,17 +299,17 @@ return {
                     "name": "viewerHasLiked",
                     "storageKey": null
                   },
-                  (v9/*: any*/),
+                  (v10/*: any*/),
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v5/*: any*/),
+                      (v6/*: any*/),
                       {
                         "kind": "InlineFragment",
                         "selections": [
                           {
                             "alias": null,
-                            "args": (v10/*: any*/),
+                            "args": (v11/*: any*/),
                             "concreteType": "CommentConnection",
                             "kind": "LinkedField",
                             "name": "comments",
@@ -321,8 +331,8 @@ return {
                                     "name": "node",
                                     "plural": false,
                                     "selections": [
-                                      (v2/*: any*/),
                                       (v3/*: any*/),
+                                      (v4/*: any*/),
                                       {
                                         "alias": null,
                                         "args": null,
@@ -331,13 +341,13 @@ return {
                                         "name": "user",
                                         "plural": false,
                                         "selections": [
-                                          (v2/*: any*/),
-                                          (v4/*: any*/),
-                                          (v6/*: any*/),
+                                          (v3/*: any*/),
+                                          (v5/*: any*/),
+                                          (v7/*: any*/),
                                           {
                                             "kind": "InlineFragment",
                                             "selections": [
-                                              (v5/*: any*/)
+                                              (v6/*: any*/)
                                             ],
                                             "type": "Node",
                                             "abstractKey": "__isNode"
@@ -345,9 +355,9 @@ return {
                                         ],
                                         "storageKey": null
                                       },
+                                      (v10/*: any*/),
                                       (v9/*: any*/),
-                                      (v8/*: any*/),
-                                      (v5/*: any*/)
+                                      (v6/*: any*/)
                                     ],
                                     "storageKey": null
                                   },
@@ -391,7 +401,7 @@ return {
                           },
                           {
                             "alias": null,
-                            "args": (v10/*: any*/),
+                            "args": (v11/*: any*/),
                             "filters": null,
                             "handle": "connection",
                             "key": "Post_comments",
@@ -406,7 +416,7 @@ return {
                             "name": "viewerLike",
                             "plural": false,
                             "selections": [
-                              (v2/*: any*/)
+                              (v3/*: any*/)
                             ],
                             "storageKey": null
                           }
@@ -446,16 +456,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1f70d5434dc9f7623b75317b03c79dbd",
+    "cacheID": "a597c8960c18713c33e2a9f804c1df5f",
     "id": null,
     "metadata": {},
     "name": "createPostFormMutation",
     "operationKind": "mutation",
-    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...profileAvatarFragment\n  }\n  ...commentMenuFragment\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment commentMenuFragment on Comment {\n  id\n  viewerCanDestroy\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  ...postUserFragment\n  ...postContentFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n    ...useFollowsFolloweeFragment\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postUserFragment on Post {\n  createdAt\n  group {\n    id\n    name\n  }\n  user {\n    id\n    name\n    ...profileAvatarFragment\n  }\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n"
+    "text": "mutation createPostFormMutation(\n  $input: CreatePostInput!\n) {\n  createPost(input: $input) {\n    errors\n    postEdge {\n      node {\n        ...postFragment\n        id\n      }\n    }\n  }\n}\n\nfragment commentContentFragment on Comment {\n  content\n}\n\nfragment commentFragment on Comment {\n  id\n  createdAt\n  user {\n    id\n    name\n    avatarUrl\n    ...profileAvatarFragment\n  }\n  ...commentMenuFragment\n  ...commentContentFragment\n}\n\nfragment commentListFragment on Node {\n  __isNode: __typename\n  ... on Post {\n    comments(first: 1) {\n      edges {\n        node {\n          id\n          ...commentFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n  id\n}\n\nfragment commentMenuFragment on Comment {\n  id\n  viewerCanDestroy\n}\n\nfragment createCommentFormCommentableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    commentsCount\n  }\n}\n\nfragment postContentFragment on Post {\n  content\n}\n\nfragment postFragment on Post {\n  id\n  ...postUserFragment\n  ...postContentFragment\n  ...createCommentFormCommentableFragment\n  ...commentListFragment\n  ...postStatsFragment\n  ...postMenuFragment\n}\n\nfragment postMenuFragment on Post {\n  id\n  viewerHasLiked\n  viewerCanDestroy\n  user {\n    id\n    viewerIsFollowing\n    viewerCanFollow\n    ...useFollowsFolloweeFragment\n  }\n  ...useLikesLikeableFragment\n}\n\nfragment postStatsFragment on Post {\n  id\n  likesCount\n  commentsCount\n  viewerHasLiked\n  ...useLikesLikeableFragment\n}\n\nfragment postUserFragment on Post {\n  createdAt\n  group {\n    id\n    name\n  }\n  user {\n    id\n    name\n    ...profileAvatarFragment\n  }\n}\n\nfragment profileAvatarFragment on Node {\n  __isNode: __typename\n  __typename\n  ... on User {\n    name\n    avatarUrl\n  }\n  ... on Group {\n    name\n    avatarUrl\n  }\n}\n\nfragment useFollowsFolloweeFragment on User {\n  id\n  followerCount\n  followingCount\n}\n\nfragment useLikesLikeableFragment on Node {\n  __isNode: __typename\n  __typename\n  id\n  ... on Post {\n    likesCount\n    viewerHasLiked\n    viewerLike {\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "96aaaa7fb2003467aef393eb9f4cf519";
+(node as any).hash = "f6944127ec1ff4e6362c54ed438252fd";
 
 export default node;
