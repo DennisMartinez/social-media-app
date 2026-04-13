@@ -18,11 +18,11 @@ const avatarVariants = cva(
         default: 'bg-blue-50 text-blue-900'
       },
       size: {
-        xs: 'size-6',
-        sm: 'size-8',
-        md: 'size-10',
-        lg: 'size-12',
-        xl: 'size-14'
+        xs: 'size-6 text-xs',
+        sm: 'size-8 text-sm',
+        md: 'size-10 text-base',
+        lg: 'size-12 text-lg',
+        xl: 'size-14 text-xl'
       }
     },
     defaultVariants: {

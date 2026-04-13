@@ -44,3 +44,15 @@ export function formatDate(date: Date | string | number) {
     minute: '2-digit'
   }).format(new Date(date))
 }
+
+export function randomColor(seed: string) {
+  let hash = 0
+
+  for (let i = 0; i < seed.length; i++) {
+    hash = seed.charCodeAt(i) + ((hash << 5) - hash)
+  }
+
+  const color = `hsl(${hash % 360}, 70%, 80%)`
+
+  return color
+}

@@ -1,5 +1,6 @@
 import { MailIcon } from 'lucide-react'
 import { graphql, useFragment } from 'react-relay'
+import { randomColor } from '../../utils'
 import { Badge } from '../common/badge'
 import { Card, CardBody } from '../common/card'
 import { FollowButton } from '../follows/follow-button'
@@ -35,7 +36,10 @@ export function ProfileHeader({ viewer, user }: ProfileHeaderProps) {
 
   return (
     <Card className="p-6">
-      <div className="-mx-6 -mt-6 -mb-20 h-24 bg-linear-to-r from-blue-400 to-blue-500 lg:-mb-10 lg:h-48" />
+      <div
+        className="-mx-6 -mt-6 -mb-20 h-24 lg:-mb-10 lg:h-48"
+        style={{ backgroundColor: randomColor(data.name) }}
+      />
       <CardBody className="flex flex-col items-center gap-6 lg:flex-row lg:items-start">
         <UserAvatar user={data} className="size-32 shadow ring-4 ring-white" />
         <div className="flex w-full min-w-0 flex-col items-center gap-4 lg:mt-10 lg:items-start">

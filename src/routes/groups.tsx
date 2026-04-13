@@ -1,11 +1,13 @@
 import { useLazyLoadQuery } from 'react-relay'
 import { graphql } from 'relay-runtime'
+import { GroupsGrid } from '../components/groups/groups-grid'
 import { Navigation } from '../components/navigation/navigation'
 import { type groupsQuery } from './__generated__/groupsQuery.graphql'
 
 const GroupsQuery = graphql`
   query groupsQuery {
     ...navigationFragment
+    ...groupsGridFragment
   }
 `
 
@@ -21,8 +23,7 @@ export function Component() {
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-4">
-          <h1 className="text-2xl font-bold">Groups</h1>
-          <p className="text-gray-500">Discover new groups here.</p>
+          <GroupsGrid query={data} />
         </div>
       </div>
     </div>
