@@ -73,7 +73,9 @@ export function Component() {
                 <FollowingsCard viewer={data.viewer} user={data.node} />
               </>
             )}
-            {isGroup && <div>Member list</div>}
+            {isGroup && (
+              <GroupMembersCard viewer={data.viewer} user={data.node} />
+            )}
           </div>
         </div>
         <div className="flex w-full min-w-0 flex-col gap-8">
