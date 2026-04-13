@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<99902bce9787447a6ad20181ee0bca8c>>
+ * @generated SignedSource<<c7e912feb331b056194cf45d8114d06f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type groupCardFragment$data = {
   readonly createdAt: any;
   readonly id: string;
   readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"groupAvatarFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"groupAvatarFragment" | "groupMembershipButtonFragment">;
   readonly " $fragmentType": "groupCardFragment";
 };
 export type groupCardFragment$key = {
@@ -61,12 +61,17 @@ const node: ReaderFragment = {
       "args": null,
       "kind": "FragmentSpread",
       "name": "groupAvatarFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "groupMembershipButtonFragment"
     }
   ],
   "type": "Group",
   "abstractKey": null
 };
 
-(node as any).hash = "634cf50d1c3aaa14012a33a83e14801c";
+(node as any).hash = "58749c15e41f460c764c28bdc79314cf";
 
 export default node;

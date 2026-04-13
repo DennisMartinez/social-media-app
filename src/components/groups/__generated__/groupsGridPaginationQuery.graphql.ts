@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<92e0906f0f60e4919c1ba24a55dae6b1>>
+ * @generated SignedSource<<0b1f67fce03dd081ca284482b31c16cc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,58 +10,60 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type groupsQuery$variables = Record<PropertyKey, never>;
-export type groupsQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"groupsGridFragment" | "navigationFragment">;
+export type groupsGridPaginationQuery$variables = {
+  cursor?: string | null | undefined;
+  first?: number | null | undefined;
 };
-export type groupsQuery = {
-  response: groupsQuery$data;
-  variables: groupsQuery$variables;
+export type groupsGridPaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"groupsGridFragment">;
+};
+export type groupsGridPaginationQuery = {
+  response: groupsGridPaginationQuery$data;
+  variables: groupsGridPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-},
-v2 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "avatarUrl",
-  "storageKey": null
-},
-v3 = [
+var v0 = [
   {
-    "kind": "Literal",
-    "name": "first",
-    "value": 12
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  },
+  {
+    "defaultValue": 12,
+    "kind": "LocalArgument",
+    "name": "first"
   }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "first",
+  "variableName": "first"
+},
+v2 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  (v1/*: any*/)
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "groupsQuery",
+    "name": "groupsGridPaginationQuery",
     "selections": [
       {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "navigationFragment"
-      },
-      {
-        "args": null,
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "cursor",
+            "variableName": "cursor"
+          },
+          (v1/*: any*/)
+        ],
         "kind": "FragmentSpread",
         "name": "groupsGridFragment"
       }
@@ -71,34 +73,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "groupsQuery",
+    "name": "groupsGridPaginationQuery",
     "selections": [
       {
         "alias": null,
-        "args": null,
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "email",
-            "storageKey": null
-          },
-          (v2/*: any*/)
-        ],
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": (v3/*: any*/),
+        "args": (v2/*: any*/),
         "concreteType": "GroupConnection",
         "kind": "LinkedField",
         "name": "groups",
@@ -120,8 +101,20 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v0/*: any*/),
-                  (v1/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "name",
+                    "storageKey": null
+                  },
                   {
                     "alias": null,
                     "args": null,
@@ -136,7 +129,13 @@ return {
                     "name": "createdAt",
                     "storageKey": null
                   },
-                  (v2/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "avatarUrl",
+                    "storageKey": null
+                  },
                   {
                     "alias": null,
                     "args": null,
@@ -204,11 +203,11 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "groups(first:12)"
+        "storageKey": null
       },
       {
         "alias": null,
-        "args": (v3/*: any*/),
+        "args": (v2/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "GroupsGrid_groups",
@@ -218,16 +217,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "40f7cb77866c60f7421c64b14d0faac0",
+    "cacheID": "619203635b1d0e4aa2d3f7209cf307cb",
     "id": null,
     "metadata": {},
-    "name": "groupsQuery",
+    "name": "groupsGridPaginationQuery",
     "operationKind": "query",
-    "text": "query groupsQuery {\n  ...navigationFragment\n  ...groupsGridFragment\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment on Query {\n  groups(first: 12) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment navigationFragment on Query {\n  viewer {\n    ...navigationUserFragment\n    id\n  }\n}\n\nfragment navigationUserFragment on User {\n  id\n  name\n  email\n  ...userAvatarFragment\n}\n\nfragment userAvatarFragment on User {\n  name\n  avatarUrl\n}\n"
+    "text": "query groupsGridPaginationQuery(\n  $cursor: String\n  $first: Int = 12\n) {\n  ...groupsGridFragment_19XkED\n}\n\nfragment groupAvatarFragment on Group {\n  name\n  avatarUrl\n}\n\nfragment groupCardFragment on Group {\n  id\n  name\n  bio\n  createdAt\n  ...groupAvatarFragment\n  ...groupMembershipButtonFragment\n}\n\nfragment groupMembershipButtonFragment on Group {\n  id\n  viewerCanJoin\n  viewerCanLeave\n  viewerIsMember\n}\n\nfragment groupsGridFragment_19XkED on Query {\n  groups(after: $cursor, first: $first) {\n    edges {\n      node {\n        id\n        ...groupCardFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "f619b9ed061c9c5b5978e39e507479ff";
+(node as any).hash = "ad8a0f156e49032a66db910a7e75794c";
 
 export default node;

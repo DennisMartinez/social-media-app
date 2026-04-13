@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5caa1e382fc9941c7da80b35818a9c5c>>
+ * @generated SignedSource<<939cd66d8de583cc8b0ba1741148554c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,18 +26,56 @@ export type groupsGridFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"groupsGridFragment">;
 };
 
-const node: ReaderFragment = {
-  "argumentDefinitions": [],
+import groupsGridPaginationQuery_graphql from './groupsGridPaginationQuery.graphql';
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "groups"
+];
+return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "cursor"
+    },
+    {
+      "defaultValue": 12,
+      "kind": "LocalArgument",
+      "name": "first"
+    }
+  ],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": "first",
+        "cursor": "cursor",
+        "direction": "forward",
+        "path": (v0/*: any*/)
+      }
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [],
+      "operation": groupsGridPaginationQuery_graphql
+    }
+  },
   "name": "groupsGridFragment",
   "selections": [
     {
-      "alias": null,
+      "alias": "groups",
       "args": null,
       "concreteType": "GroupConnection",
       "kind": "LinkedField",
-      "name": "groups",
+      "name": "__GroupsGrid_groups_connection",
       "plural": false,
       "selections": [
         {
@@ -67,8 +105,47 @@ const node: ReaderFragment = {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "groupCardFragment"
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
                 }
               ],
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
               "storageKey": null
             }
           ],
@@ -81,7 +158,8 @@ const node: ReaderFragment = {
   "type": "Query",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "fc522944c3db0c15d04ae2fcd95c5e77";
+(node as any).hash = "ad8a0f156e49032a66db910a7e75794c";
 
 export default node;
