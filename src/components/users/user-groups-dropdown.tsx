@@ -24,9 +24,14 @@ const UserGroupsDropdownFragment = graphql`
   }
 `
 
+export interface Group {
+  id: string
+  name: string
+}
+
 interface UserGroupsDropdownProps {
   user: userGroupsDropdownFragment$key
-  onGroupSelect?: (groupId: string | null) => void
+  onGroupSelect?: (group: Group | null) => void
 }
 
 export function UserGroupsDropdown({
@@ -34,14 +39,14 @@ export function UserGroupsDropdown({
   onGroupSelect
 }: UserGroupsDropdownProps) {
   const data = useFragment(UserGroupsDropdownFragment, user)
-  const [selectedItem, setSelectedItem] = useState('Me')
+  const [selectedItem, setSelectedItem] = useState<Group | null>(null)
 
   return (
     <Dropdown>
       <DropdownTrigger
         render={
           <Button variant="outline" size="xs">
-            {selectedItem}
+            {selectedItem ? selectedItem.name : 'Select group'}
             <ChevronDownIcon className="translate-y-px" />
           </Button>
         }
@@ -49,7 +54,7 @@ export function UserGroupsDropdown({
       <DropdownMenu>
         <DropdownMenuItem
           onClick={() => {
-            setSelectedItem('Me')
+            setSelectedItem(null)
             onGroupSelect?.(null)
           }}>
           Me
@@ -62,8 +67,8 @@ export function UserGroupsDropdown({
               key={edge.node.id}
               onClick={() => {
                 if (!edge?.node) return
-                setSelectedItem(edge.node.name)
-                onGroupSelect?.(edge.node.id)
+                setSelectedItem(edge.node)
+                onGroupSelect?.(edge.node)
               }}>
               {edge.node.name}
             </DropdownMenuItem>

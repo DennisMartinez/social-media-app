@@ -8,7 +8,7 @@ import * as yup from 'yup'
 import { Button } from '../common/button'
 import { Input } from '../common/input'
 import { UserAvatar } from '../users/user-avatar'
-import { UserGroupsDropdown } from '../users/user-groups-dropdown'
+import { UserGroupsDropdown, type Group } from '../users/user-groups-dropdown'
 import { type createPostFormFragment$key } from './__generated__/createPostFormFragment.graphql'
 import { type createPostFormMutation } from './__generated__/createPostFormMutation.graphql'
 
@@ -17,6 +17,8 @@ const CreatePostFormFragment = graphql`
     id
     name
     avatarUrl
+    followerCount
+    followingCount
     ...userAvatarFragment
     ...userGroupsDropdownFragment
   }
@@ -53,7 +55,7 @@ interface CreatePostFormProps {
 export function CreatePostForm({ user }: CreatePostFormProps) {
   const env = useRelayEnvironment()
   const data = useFragment(CreatePostFormFragment, user)
-  const [groupId, setGroupId] = useState<string | null>(null)
+  const [selectedGroup, setSelectedGroup] = useState<Group | null>(null)
   const [createPost] = useMutation<createPostFormMutation>(
     CreatePostFormMutation
   )
@@ -78,40 +80,43 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
             connections,
             input: {
               content: formData.content,
-              groupId
+              groupId: selectedGroup?.id
             }
           },
-          // optimisticResponse: {
-          //   createPost: {
-          //     postEdge: {
-          //       node: {
-          //         __typename: 'Post',
-          //         id: new Date().toISOString(),
-          //         content: formData.content,
-          //         createdAt: new Date().toISOString(),
-          //         viewerHasLiked: false,
-          //         viewerCanDestroy: false,
-          //         commentsCount: 0,
-          //         likesCount: 0,
-          //         comments: {
-          //           edges: [],
-          //           pageInfo: {
-          //             endCursor: null,
-          //             hasNextPage: false
-          //           }
-          //         },
-          //         user: {
-          //           id: data.id,
-          //           avatarUrl: data.avatarUrl,
-          //           name: data.name,
-          //           viewerIsFollowing: false,
-          //           viewerCanFollow: false
-          //         },
-          //         viewerLike: null
-          //       }
-          //     }
-          //   }
-          // },
+          optimisticResponse: {
+            createPost: {
+              postEdge: {
+                node: {
+                  __typename: 'Post',
+                  id: new Date().toISOString(),
+                  content: formData.content,
+                  createdAt: new Date().toISOString(),
+                  viewerHasLiked: false,
+                  viewerCanDestroy: false,
+                  commentsCount: 0,
+                  likesCount: 0,
+                  comments: {
+                    edges: [],
+                    pageInfo: {
+                      endCursor: null,
+                      hasNextPage: false
+                    }
+                  },
+                  user: {
+                    id: data.id,
+                    avatarUrl: data.avatarUrl,
+                    name: data.name,
+                    followerCount: data.followerCount,
+                    followingCount: data.followingCount,
+                    viewerIsFollowing: false,
+                    viewerCanFollow: false
+                  },
+                  group: selectedGroup,
+                  viewerLike: null
+                }
+              }
+            }
+          },
           onError: () => {
             setValue('content', formData.content)
           }
@@ -132,7 +137,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
             data-enable-grammarly="false"
           />
           <div className="absolute bottom-0 left-0 flex w-full items-center justify-between gap-4 px-2 pb-2">
-            <UserGroupsDropdown user={data} onGroupSelect={setGroupId} />
+            <UserGroupsDropdown user={data} onGroupSelect={setSelectedGroup} />
             <div className="flex items-center gap-4">
               <div className="text-xs text-gray-400">
                 {content.length}/{MAX_LIMIT}
@@ -141,7 +146,7 @@ export function CreatePostForm({ user }: CreatePostFormProps) {
                 variant={content ? 'primary' : 'outline'}
                 size="xs"
                 disabled={!content}>
-                Create Post
+                Create Post{selectedGroup ? ` in ${selectedGroup.name}` : ''}
               </Button>
             </div>
           </div>

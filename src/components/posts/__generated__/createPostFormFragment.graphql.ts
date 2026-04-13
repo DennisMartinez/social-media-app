@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<452d8da44349b2cac3d6af328ffe3bdf>>
+ * @generated SignedSource<<1af350e7cd0b9f712513658e6fed0550>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,8 @@ import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type createPostFormFragment$data = {
   readonly avatarUrl: string | null | undefined;
+  readonly followerCount: number;
+  readonly followingCount: number;
   readonly id: string;
   readonly name: string;
   readonly " $fragmentSpreads": FragmentRefs<"userAvatarFragment" | "userGroupsDropdownFragment">;
@@ -50,6 +52,20 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "followerCount",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "followingCount",
+      "storageKey": null
+    },
+    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "userAvatarFragment"
@@ -64,6 +80,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "78f856eff5da62861d55d8bc0e14ddbf";
+(node as any).hash = "d19bbad400cdb3e1f445bb8aa17bef6d";
 
 export default node;
