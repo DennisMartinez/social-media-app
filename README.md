@@ -58,6 +58,6 @@ yarn test
 If you have trouble running the tests, try installing Playwright with the following commands.
 
 ```bash
-npx playwright install-deps
-npx playwright install
+yarn playwright install-deps
+yarn playwright install
 ```
