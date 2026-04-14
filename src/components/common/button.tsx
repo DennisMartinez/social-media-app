@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Loader2Icon } from 'lucide-react'
-import { type ComponentProps, type ElementType } from 'react'
+import { type ComponentProps, type ElementType, type MouseEvent } from 'react'
 import { cn } from '../../utils'
 
 /**
@@ -13,17 +13,18 @@ import { cn } from '../../utils'
  */
 
 const buttonVariants = cva(
-  'flex items-center justify-center rounded-full border not-disabled:cursor-pointer focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0',
+  'flex items-center justify-center rounded-full border not-aria-disabled:cursor-pointer focus-visible:outline-2 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         primary:
-          'border-blue-500 bg-blue-500 text-white not-disabled:hover:border-blue-600 not-disabled:hover:bg-blue-600',
+          'border-blue-500 bg-blue-500 text-white not-aria-disabled:hover:border-blue-600 not-aria-disabled:hover:bg-blue-600',
         secondary:
-          'border-gray-500 bg-gray-500 text-white not-disabled:hover:border-gray-600 not-disabled:hover:bg-gray-600',
+          'border-gray-500 bg-gray-500 text-white not-aria-disabled:hover:border-gray-600 not-aria-disabled:hover:bg-gray-600',
         ghost:
-          'border-transparent bg-transparent text-gray-500 not-disabled:hover:bg-gray-100',
-        outline: 'border-gray-300 text-gray-500 not-disabled:hover:bg-gray-100'
+          'border-transparent bg-transparent text-gray-500 not-aria-disabled:hover:bg-gray-100',
+        outline:
+          'border-gray-300 text-gray-500 not-aria-disabled:hover:bg-gray-100'
       },
       size: {
         xs: 'gap-1 px-2 py-1 text-xs font-semibold [&_svg]:size-4',
@@ -47,23 +48,37 @@ type PolymorphicButtonProps<C extends ElementType> = ComponentProps<C> &
   }
 
 export function Button<C extends ElementType = 'button'>({
-  as,
+  as = 'button',
   variant,
   size,
   loading,
+  disabled,
   className,
   children,
+  onClick,
   ...props
 }: PolymorphicButtonProps<C>) {
-  const _disabled = props.disabled || loading
+  const _disabled = disabled || loading
   const Component = as || 'button'
 
   return (
     <Component
       {...props}
-      disabled={_disabled}
-      className={cn(buttonVariants({ variant, size, className }))}>
-      {loading && <Loader2Icon className="animate-spin" />}
+      disabled={as !== 'button' ? undefined : _disabled}
+      aria-disabled={_disabled}
+      tabIndex={_disabled ? -1 : 0}
+      className={cn(buttonVariants({ variant, size, className }))}
+      onClick={(e: MouseEvent<C>) => {
+        if (_disabled) {
+          e.preventDefault()
+          return
+        }
+
+        onClick?.(e)
+      }}>
+      {loading && (
+        <Loader2Icon className="animate-spin" data-testid="button-loader" />
+      )}
       {children}
     </Component>
   )
