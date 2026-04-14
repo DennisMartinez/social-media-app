@@ -42,6 +42,22 @@ This command will:
 3. Start Watchman and the Yarn dev server
 
 The app will be available at:
+
 ```bash
 http://localhost:5173
+```
+
+### Testing
+
+This app uses Vitest with Playwright. You can run the tests with the following command.
+
+```bash
+yarn test
+```
+
+If you have trouble running the tests, try installing Playwright with the following commands.
+
+```bash
+npx playwright install-deps
+npx playwright install
 ```

@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "relay": "relay-compiler",
-    "schema": "get-graphql-schema http://localhost:3000/graphql > src/schema.graphql"
+    "schema": "get-graphql-schema http://localhost:3000/graphql > src/schema.graphql",
+    "test": "vitest"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -40,6 +41,7 @@
     "@types/react-relay": "18.2.1",
     "@types/relay-runtime": "20.1.1",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/browser-playwright": "^4.1.4",
     "babel-plugin-relay": "20.1.1",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
@@ -47,6 +49,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "get-graphql-schema": "^2.1.2",
     "globals": "^17.4.0",
+    "playwright": "^1.59.1",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
@@ -55,6 +58,8 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.0",
     "vite": "^8.0.4",
-    "vite-plugin-relay": "2.1.0"
+    "vite-plugin-relay": "2.1.0",
+    "vitest": "^4.1.4",
+    "vitest-browser-react": "^2.2.0"
   }
 }
